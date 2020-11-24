@@ -33,6 +33,7 @@ const test = async () => {
 // Define API routes here
 router.get("/songs", (req, res) => {
     console.log("heyyyyy");
+    console.log("... inside router.get('/songs')...")
     test().then( data => {
     //   console.log(data);
       res.send(data);
