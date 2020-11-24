@@ -10,6 +10,10 @@ function App() {
     API.getSongs().then(res => {
       console.log("yoooo, in APP.JS");
       console.log(res.data);
+    });
+    API.getAllUsers().then( res => {
+      console.log("...getting users from DB...");
+      console.log(res.data);
     })
   }, []);
 
@@ -23,6 +27,9 @@ function App() {
       <p className="App-intro">
         To get started, edit <code>src/App.js</code> and save to reload.
       </p>
+      <hr/>
+      <hr/>
+      
     </div>
   );
 }

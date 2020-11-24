@@ -3,6 +3,8 @@ const Token = "GjZdsQku4iZ7k9QRw0v3g2PRBRe6zrAe3NzPLBqdA-fBEFC_u1DbxuFF5FZvSxPL"
 const Client = new Genius.Client(Token);
 const router = require("express").Router();
 
+const userController = require("../controllers/userController");
+
 let intervals = 0;
 const wait = (time) =>
   new Promise((resolve) => {
@@ -30,7 +32,9 @@ const test = async () => {
 };
 // test();
 
-// Define API routes here
+// ! -------------------- Define API routes here
+// * this matches with /api/songs
+// ! remember /api/ is implied in our server.js file
 router.get("/songs", (req, res) => {
     console.log("heyyyyy");
     console.log("... inside router.get('/songs')...")
@@ -40,5 +44,15 @@ router.get("/songs", (req, res) => {
     })
     
 });
+
+// matches with /api/users
+// router.get("/users", (req, res) => {
+//   console.log("... inside router.get('/users)...")
+//   userController.findAll(req, res).then( data => {
+//     console.log("...finding users successful");
+//     res.send(data);
+//   });
+// });
+router.route("/users").get(userController.findAll);
 
 module.exports = router;
