@@ -1,10 +1,12 @@
-import React, { Component, useEffect } from "react";
+import React, { useEffect } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import API from "./utils/API";
+import useNounFinder from "./utils/Hooks/NounFinderFolder/NounFinder";
 
 function App() {
-
+  let tester = useNounFinder("Hello Darkness My Old Friend...");
+  console.log(tester);
 
   useEffect(() => {
     API.getSongs().then(res => {
@@ -22,7 +24,7 @@ function App() {
     <div className="App">
       <div className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <h2>Welcome to React</h2>
+  <h2>Push It Too The Limit</h2>
       </div>
       <p className="App-intro">
         To get started, edit <code>src/App.js</code> and save to reload.
