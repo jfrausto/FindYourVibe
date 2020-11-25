@@ -25,6 +25,7 @@
     "genius-lyrics": "^4.0.0",
     "if-env": "^1.0.4",
     "install": "^0.13.0",
-    "mongoose": "^5.10.15"
+    "mongoose": "^5.10.15",
+    "nounfinder": "^3.0.0"
   }
 }

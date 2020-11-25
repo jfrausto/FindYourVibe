@@ -2,6 +2,10 @@ const Genius = require("genius-lyrics");
 const Token = "GjZdsQku4iZ7k9QRw0v3g2PRBRe6zrAe3NzPLBqdA-fBEFC_u1DbxuFF5FZvSxPL";
 const Client = new Genius.Client(Token);
 const router = require("express").Router();
+var createNounfinder = require('nounfinder');
+var nounfinder = createNounfinder({
+  wordnikAPIKey: 'v0e8pfefcqx3zr3o0ouhz12c48noz2nibg3drs3k1yzb9urvt'
+});
 
 const userController = require("../controllers/userController");
 
@@ -36,23 +40,25 @@ const test = async () => {
 // * this matches with /api/songs
 // ! remember /api/ is implied in our server.js file
 router.get("/songs", (req, res) => {
-    console.log("heyyyyy");
     console.log("... inside router.get('/songs')...")
     test().then( data => {
-    //   console.log(data);
       res.send(data);
     })
     
 });
 
-// matches with /api/users
-// router.get("/users", (req, res) => {
-//   console.log("... inside router.get('/users)...")
-//   userController.findAll(req, res).then( data => {
-//     console.log("...finding users successful");
-//     res.send(data);
-//   });
-// });
+// FIND ALL USERS ROUTE
 router.route("/users").get(userController.findAll);
+
+// CALL NOUN FINDER API AND RETURNS AN ARRAY
+router.get("/nouns/:words", (req, res) => {
+  console.log("... inside router.get(:words)")
+  const wordsArray = req.params.words
+  nounfinder.getNounsFromText(wordsArray, function done(error, nouns) {
+    if (error) throw error;
+    console.log(`Filtered nouns: ${nouns}`);
+    res.send(nouns);
+  });
+})
 
 module.exports = router;
