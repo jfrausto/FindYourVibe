@@ -3,6 +3,9 @@ import logo from "./logo.svg";
 import "./App.css";
 import API from "./utils/API";
 import useNounFinder from "./utils/Hooks/NounFinderFolder/NounFinder";
+import LandingSplash from "./components/LandingSplash";
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 function App() {
   let tester = useNounFinder("Hello Darkness My Old Friend...");
@@ -22,16 +25,10 @@ function App() {
 
   return (
     <div className="App">
-      <div className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-  <h2>Push It Too The Limit</h2>
-      </div>
-      <p className="App-intro">
-        To get started, edit <code>src/App.js</code> and save to reload.
-      </p>
-      <hr/>
-      <hr/>
-      
+      {/* Navigation  or other stuff can go here */}
+      <LandingSplash/>
+      {/* we might not even want this landing splash thing in the future */}
+      {/* perhaps some buttons to continue */}
     </div>
   );
 }
