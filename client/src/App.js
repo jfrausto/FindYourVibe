@@ -2,6 +2,9 @@ import React, { Component, useEffect } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import API from "./utils/API";
+import LandingSplash from "./components/LandingSplash";
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 function App() {
 
@@ -20,16 +23,10 @@ function App() {
 
   return (
     <div className="App">
-      <div className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <h2>Welcome to React</h2>
-      </div>
-      <p className="App-intro">
-        To get started, edit <code>src/App.js</code> and save to reload.
-      </p>
-      <hr/>
-      <hr/>
-      
+      {/* Navigation  or other stuff can go here */}
+      <LandingSplash/>
+      {/* we might not even want this landing splash thing in the future */}
+      {/* perhaps some buttons to continue */}
     </div>
   );
 }
