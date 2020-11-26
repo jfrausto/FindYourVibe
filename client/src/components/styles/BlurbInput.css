@@ -1,0 +1,4 @@
+/* !important is overriding the error styling from react-textarea-counter package */
+textarea + div {
+  color: aliceblue !important;
+}

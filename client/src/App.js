@@ -1,9 +1,10 @@
 import React, { useEffect } from "react";
 import "./App.css";
+import 'bootstrap/dist/css/bootstrap.min.css';
 import API from "./utils/API";
 // import useNounFinder from "./utils/Hooks/NounFinderFolder/NounFinder";
 import LandingSplash from "./components/LandingSplash";
-import 'bootstrap/dist/css/bootstrap.min.css';
+import BlurbInput from "./components/BlurbInput";
 
 function App() {
 
@@ -26,6 +27,7 @@ function App() {
     <div className="App">
       {/* Navigation  or other stuff can go here */}
       <LandingSplash/>
+      <BlurbInput />
       {/* we might not even want this landing splash thing in the future */}
       {/* perhaps some buttons to continue */}
     </div>
