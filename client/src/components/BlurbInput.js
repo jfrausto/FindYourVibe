@@ -5,6 +5,7 @@ import './styles/BlurbInput.css';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import ButtonGroup from './ButtonGroup';
+import DropdownMood from './DropdownMood';
 
 // input group component that allows user input
 export default function BlurbInput(props) {
@@ -12,12 +13,13 @@ export default function BlurbInput(props) {
         <>
             <Container className="mt-5">
                 <Row>
-                    <Col xs={12} md={{span: 6, offset: 3}}>
+                    <Col xs={12} md={{span: 8, offset: 2}}>
                         <TextareaCounter countLimit={140} rows={3}/>
                     </Col>
                 </Row>
                 <Row>
                     <ButtonGroup />
+                    <DropdownMood />
                 </Row>
             </Container>
         </>

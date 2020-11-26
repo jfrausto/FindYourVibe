@@ -6,11 +6,11 @@ import Button from 'react-bootstrap/Button';
 export default function ButtonGroup() {
   return (
     <>
-      <Col xs={{span: 3, offset: 3}} sm={{ span: 4, offset: 2}}>
-        <Button size="sm" variant="info">Analyze</Button>
+      <Col>
+        <Button className="px-md-5" size="sm" variant="info">Analyze</Button>
       </Col>
-      <Col xs={3} sm={4}>
-        <Button size="sm" variant="dark">Post</Button>
+      <Col>
+        <Button className="px-md-5" size="sm" variant="dark">Post</Button>
       </Col>
     </>
   )
