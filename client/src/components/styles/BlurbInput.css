@@ -1,0 +1,13 @@
+/* !important is overriding the error styling from react-textarea-counter package */
+textarea + div {
+  color: aliceblue !important;
+}
+
+.container {
+  text-align: center;
+}
+
+/* #dropdown-item-button {
+  padding-left: 4rems !important;
+  padding-right: 4rems !important;
+} */
