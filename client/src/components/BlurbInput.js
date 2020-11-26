@@ -17,7 +17,7 @@ export default function BlurbInput(props) {
                         <TextareaCounter countLimit={140} rows={3}/>
                     </Col>
                 </Row>
-                <Row>
+                <Row className="mt-2">
                     <ButtonGroup />
                     <DropdownMood />
                 </Row>
