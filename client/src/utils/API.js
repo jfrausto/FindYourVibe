@@ -1,13 +1,15 @@
 import axios from "axios";
 
-// UTILIZING GENIUS AND WORDNIK API
+// calls to Genius API, Wordnik API, and user database(eventually)
 export default {
-    getSongs: function() {
-        return axios.get("/api/songs");
+    // getSongsPool takes in an array of strings
+    getSongsPool: function(lyricSnippet) {
+        return axios.get("/api/songs/" + lyricSnippet);
     },
     getAllUsers: function() {
         return axios.get("/api/users");
     },
+    // getNouns takes in a string
     getNouns: function(words) {
         return axios.get("/api/nouns/" + words);
     }

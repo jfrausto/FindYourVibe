@@ -11,21 +11,46 @@ import API from '../utils/API';
 // input group component that allows user input
 export default function BlurbInput() {
 
+    // current state of the value in text area
     const [TextAreaVal, setTextAreaVal] = useState("");
     // useEffect(() => {
     //     console.log(TextAreaVal);
     // }, [TextAreaVal]);
 
-    const handleButtonClick = (e) => {
+    // should always take in an array of words ([geniusQueryArray])
+    // whether they be from Wordnik API
+    // or JOCECODE REGEX FUNCTIONS, OR a combination of both
+    const handleGeniusCall = async (geniusQueryArray) => {
+        let geniusRes;
+        try {
+            geniusRes = await API.getSongsPool(geniusQueryArray);
+        } catch (err) {
+            throw err;
+        }
+        console.log("...inside handleGeniusCall front-end...");
+        // these are the three songs to display now
+        // ? we could add song shuffling to get 3 new songs
+        // ? to keep it interesting everytime they hit analyze
+        console.log(geniusRes.data);
+    }
+
+    // takes in both actions from the POST and ANALYZE buttons
+    const handleButtonClick = async (e) => {
         const buttonPress = e.target.innerText;
-        console.log(buttonPress);
         // do not call the api on an empty string
         if (TextAreaVal === "") return;
+        // if we hit analyze, query genius API with
+        // extracted nouns from the text area
         if(buttonPress === "Analyze"){
-            API.getNouns(TextAreaVal).then( (res) => {
-                console.log(res.data);
-            })
-        } else {
+            let nounsRes;
+            try {
+                nounsRes = await API.getNouns(TextAreaVal);
+            } catch(err) {
+                throw err;
+            }
+            const nounStringArray = nounsRes.data;
+            handleGeniusCall(nounStringArray);
+        } else { // we will submit the post!
             console.log("post button click!");
         }
     }
