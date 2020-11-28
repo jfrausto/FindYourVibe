@@ -30,7 +30,6 @@ function App() {
       {/* Navigation  or other stuff can go here */}
       <Container >
       <LandingSplash/>
-      <SongCardContainer />
       <BlurbInput />
       </Container>
       {/* we might not even want this landing splash thing in the future */}

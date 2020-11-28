@@ -7,19 +7,21 @@ import Col from 'react-bootstrap/Col';
 import ButtonGroup from './ButtonGroup';
 import DropdownMood from './DropdownMood';
 import API from '../utils/API';
+import SongCardContainer from "./SongCardContainer";
 
 // input group component that allows user input
 export default function BlurbInput() {
 
     // current state of the value in text area
     const [TextAreaVal, setTextAreaVal] = useState("");
+    const [SongPoolRes, setSongPoolRes] = useState([]);
     // useEffect(() => {
     //     console.log(TextAreaVal);
     // }, [TextAreaVal]);
 
     // should always take in an array of words ([geniusQueryArray])
     // whether they be from Wordnik API
-    // or JOCECODE REGEX FUNCTIONS, OR a combination of both
+    // or REGEX FUNCTIONS, OR a combination of both
     const handleGeniusCall = async (geniusQueryArray) => {
         let geniusRes;
         try {
@@ -32,6 +34,7 @@ export default function BlurbInput() {
         // ? we could add song shuffling to get 3 new songs
         // ? to keep it interesting everytime they hit analyze
         console.log(geniusRes.data);
+        setSongPoolRes(geniusRes.data);
     }
 
     // takes in both actions from the POST and ANALYZE buttons
@@ -56,9 +59,14 @@ export default function BlurbInput() {
     }
 
     return (
-        <>
-            <Container className="mt-5">
-                <Row>
+    <>
+        <Container className="mt-5">
+            <Row>
+                <Col>
+                <SongCardContainer songPool={SongPoolRes}/>
+                </Col>
+            </Row>
+            <Row className="mt-2">
                     <Col xs={12} md={{span: 8, offset: 2}}>
                         <TextareaCounter onChange={(e) => setTextAreaVal(e.target.value)} placeholder="What's on your mind?" countLimit={140} rows={3} />
                     </Col>
