@@ -5,6 +5,8 @@ import API from "./utils/API";
 // import useNounFinder from "./utils/Hooks/NounFinderFolder/NounFinder";
 import LandingSplash from "./components/LandingSplash";
 import BlurbInput from "./components/BlurbInput";
+import SongCardContainer from "./components/SongCardContainer";
+import Container from "react-bootstrap/Container"
 
 function App() {
 
@@ -26,8 +28,11 @@ function App() {
   return (
     <div className="App">
       {/* Navigation  or other stuff can go here */}
+      <Container >
       <LandingSplash/>
+      <SongCardContainer />
       <BlurbInput />
+      </Container>
       {/* we might not even want this landing splash thing in the future */}
       {/* perhaps some buttons to continue */}
     </div>
