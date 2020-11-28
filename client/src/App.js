@@ -4,6 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import API from "./utils/API";
 import Signup from "./components/Signup";
 import { Container } from "react-bootstrap";
+// import { AuthProvider } from "./contexts/AuthContext";
 // import useNounFinder from "./utils/Hooks/NounFinderFolder/NounFinder";
 import LandingSplash from "./components/LandingSplash";
 import BlurbInput from "./components/BlurbInput";
@@ -28,6 +29,7 @@ function App() {
       {/* Navigation  or other stuff can go here */}
       <LandingSplash />
       <BlurbInput />
+      {/* <AuthProvider> */}
       <Container
         className="d-flex align-items-center justify-content-center"
         style={{ minHeight: "100vh" }}
@@ -36,6 +38,7 @@ function App() {
           <Signup />
         </div>
       </Container>
+      {/* </AuthProvider> */}
       {/* we might not even want this landing splash thing in the future */}
       {/* perhaps some buttons to continue */}
     </div>
