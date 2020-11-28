@@ -1,5 +1,5 @@
 import React, {useRef, useEffect, useState} from 'react';
-import Container from 'react-bootstrap/esm/Container';
+import Container from 'react-bootstrap/Container';
 import TextareaCounter from 'react-textarea-counter';
 import './styles/BlurbInput.css';
 import Row from 'react-bootstrap/Row';
@@ -33,7 +33,11 @@ export default function BlurbInput() {
         // these are the three songs to display now
         // ? we could add song shuffling to get 3 new songs
         // ? to keep it interesting everytime they hit analyze
-        console.log(geniusRes.data);
+        if(typeof geniusRes.data === "string"){
+            console.log("Please provide words for genius");
+            return;
+        }
+        console.log(geniusRes);
         setSongPoolRes(geniusRes.data);
     }
 
