@@ -13,21 +13,21 @@ export default function SongCard({songElement, handleSongSelect}) {
         <div>
              <Accordion className="rounded bottom MarginFix px-sm-3">
                     <Card className="cardBorder">
-                        <Accordion.Toggle as={Card.Header} className="card-selector" eventKey="0" onClick={(e) => handleSongSelect(e, {
-                            songID: songElement.song.id,
-                            title: songElement.song.title,
-                            artist: songElement.song.artist.name,
-                            wholeObj: songElement.song
+                        <Accordion.Toggle as={Card.Header} id={songElement.count} className="card-selector" eventKey="0" onClick={(e) => handleSongSelect(e, {
+                            songID: songElement.songObj.id,
+                            title: songElement.songObj.title,
+                            artist: songElement.songObj.artist.name,
+                            wholeObj: songElement.songObj
                             // maybe grab the album and album art
                         })}>
-                            <img src={songElement.song.thumbnail} height="100px" width="100px"/>   
+                            <img src={songElement.songObj.thumbnail} height="100px" width="100px"/>   
                             <h4 className="songTitle">
-                                {songElement.song.title} - {songElement.song.artist.name}
+                                {songElement.songObj.title} - {songElement.songObj.artist.name}
                             </h4>
                         </Accordion.Toggle>
                         <Accordion.Collapse eventKey="0">
-                        <Card.Body> <p className="songLyrics">
-                            {songElement.lyric}
+                        <Card.Body> <p className="songLyrics" id={songElement.count+3}>
+                            WELL...
                             </p></Card.Body>
                         </Accordion.Collapse>
                     </Card>
