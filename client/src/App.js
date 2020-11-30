@@ -15,10 +15,10 @@ function App() {
     //   console.log("yoooo, in APP.JS");
     //   console.log(res.data);
     // });
-    // API.getAllUsers().then( res => {
-    //   console.log("...getting users from DB...");
-    //   console.log(res.data);
-    // });
+    API.getAllUsers().then( res => {
+      console.log("...getting users from DB...");
+      console.log(res.data);
+    });
     // API.getNouns("Silly Sally at the Wally wagon red shirt!!!").then( res => {
     //   console.log(res.data);
     // });

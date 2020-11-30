@@ -7,7 +7,8 @@ var nounFinder = createNounfinder({
   wordnikAPIKey: 'v0e8pfefcqx3zr3o0ouhz12c48noz2nibg3drs3k1yzb9urvt'
 });
 
-const userController = require("../controllers/userController");
+// const userController = require("../controllers/userController");
+const db = require("../models");
 
 let intervals = 0;
 const wait = (time) =>
@@ -51,13 +52,21 @@ router.get("/songs/:lyrics", (req, res) => {
     stringifiedArray = stringifiedArray.replace(/,/g, ' ');
     console.log(stringifiedArray);
     test(stringifiedArray).then( data => {
+      console.log("successfully returned song pool!");
       res.send(data);
     })
     
 });
 
 // FIND ALL USERS ROUTE
-router.route("/users").get(userController.findAll);
+router.get("/users", (req, res) => {
+  console.log("...finding users...");
+  db.User.find( {} ).then( (data) => {
+    console.log("found all users");
+    res.json(data);
+  })
+  .catch( (err) => res.status(422).json(err));
+});
 
 // CALL NOUN FINDER API AND RETURNS AN ARRAY
 router.get("/nouns/:words", (req, res) => {
@@ -68,6 +77,22 @@ router.get("/nouns/:words", (req, res) => {
     console.log(`Filtered nouns: ${nouns}`);
     res.send(nouns);
   });
+});
+
+// ------------------POST ROUTES
+
+router.post("/postBlurb", (req, res) => {
+  console.log("...posting blurb...");
+  const update = req.body;
+  console.log(update);
+  // find and update john connor for now
+  // update object is found in BlurbInput.js
+  db.User.findOneAndUpdate({firstName: "John", lastName: "Connor"}, update)
+  .then( (data) => {
+    console.log("updated one record!");
+    res.json(data);
+  })
+
 })
 
 module.exports = router;

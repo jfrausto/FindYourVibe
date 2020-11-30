@@ -92,6 +92,25 @@ export default function BlurbInput() {
             // TODO: grab the current selected song + blurb post + mood
             // TODO: post blurb and song info to their columns...
             // TODO: ...in the USER TABLE in MONGODB
+            const newMongoModelUpdate = {
+                $push: {
+                    blurbs: {
+                        vibe: "dangerous",
+                        body: TextAreaVal,
+                        chosenSongArtist: selectedSong.songArtistAlbum
+                    }
+                    // could use this opportunity to push to 'songCollection' array
+                    // in USER table
+                }
+            }
+            let postRes;
+            try {
+                postRes = await API.postBlurb(newMongoModelUpdate);
+            } catch (error) {
+                throw error;
+            }
+            console.log(postRes);
+
         }
     }
 
