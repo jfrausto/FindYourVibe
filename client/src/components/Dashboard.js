@@ -28,9 +28,7 @@ export default function Dashboard() {
         <Card.Body>
           <h2 className="text-center mb-4">Profile</h2>
           {error && <Alert variant="danger">{error}</Alert>}
-          <p>
-            <strong>Email:</strong> {currentUser.email}
-          </p>
+          <p>{/* <strong>Email:</strong> {currentUser.email} */}</p>
         </Card.Body>
         <div className="w-100 text-center mt-2">
           <Button variant="link" onClick={handleLogout}>
