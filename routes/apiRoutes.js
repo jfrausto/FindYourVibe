@@ -1,11 +1,12 @@
 const Genius = require("genius-lyrics");
-const Token =
-  "GjZdsQku4iZ7k9QRw0v3g2PRBRe6zrAe3NzPLBqdA-fBEFC_u1DbxuFF5FZvSxPL";
-const Client = new Genius.Client(Token);
+const dotenv = require("dotenv").config();
+const geniusToken = process.env.API_GENIUS;
+const wordnikToken = process.env.API_WORDNIK;
+const Client = new Genius.Client(geniusToken.toString());
 const router = require("express").Router();
 var createNounfinder = require("nounfinder");
 var nounFinder = createNounfinder({
-  wordnikAPIKey: "v0e8pfefcqx3zr3o0ouhz12c48noz2nibg3drs3k1yzb9urvt",
+  wordnikAPIKey: wordnikToken,
 });
 
 const userController = require("../controllers/userController");
