@@ -15,9 +15,16 @@ export default function BlurbInput() {
     // current state of the value in text area
     const [TextAreaVal, setTextAreaVal] = useState("");
     const [SongPoolRes, setSongPoolRes] = useState([]);
+    const [selectedSong, setSelectedSong] = useState({
+        songID: -1,
+        songArtistAlbum: "",
+        lyrics: ""
+    });
     // useEffect(() => {
-    //     console.log(TextAreaVal);
-    // }, [TextAreaVal]);
+    //     console.log("i changed something");
+    //     console.log(selectedSong.songArtistAlbum);
+    //     // if (selectedSong.is)
+    // }, [selectedSong]);
 
     // should always take in an array of words ([geniusQueryArray])
     // whether they be from Wordnik API
@@ -37,9 +44,32 @@ export default function BlurbInput() {
             console.log("Please provide words for genius");
             return;
         }
-        console.log(geniusRes);
+        // update song pool state
         setSongPoolRes(geniusRes.data);
     }
+    // handles state of the selected song
+    const handleSongSelect = async (e, choice) => {
+        const cardHead = e.target;
+        // cardHead grabs the clicked card
+        // allSongCards grabs all cards
+        const allSongCards = document.querySelectorAll(".card-selector, .songTitle");
+        // go through each card and remove green-bg class
+        allSongCards.forEach( (songCard) =>  
+            songCard.classList.remove("green-bg")
+        )
+        // here SET the green-bg on the selected card
+        if( cardHead.parentElement.classList[0] === "card-selector"){
+            cardHead.parentElement.classList.add("green-bg");
+        }
+        cardHead.classList.add("green-bg");
+        // update the state of the selected song
+        setSelectedSong({
+            songID: choice.songID,
+            songArtistAlbum: `${choice.title} - ${choice.artist}`,
+            lyrics: "TBD",
+        })
+    }
+
 
     // takes in both actions from the POST and ANALYZE buttons
     const handleButtonClick = async (e) => {
@@ -59,6 +89,9 @@ export default function BlurbInput() {
             handleGeniusCall(nounStringArray);
         } else { // we will submit the post!
             console.log("post button click!");
+            // TODO: grab the current selected song + blurb post + mood
+            // TODO: post blurb and song info to their columns...
+            // TODO: ...in the USER TABLE in MONGODB
         }
     }
 
@@ -67,7 +100,7 @@ export default function BlurbInput() {
         <Container className="mt-5">
             <Row>
                 <Col>
-                <SongCardContainer songPool={SongPoolRes}/>
+                <SongCardContainer songPool={SongPoolRes} handleSongSelect={handleSongSelect}/>
                 </Col>
             </Row>
             <Row className="mt-2">
