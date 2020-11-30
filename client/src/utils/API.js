@@ -15,5 +15,12 @@ export default {
     },
     postBlurb: function(blurb) {
         return axios.post("/api/postBlurb", blurb);
+    },
+    getLyrics: function(wholeSongObj) {
+        return axios.get("/api/lyrics/", {
+            params: {
+                songObj: wholeSongObj
+            }
+        });
     }
 }

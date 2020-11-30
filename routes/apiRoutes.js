@@ -26,11 +26,34 @@ const test = async (stringifiedNounsQuery) => {
 //   return searches;
 //   Lets see the first song
 //   console.log("length of songs array: "+ searches.length)
-  // const firstSong = searches[0];
-  // const secondSong = searches[1]; 
-  // const thirdSong = searches[2];
-  const songPool = [searches[0], searches[1], searches[2]];
-  return songPool;
+  const firstSong = searches[0];
+  // await wait(100);
+  const lyrics1 = await firstSong.lyrics();
+  // await wait(100);
+  const secondSong = searches[1]; 
+  const lyrics2 = await secondSong.lyrics();
+  // await wait(100);
+  const thirdSong = searches[2];
+  const lyrics3 = await thirdSong.lyrics();
+  
+  const songAndLyricPairs = [
+    { id: 1,
+      song: firstSong,
+      lyric: lyrics1
+    },
+    { id: 2,
+      song: secondSong,
+      lyric: lyrics2
+    },
+    { id: 3,
+      song: thirdSong,
+      lyric: lyrics3
+    }
+  ];
+
+  return songAndLyricPairs;
+  // const songPool = [searches[0], searches[1], searches[2]];
+  // return songPool;
 //   console.log("About the Song:\n", firstSong, "\n");
   // await wait(1000);
   // Ok lets get the lyrics
@@ -40,6 +63,22 @@ const test = async (stringifiedNounsQuery) => {
 //   await wait(1000);
 };
 // test();
+
+
+// ---------------GET LYRICS FUNCTION
+// const getLyrics = async (singleSong) => {
+//   console.log(`...getting --${singleSong.title}-- lyrics...`);
+//   const searchLyrics = await Client.songs.search(`${singleSong.title} ${singleSong.artist.name}`);
+//   const result = searchLyrics[0];
+//   // await wait(250);
+//   let lyricRes;
+//   try {
+//     lyricRes = await result.lyrics();
+//   } catch (error) {
+//     throw error;
+//   }
+//   return lyricRes;
+// }
 
 // ! -------------------- Define API routes here
 // * this matches with /api/songs
@@ -56,6 +95,18 @@ router.get("/songs/:lyrics", (req, res) => {
       res.send(data);
     })
     
+});
+
+// this route gets the lyrics of a particular song
+// uses param option inside API.js axios request
+router.get("/lyrics", (req, res) => {
+    console.log("...inside router.get('/lyrics/:songObj')...");
+    let singleSong = JSON.parse(req.query.songObj);
+    console.log(singleSong.title);
+    getLyrics(singleSong).then( (data) => {
+      console.log(`successfully got ${singleSong.title} lyrics!`);
+      res.send(data);
+    });
 });
 
 // FIND ALL USERS ROUTE

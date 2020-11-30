@@ -44,6 +44,7 @@ export default function BlurbInput() {
             console.log("Please provide words for genius");
             return;
         }
+        console.log(geniusRes.data);
         // update song pool state
         setSongPoolRes(geniusRes.data);
     }
@@ -66,8 +67,19 @@ export default function BlurbInput() {
         setSelectedSong({
             songID: choice.songID,
             songArtistAlbum: `${choice.title} - ${choice.artist}`,
-            lyrics: "TBD",
-        })
+            lyrics: "Loading...",
+        });
+        // let lyricSearchRes;
+        // if(cardHead.parentElement.classList[0] === "card-selector" || true){
+        //     try {
+        //         lyricSearchRes = await API.getLyrics(JSON.stringify(choice.wholeObj));
+        //     } catch (error) {
+        //         throw error;
+        //     }
+        //     console.log("we are back in blurb Input");
+        //     console.log(lyricSearchRes.data);
+        //     setSelectedSong({...selectedSong, lyrics: lyricSearchRes.data});
+        // }
     }
 
 
