@@ -13,7 +13,7 @@ export default function SongCard({songElement, handleSongSelect}) {
         <div>
              <Accordion className="rounded bottom MarginFix px-sm-3">
                     <Card className="cardBorder">
-                        <Accordion.Toggle as={Card.Header} eventKey="0" onClick={(e) => handleSongSelect(e, {
+                        <Accordion.Toggle as={Card.Header} className="card-selector" eventKey="0" onClick={(e) => handleSongSelect(e, {
                             songID: songElement.id,
                             title: songElement.title,
                             artist: songElement.artist.name

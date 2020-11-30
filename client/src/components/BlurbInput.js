@@ -20,11 +20,11 @@ export default function BlurbInput() {
         songArtistAlbum: "",
         lyrics: ""
     });
-    useEffect(() => {
-        console.log("i changed something");
-        console.log(selectedSong.songArtistAlbum);
-        // if (selectedSong.is)
-    }, [selectedSong]);
+    // useEffect(() => {
+    //     console.log("i changed something");
+    //     console.log(selectedSong.songArtistAlbum);
+    //     // if (selectedSong.is)
+    // }, [selectedSong]);
 
     // should always take in an array of words ([geniusQueryArray])
     // whether they be from Wordnik API
@@ -44,25 +44,30 @@ export default function BlurbInput() {
             console.log("Please provide words for genius");
             return;
         }
-        console.log(geniusRes);
+        // update song pool state
         setSongPoolRes(geniusRes.data);
     }
     // handles state of the selected song
     const handleSongSelect = async (e, choice) => {
-        console.log("yooo");
-        // console.log(choice);
         const cardHead = e.target;
+        // cardHead grabs the clicked card
+        // allSongCards grabs all cards
+        const allSongCards = document.querySelectorAll(".card-selector, .songTitle");
+        // go through each card and remove green-bg class
+        allSongCards.forEach( (songCard) =>  
+            songCard.classList.remove("green-bg")
+        )
+        // here SET the green-bg on the selected card
+        if( cardHead.parentElement.classList[0] === "card-selector"){
+            cardHead.parentElement.classList.add("green-bg");
+        }
         cardHead.classList.add("green-bg");
-        // console.log(choice.songID);
-        // console.log(choice.title);
+        // update the state of the selected song
         setSelectedSong({
             songID: choice.songID,
             songArtistAlbum: `${choice.title} - ${choice.artist}`,
             lyrics: "TBD",
         })
-
-
-
     }
 
 
@@ -84,6 +89,9 @@ export default function BlurbInput() {
             handleGeniusCall(nounStringArray);
         } else { // we will submit the post!
             console.log("post button click!");
+            // TODO: grab the current selected song + blurb post + mood
+            // TODO: post blurb and song info to their columns...
+            // TODO: ...in the USER TABLE in MONGODB
         }
     }
 
