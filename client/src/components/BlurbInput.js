@@ -110,7 +110,7 @@ export default function BlurbInput() {
                 throw error;
             }
             console.log(postRes);
-
+            // TODO: trigger UI to show all my posts page
         }
     }
 
