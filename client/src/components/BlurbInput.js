@@ -15,9 +15,16 @@ export default function BlurbInput() {
     // current state of the value in text area
     const [TextAreaVal, setTextAreaVal] = useState("");
     const [SongPoolRes, setSongPoolRes] = useState([]);
-    // useEffect(() => {
-    //     console.log(TextAreaVal);
-    // }, [TextAreaVal]);
+    const [selectedSong, setSelectedSong] = useState({
+        songID: -1,
+        songArtistAlbum: "",
+        lyrics: ""
+    });
+    useEffect(() => {
+        console.log("i changed something");
+        console.log(selectedSong.songArtistAlbum);
+        // if (selectedSong.is)
+    }, [selectedSong]);
 
     // should always take in an array of words ([geniusQueryArray])
     // whether they be from Wordnik API
@@ -40,6 +47,24 @@ export default function BlurbInput() {
         console.log(geniusRes);
         setSongPoolRes(geniusRes.data);
     }
+    // handles state of the selected song
+    const handleSongSelect = async (e, choice) => {
+        console.log("yooo");
+        // console.log(choice);
+        const cardHead = e.target;
+        cardHead.classList.add("green-bg");
+        // console.log(choice.songID);
+        // console.log(choice.title);
+        setSelectedSong({
+            songID: choice.songID,
+            songArtistAlbum: `${choice.title} - ${choice.artist}`,
+            lyrics: "TBD",
+        })
+
+
+
+    }
+
 
     // takes in both actions from the POST and ANALYZE buttons
     const handleButtonClick = async (e) => {
@@ -67,7 +92,7 @@ export default function BlurbInput() {
         <Container className="mt-5">
             <Row>
                 <Col>
-                <SongCardContainer songPool={SongPoolRes}/>
+                <SongCardContainer songPool={SongPoolRes} handleSongSelect={handleSongSelect}/>
                 </Col>
             </Row>
             <Row className="mt-2">
