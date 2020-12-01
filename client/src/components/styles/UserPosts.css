@@ -1,0 +1,21 @@
+.postHeader {
+  background-color: cyan;
+  color: brown;
+  text-align: center;
+}
+
+.postBody {
+  background-color: blueviolet;
+}
+
+.postFooter {
+  background-color: violet;
+}
+
+.postDate {
+  text-align: left;
+}
+
+.postBlurb {
+  text-align: center;
+}
