@@ -19,6 +19,10 @@ function App() {
       console.log("...getting users from DB...");
       console.log(res.data);
     });
+    API.getUserPosts("connorjohn@gmail.com").then( res => {
+      console.log("hold my baby I passed it to you!!!");
+      console.log(res.data.blurbs);
+    })
     // API.getNouns("Silly Sally at the Wally wagon red shirt!!!").then( res => {
     //   console.log(res.data);
     // });
