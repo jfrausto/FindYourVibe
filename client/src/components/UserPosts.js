@@ -7,9 +7,11 @@ import "./styles/UserPosts.css";
 export default function UserPosts() {
  const [UserBlurbs, setUserBlurbs] = useState([]);
  useEffect(() => {
+  // looks for the user based on their email,
+  // as of right now the email is hardcoded in
   API.getUserPosts("connorjohn@gmail.com").then( res => {
    setUserBlurbs(res.data.blurbs);
- }, [])
+ }, [UserBlurbs])
 });
  return (
      <>
@@ -18,8 +20,16 @@ export default function UserPosts() {
        return   <Container id={blurb._id}>
        <Row  className="postHeader">
        <Col xs={2} >
-       <img className="postSongImage my-auto py-1" src="https://i.imgur.com/hCVt35Q.jpg" height="50px" width="50px"/>
+       <img className="postSongImage my-auto py-1" 
+       //!!Need to change with the thumbnail from the users blurb
+       src="https://www.creativefabrica.com/wp-content/uploads/2019/02/Bee-Icon-by-MatFine-580x368.jpg" 
+       
+       height="50px" 
+       width="50px"/>
        </Col>
+       {/* styling can be changed using UserPosts.css file sheet 
+       currently it was just to differentiate how the columns looked
+       and where the data was being created at!!!*/}
        <Col xs={10} className="my-auto" >
           <span className="postSongTitle">
           {blurb.chosenSongArtist}
@@ -41,6 +51,8 @@ export default function UserPosts() {
           </p>
        </Col>
         <Col xs={4} className="my-auto py-1">
+         //!!have to change with emoji plugin to be
+         //!!compatible for other browsers
         <h5>Vibe: <span className="postVibeEmoji">
          {blurb.vibe}
         </span></h5>
