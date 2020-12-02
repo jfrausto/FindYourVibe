@@ -1,4 +1,5 @@
 const Genius = require("genius-lyrics");
+const dotenv = require("dotenv").config();
 const Token = process.env.API_GENIUS;
 const Client = new Genius.Client(Token);
 const router = require("express").Router();
