@@ -16,7 +16,7 @@ export default function UserPosts() {
    setUserBlurbs(res.data.blurbs);
    console.log(res.data.blurbs);
  })
-}, [UserBlurbs.length]);
+}, []);
 
 
  return (
