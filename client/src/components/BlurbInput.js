@@ -18,18 +18,20 @@ export default function BlurbInput() {
     const [selectedSong, setSelectedSong] = useState({
         songID: -1,
         songArtistAlbum: "",
-        lyrics: ""
+        lyrics: "",
+        albumThumbnail: ""
     });
-    // useEffect(() => {
-    //     console.log("i changed something");
-    //     console.log(selectedSong.songArtistAlbum);
-    //     // if (selectedSong.is)
-    // }, [selectedSong]);
+    useEffect(() => {
+        console.log("i changed something");
+        console.log(selectedSong);
+        // if (selectedSong.is)
+    }, [selectedSong]);
 
     // should always take in an array of words ([geniusQueryArray])
     // whether they be from Wordnik API
     // or REGEX FUNCTIONS, OR a combination of both
     const handleGeniusCall = async (geniusQueryArray) => {
+        
         let geniusRes;
         try {
             geniusRes = await API.getSongsPool(geniusQueryArray);
@@ -64,6 +66,7 @@ export default function BlurbInput() {
     const handleSongSelect = async (e, choice) => {
         const cardHead = e.target;
         console.log(cardHead.id);
+        console.log(choice);
         // cardHead grabs the clicked card
         // allSongCards grabs all cards
         const allSongCards = document.querySelectorAll(".card-selector, .songTitle");
@@ -76,12 +79,17 @@ export default function BlurbInput() {
             cardHead.parentElement.classList.add("green-bg");
         }
         cardHead.classList.add("green-bg");
+        console.log(choice);
         // update the state of the selected song
-        setSelectedSong({
-            songID: choice.songID,
-            songArtistAlbum: `${choice.title} - ${choice.artist}`,
-            lyrics: "Loading...",
-        });
+        // setSelectedSong({ 
+        //     songID: choice.songID,
+        //     songArtistAlbum: `${choice.title} - ${choice.artist}`,
+        //     lyrics: "Loading....",
+        //     albumThumbnail: choice.wholeObj.thumbnail
+        // });
+        // console.log("SET THE SONG");
+        // console.log(choice.wholeObj.thumbnail)
+        // console.log(selectedSong);
         let lyricSearchRes;
         if(cardHead.parentElement.classList[0] === "card-selector" || true){
             // try {
@@ -105,7 +113,12 @@ export default function BlurbInput() {
                 }
                 console.log("we are back in blurb Input");
                 console.log(lyricSearchRes.data);
-                setSelectedSong({...selectedSong, lyrics: lyricSearchRes.data});
+                setSelectedSong({ 
+                    songID: choice.songID,
+                    songArtistAlbum: `${choice.title} - ${choice.artist}`,
+                    lyrics: lyricSearchRes.data,
+                    albumThumbnail: choice.wholeObj.thumbnail
+                });
                 let integerStringId = parseInt(cardHead.parentElement.id);
                 console.log(integerStringId);
                 integerStringId = integerStringId + 3;
@@ -155,18 +168,22 @@ export default function BlurbInput() {
                     blurbs: {
                         vibe: "dangerous",
                         body: TextAreaVal,
-                        chosenSongArtist: selectedSong.songArtistAlbum
+                        chosenSongArtist: selectedSong.songArtistAlbum,
+                        thumbnail: selectedSong.albumThumbnail
                     }
                     // could use this opportunity to push to 'songCollection' array
                     // in USER table
                 }
             }
+            console.log("here");
+            console.log(selectedSong);
             let postRes;
             try {
                 postRes = await API.postBlurb(newMongoModelUpdate);
             } catch (error) {
                 throw error;
             }
+            console.log("WAITING FOR THIS LOG UNDER ME")
             console.log(postRes);
             // TODO: trigger UI to show all my posts page
         }

@@ -4,15 +4,10 @@
   text-align: center;
 }
 
-.postBody {
-  background-color: white;
-}
-
 .postFooter {
   /* background-color: white; */
   font-size: 14px;
   text-align: right;
-  border-bottom: 4px solid rgba(0, 0, 0);
 }
 
 .postDate {
@@ -25,17 +20,8 @@
   text-align: center;
 }
 
-.postSongImage {
-  background-color: white;
-}
-
 .postSongTitle {
-  background-color: white;
   text-align: center;
-}
-
-.postColColor {
-  background-color: white;
 }
 
 .postDivContainerBackground {
