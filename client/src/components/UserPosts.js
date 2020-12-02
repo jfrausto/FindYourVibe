@@ -20,13 +20,13 @@ export default function UserPosts() {
 
 
  return (
-     <>
+     <Container className="mt-2 postDivContainerBackground">
      {
       UserBlurbs.map(blurb => {
-       return   <Container id={blurb._id}>
-       <Row  className="postHeader">
-       <Col xs={2} >
-       <img className="postSongImage my-auto py-1" 
+       return   <div  id={blurb._id}>
+       <Row>
+       <Col className="postColColor my-auto" xs={2} lg={{span: 2, offset: 3}} >
+       <img className="postSongImage" 
        //!!Need to change with the thumbnail from the users blurb
        src="https://www.creativefabrica.com/wp-content/uploads/2019/02/Bee-Icon-by-MatFine-580x368.jpg" 
        
@@ -36,38 +36,35 @@ export default function UserPosts() {
        {/* styling can be changed using UserPosts.css file sheet 
        currently it was just to differentiate how the columns looked
        and where the data was being created at!!!*/}
-       <Col xs={10} className="my-auto" >
+       <Col xs={10} lg={4} className="postColColor my-auto" >
           <span className="postSongTitle">
           {blurb.chosenSongArtist}
           </span>
        </Col>
     
        </Row>
-       <Row className="postBody">
-        <Col xs={12}>
-         <p className="postBlurb my-auto py-1">
+       <Row >
+        <Col xs={12} lg={{span: 6, offset: 3}} className="postColColor my-auto" >
+         <p className="postBlurb">
          {blurb.body}
          </p>
         </Col>
        </Row>
-       <Row className="postFooter">
-       <Col xs={8} className="my-auto py-1">
+       <Row className="postFooter" >
+       <Col xs={8} lg={{span:3, offset: 3 }} className="postColColor my-auto">
           <p className="postDate">
            {blurb.time}
           </p>
        </Col>
-        <Col xs={4} className="my-auto py-1">
-         //!!have to change with emoji plugin to be
-         //!!compatible for other browsers
-        <h5>Vibe: <span className="postVibeEmoji">
+        <Col xs={4} lg={3} className="postColColor my-auto">
+        <p>Vibe: <span className="postVibeEmoji">
          {blurb.vibe}
-        </span></h5>
-        
+        </span></p>
         </Col>
        </Row>
-        </Container>  
+        </div>  
       })
      }
-     </>    
+     </Container>    
  )
 }
