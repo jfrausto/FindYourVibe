@@ -111,7 +111,7 @@ export default function BlurbInput() {
                 } catch (error) {
                     throw error;
                 }
-                console.log("we are back in blurb Input");
+                console.log("we are back in blurb Input - if ");
                 console.log(lyricSearchRes.data);
                 setSelectedSong({ 
                     songID: choice.songID,
@@ -130,9 +130,14 @@ export default function BlurbInput() {
                 } catch (error) {
                     throw error;
                 }
-                console.log("we are back in blurb Input");
+                console.log("we are back in blurb Input - else");
                 console.log(lyricSearchRes.data);
-                setSelectedSong({...selectedSong, lyrics: lyricSearchRes.data});
+                setSelectedSong({ 
+                    songID: choice.songID,
+                    songArtistAlbum: `${choice.title} - ${choice.artist}`,
+                    lyrics: lyricSearchRes.data,
+                    albumThumbnail: choice.wholeObj.thumbnail
+                });
                 let integerStringId = parseInt(cardHead.id);
                 console.log(integerStringId);
                 integerStringId = integerStringId + 3;

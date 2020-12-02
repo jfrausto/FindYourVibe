@@ -13,6 +13,10 @@ export default function UserPosts() {
   // looks for the user based on their email,
   // as of right now the email is hardcoded in
   API.getUserPosts("connorjohn@gmail.com").then( res => {
+   // ! THIS SHOULD FINISH THE CHECK FOR "THIS USER HAS NO POSTS" CASE
+   // if(res.data.blurbs === null){
+   //    return;
+   // }
    setUserBlurbs(res.data.blurbs);
    console.log(res.data.blurbs);
  })
