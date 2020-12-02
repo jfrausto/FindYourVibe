@@ -137,6 +137,17 @@ router.get("/users", (req, res) => {
     .catch((err) => res.status(422).json(err));
 });
 
+router.get("/blurbs/:userEmail", (req, res) => {
+  console.log("...SPECIFIC USER...");
+  const {userEmail} = req.params;
+  db.User.findOne({email: userEmail}).then( (data) => {
+    console.log("Found that User you were looking for.")
+    console.log(data);
+    res.json(data);
+  })
+  .catch( (err) => res.status(422).json(err));
+});
+
 // CALL NOUN FINDER API AND RETURNS AN ARRAY
 router.get("/nouns/:words", (req, res) => {
   console.log("... inside router.get('/nouns/:words')");
