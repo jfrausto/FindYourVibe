@@ -44,12 +44,26 @@ export default function BlurbInput() {
             console.log("Please provide words for genius");
             return;
         }
+        console.log(geniusRes.data);
+
+        const addCountPool = [];
+        for (let i = 0; i < 3; i++) {
+            addCountPool.push(
+                {
+                    count: i+1,
+                    songObj: geniusRes.data[i]
+                }
+            );
+            
+        }
+        console.log(addCountPool);
         // update song pool state
-        setSongPoolRes(geniusRes.data);
+        setSongPoolRes(addCountPool);
     }
     // handles state of the selected song
     const handleSongSelect = async (e, choice) => {
         const cardHead = e.target;
+        console.log(cardHead.id);
         // cardHead grabs the clicked card
         // allSongCards grabs all cards
         const allSongCards = document.querySelectorAll(".card-selector, .songTitle");
@@ -66,8 +80,55 @@ export default function BlurbInput() {
         setSelectedSong({
             songID: choice.songID,
             songArtistAlbum: `${choice.title} - ${choice.artist}`,
-            lyrics: "TBD",
-        })
+            lyrics: "Loading...",
+        });
+        let lyricSearchRes;
+        if(cardHead.parentElement.classList[0] === "card-selector" || true){
+            // try {
+            //     lyricSearchRes = await API.getLyrics(cardHead.id);
+            // } catch (error) {
+            //     throw error;
+            // }
+            // console.log("we are back in blurb Input");
+            // console.log(lyricSearchRes.data);
+            // setSelectedSong({...selectedSong, lyrics: lyricSearchRes.data});
+            // ! THE JANK; THIS NEEDS TO BE REFACTORED FOR THE IF CASES, COULD BE A LOT CLEANER
+            // ! JANKING AROUND WITH THE ID's OF ELEMENTS
+            // TODO: -------------------------------------------------
+            // TODO: WE NEED TO NOT FIRE AN API CALL EVERYTIME THEY SELECT THE CARD HEADER
+            // ! THIS WILL PUT A HUGE STRES ON OUR APP
+            if(cardHead.parentElement.classList[0] === "card-selector" ){
+                try {
+                    lyricSearchRes = await API.getLyrics(cardHead.parentElement.id);
+                } catch (error) {
+                    throw error;
+                }
+                console.log("we are back in blurb Input");
+                console.log(lyricSearchRes.data);
+                setSelectedSong({...selectedSong, lyrics: lyricSearchRes.data});
+                let integerStringId = parseInt(cardHead.parentElement.id);
+                console.log(integerStringId);
+                integerStringId = integerStringId + 3;
+                let pTag = document.getElementById(`${integerStringId}`);
+                pTag.innerText = lyricSearchRes.data;
+            } else {
+                try {
+                    lyricSearchRes = await API.getLyrics(cardHead.id);
+                } catch (error) {
+                    throw error;
+                }
+                console.log("we are back in blurb Input");
+                console.log(lyricSearchRes.data);
+                setSelectedSong({...selectedSong, lyrics: lyricSearchRes.data});
+                let integerStringId = parseInt(cardHead.id);
+                console.log(integerStringId);
+                integerStringId = integerStringId + 3;
+                let pTag = document.getElementById(`${integerStringId}`);
+                pTag.innerText = lyricSearchRes.data;
+            }
+            
+        }
+
     }
 
 
@@ -89,9 +150,6 @@ export default function BlurbInput() {
             handleGeniusCall(nounStringArray);
         } else { // we will submit the post!
             console.log("post button click!");
-            // TODO: grab the current selected song + blurb post + mood
-            // TODO: post blurb and song info to their columns...
-            // TODO: ...in the USER TABLE in MONGODB
             const newMongoModelUpdate = {
                 $push: {
                     blurbs: {

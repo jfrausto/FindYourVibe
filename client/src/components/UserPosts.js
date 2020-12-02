@@ -11,6 +11,7 @@ export default function UserPosts() {
   // as of right now the email is hardcoded in
   API.getUserPosts("connorjohn@gmail.com").then( res => {
    setUserBlurbs(res.data.blurbs);
+   console.log(res.data.blurbs); //!! THIS CONSOLE LOG REPEATS INDEFINETELY 
  }, [UserBlurbs])
 });
  return (

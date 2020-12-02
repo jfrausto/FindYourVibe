@@ -18,5 +18,7 @@ export default {
     },
     getUserPosts: function(email) {
         return axios.get("/api/blurbs/" + email);
-    }
-}
+    },
+    getLyrics: function(cardID) {
+        return axios.get("/api/lyrics/" + cardID);
+    }};
