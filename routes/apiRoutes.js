@@ -8,8 +8,12 @@ var createNounfinder = require("nounfinder");
 var nounFinder = createNounfinder({
   wordnikAPIKey: wordnikToken,
 });
-
-const userController = require("../controllers/userController");
+const db = require("../models");
+// declare the song results here
+let firstSong;
+let secondSong;
+let thirdSong;
+// const userController = require("../controllers/userController");
 
 let intervals = 0;
 const wait = (time) =>
@@ -27,10 +31,33 @@ const test = async (stringifiedNounsQuery) => {
   //   return searches;
   //   Lets see the first song
   //   console.log("length of songs array: "+ searches.length)
-  // const firstSong = searches[0];
-  // const secondSong = searches[1];
-  // const thirdSong = searches[2];
-  const songPool = [searches[0], searches[1], searches[2]];
+  firstSong = searches[0];
+  // await wait(100);
+  // const lyrics1 = await firstSong.lyrics();
+  // await wait(100);
+  secondSong = searches[1];
+  // const lyrics2 = await secondSong.lyrics();
+  // await wait(100);
+  thirdSong = searches[2];
+  // const lyrics3 = await thirdSong.lyrics();
+
+  // const songAndLyricPairs = [
+  //   { id: 1,
+  //     song: firstSong,
+  //     lyric: lyrics1
+  //   },
+  //   { id: 2,
+  //     song: secondSong,
+  //     lyric: lyrics2
+  //   },
+  //   { id: 3,
+  //     song: thirdSong,
+  //     lyric: lyrics3
+  //   }
+  // ];
+
+  // return songAndLyricPairs;
+  const songPool = [firstSong, secondSong, thirdSong];
   return songPool;
   //   console.log("About the Song:\n", firstSong, "\n");
   // await wait(1000);
@@ -41,6 +68,21 @@ const test = async (stringifiedNounsQuery) => {
   //   await wait(1000);
 };
 // test();
+
+// ---------------GET LYRICS FUNCTION
+const getLyrics = async (chosenSong) => {
+  // console.log(`...getting --${chosenSong.title}-- lyrics...`);
+  // const searchLyrics = await Client.songs.search(`${singleSong.title} ${singleSong.artist.name}`);
+  // const result = searchLyrics[0];
+  // await wait(250);
+  let lyricRes;
+  try {
+    lyricRes = await chosenSong.lyrics();
+  } catch (error) {
+    throw error;
+  }
+  return lyricRes;
+};
 
 // ! -------------------- Define API routes here
 // * this matches with /api/songs
@@ -53,12 +95,48 @@ router.get("/songs/:lyrics", (req, res) => {
   stringifiedArray = stringifiedArray.replace(/,/g, " ");
   console.log(stringifiedArray);
   test(stringifiedArray).then((data) => {
+    console.log("successfully returned song pool!");
+    res.send(data);
+  });
+});
+
+// this route gets the lyrics of a particular song
+// uses param option inside API.js axios request
+router.get("/lyrics/:cardID", (req, res) => {
+  console.log("...inside router.get('/lyrics/:songObj')...");
+  // let singleSong = JSON.parse(req.query.songObj);
+  // console.log(singleSong.title);
+  const selectedCard = req.params.cardID;
+  let singleSong;
+  console.log(selectedCard);
+  switch (selectedCard) {
+    case "1":
+      singleSong = firstSong;
+      break;
+    case "2":
+      singleSong = secondSong;
+      break;
+    default:
+      singleSong = thirdSong;
+      break;
+  }
+
+  getLyrics(singleSong).then((data) => {
+    console.log(`successfully got lyrics from the backend!!`);
     res.send(data);
   });
 });
 
 // FIND ALL USERS ROUTE
-router.route("/users").get(userController.findAll);
+router.get("/users", (req, res) => {
+  console.log("...finding users...");
+  db.User.find({})
+    .then((data) => {
+      console.log("found all users");
+      res.json(data);
+    })
+    .catch((err) => res.status(422).json(err));
+});
 
 // CALL NOUN FINDER API AND RETURNS AN ARRAY
 router.get("/nouns/:words", (req, res) => {
@@ -68,6 +146,23 @@ router.get("/nouns/:words", (req, res) => {
     if (error) throw error;
     console.log(`Filtered nouns: ${nouns}`);
     res.send(nouns);
+  });
+});
+
+// ------------------POST ROUTES
+
+router.post("/postBlurb", (req, res) => {
+  console.log("...posting blurb...");
+  const update = req.body;
+  console.log(update);
+  // find and update john connor for now
+  // update object is found in BlurbInput.js
+  db.User.findOneAndUpdate(
+    { firstName: "John", lastName: "Connor" },
+    update
+  ).then((data) => {
+    console.log("updated one record!");
+    res.json(data);
   });
 });
 

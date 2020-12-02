@@ -12,5 +12,11 @@ export default {
     // getNouns takes in a string
     getNouns: function(words) {
         return axios.get("/api/nouns/" + words);
+    },
+    postBlurb: function(blurb) {
+        return axios.post("/api/postBlurb", blurb);
+    },
+    getLyrics: function(cardID) {
+        return axios.get("/api/lyrics/" + cardID);
     }
 }
