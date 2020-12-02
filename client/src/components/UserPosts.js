@@ -16,19 +16,19 @@ export default function UserPosts() {
    setUserBlurbs(res.data.blurbs);
    console.log(res.data.blurbs);
  })
-}, []);
+}, [UserBlurbs.length]);
 
 
  return (
-     <Container className="mt-2 postDivContainerBackground">
+     <div className="mt-2">
      {
       UserBlurbs.map(blurb => {
-       return   <div  id={blurb._id}>
+       return <Container className="postDivContainerBackground mb-2 p-2"  key={blurb._id}>
        <Row>
        <Col className="postColColor my-auto" xs={2} lg={{span: 2, offset: 3}} >
        <img className="postSongImage" 
        //!!Need to change with the thumbnail from the users blurb
-       src="https://www.creativefabrica.com/wp-content/uploads/2019/02/Bee-Icon-by-MatFine-580x368.jpg" 
+       src={blurb.thumbnail} 
        
        height="50px" 
        width="50px"/>
@@ -62,9 +62,9 @@ export default function UserPosts() {
         </span></p>
         </Col>
        </Row>
-        </div>  
+        </Container>  
       })
      }
-     </Container>    
+     </div>    
  )
 }
