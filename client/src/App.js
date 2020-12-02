@@ -5,7 +5,6 @@ import API from "./utils/API";
 // import useNounFinder from "./utils/Hooks/NounFinderFolder/NounFinder";
 import LandingSplash from "./components/LandingSplash";
 import BlurbInput from "./components/BlurbInput";
-import SongCardContainer from "./components/SongCardContainer";
 import Container from "react-bootstrap/Container";
 import UserPosts from "./components/UserPosts";
 function App() {

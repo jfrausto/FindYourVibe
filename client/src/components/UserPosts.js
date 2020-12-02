@@ -4,6 +4,9 @@ import API from "../utils/API";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import "./styles/UserPosts.css";
+
+
+
 export default function UserPosts() {
  const [UserBlurbs, setUserBlurbs] = useState([]);
  useEffect(() => {
@@ -11,9 +14,11 @@ export default function UserPosts() {
   // as of right now the email is hardcoded in
   API.getUserPosts("connorjohn@gmail.com").then( res => {
    setUserBlurbs(res.data.blurbs);
-   console.log(res.data.blurbs); //!! THIS CONSOLE LOG REPEATS INDEFINETELY 
- }, [UserBlurbs])
-});
+   console.log(res.data.blurbs);
+ })
+}, []);
+
+
  return (
      <>
      {
