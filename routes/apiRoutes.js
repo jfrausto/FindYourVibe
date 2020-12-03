@@ -87,7 +87,7 @@ const getLyrics = async (chosenSong) => {
 // * this matches with /api/songs
 // ! remember /api/ is implied in our server.js file
 router.get("/songs/:lyrics", (req, res) => {
-  console.log("... inside router.get('/songs/:lyrics')...");
+  console.log("......................inside router.get('/songs/:lyrics')...");
   // array was 'stringified by axios, now we remove the commas
   let stringifiedArray = req.params.lyrics;
   // replace the commas with a space
@@ -102,7 +102,7 @@ router.get("/songs/:lyrics", (req, res) => {
 // this route gets the lyrics of a particular song
 // uses param option inside API.js axios request
 router.get("/lyrics/:cardID", (req, res) => {
-  console.log("...inside router.get('/lyrics/:songObj')...");
+  console.log("...................inside router.get('/lyrics/:songObj')...");
   // let singleSong = JSON.parse(req.query.songObj);
   // console.log(singleSong.title);
   const selectedCard = req.params.cardID;
@@ -128,7 +128,7 @@ router.get("/lyrics/:cardID", (req, res) => {
 
 // FIND ALL USERS ROUTE
 router.get("/users", (req, res) => {
-  console.log("...finding users...");
+  console.log("................................finding users (l:131)...");
   db.User.find({})
     .then((data) => {
       console.log("found all users");
@@ -138,11 +138,15 @@ router.get("/users", (req, res) => {
 });
 
 router.get("/blurbs/:userEmail", (req, res) => {
-  console.log("...SPECIFIC USER...");
+  console.log("................................SPECIFIC USER (l:141)...");
   const {userEmail} = req.params;
   db.User.findOne({email: userEmail}).then( (data) => {
-    console.log("Found that User you were looking for.")
+    console.log("Found that User you were looking for!");
     console.log(data);
+    // ! THIS CODE SHOULD CHECK FOR 'THIS USER HAS NO POSTS' CASE
+    // if(data === null){
+    //   res.json({message: "you have no posts! vibe out!"});
+    // }
     res.json(data);
   })
   .catch( (err) => res.status(422).json(err));
@@ -150,7 +154,7 @@ router.get("/blurbs/:userEmail", (req, res) => {
 
 // CALL NOUN FINDER API AND RETURNS AN ARRAY
 router.get("/nouns/:words", (req, res) => {
-  console.log("... inside router.get('/nouns/:words')");
+  console.log("...................... inside router.get('/nouns/:words')");
   const text = req.params.words;
   nounFinder.getNounsFromText(text, function done(error, nouns) {
     if (error) throw error;
@@ -162,7 +166,7 @@ router.get("/nouns/:words", (req, res) => {
 // ------------------POST ROUTES
 
 router.post("/postBlurb", (req, res) => {
-  console.log("...posting blurb...");
+  console.log("........................................posting blurb...");
   const update = req.body;
   console.log(update);
   // find and update john connor for now

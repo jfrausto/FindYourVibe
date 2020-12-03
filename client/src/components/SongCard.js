@@ -27,7 +27,7 @@ export default function SongCard({songElement, handleSongSelect}) {
                         </Accordion.Toggle>
                         <Accordion.Collapse eventKey="0">
                         <Card.Body> <p className="songLyrics" id={songElement.count+3}>
-                            WELL...
+                            LOADING...
                             </p></Card.Body>
                         </Accordion.Collapse>
                     </Card>

@@ -12,6 +12,7 @@ const UserSchema = new Schema({
         vibe: String,
         body: String,
         chosenSongArtist: String,
+        thumbnail: String,
         time: { type: Date, default: Date.now}
     }],
     songCollection: [{

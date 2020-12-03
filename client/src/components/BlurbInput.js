@@ -13,23 +13,26 @@ import SongCardContainer from "./SongCardContainer";
 export default function BlurbInput() {
 
     // current state of the value in text area
+    const [currentVibe, setCurrentVibe] = useState("");
     const [TextAreaVal, setTextAreaVal] = useState("");
     const [SongPoolRes, setSongPoolRes] = useState([]);
     const [selectedSong, setSelectedSong] = useState({
         songID: -1,
         songArtistAlbum: "",
-        lyrics: ""
+        lyrics: "",
+        albumThumbnail: ""
     });
-    // useEffect(() => {
-    //     console.log("i changed something");
-    //     console.log(selectedSong.songArtistAlbum);
-    //     // if (selectedSong.is)
-    // }, [selectedSong]);
+    useEffect(() => {
+        console.log("i selected a song");
+        console.log(selectedSong);
+        // if (selectedSong.is)
+    }, [selectedSong]);
 
     // should always take in an array of words ([geniusQueryArray])
     // whether they be from Wordnik API
     // or REGEX FUNCTIONS, OR a combination of both
     const handleGeniusCall = async (geniusQueryArray) => {
+        
         let geniusRes;
         try {
             geniusRes = await API.getSongsPool(geniusQueryArray);
@@ -60,10 +63,67 @@ export default function BlurbInput() {
         // update song pool state
         setSongPoolRes(addCountPool);
     }
+
+    //  * LYRIC CHECK PREVENT
+    // CHECKS IF THIS SONG HAS RENDERED ITS LYRICS ALREADY
+    // selected element could be the card head or the title element
+    // since we can return them out of handling selectedSong....
+    // ...we need to setSelectedSong here too!
+    const lyricSearchPrevent = (cardOrTitle, choice) => {
+        // title case
+        if(cardOrTitle.parentElement.classList[0] === "card-selector") {
+            let lyricsAreaId = parseInt(cardOrTitle.parentElement.id) +3;
+            let lyricElement = document.getElementById(`${lyricsAreaId}`);
+            if(lyricElement.textContent === "LOADING..."){ 
+                // lyrics NOT been requested yet, do not prevent search
+                setSelectedSong({ 
+                    songID: choice.songID,
+                    songArtistAlbum: `${choice.title} - ${choice.artist}`,
+                    lyrics: "LOADING...",
+                    albumThumbnail: choice.wholeObj.thumbnail
+                });
+                return false;
+            } else {
+                // lyrics have been requested, prevent search
+                // remember the lyrics
+                setSelectedSong({ 
+                    ...selectedSong,
+                    songID: choice.songID,
+                    songArtistAlbum: `${choice.title} - ${choice.artist}`,
+                    albumThumbnail: choice.wholeObj.thumbnail
+                });
+                return true;
+            }
+        } else { // card head case
+            let lyricsAreaId = parseInt(cardOrTitle.id) +3;
+            let lyricElement = document.getElementById(`${lyricsAreaId}`);
+            if(lyricElement.textContent === "LOADING..."){ 
+                // lyrics have NOT been requested yet, do not prevent search
+                setSelectedSong({ 
+                    songID: choice.songID,
+                    songArtistAlbum: `${choice.title} - ${choice.artist}`,
+                    lyrics: "LOADING...",
+                    albumThumbnail: choice.wholeObj.thumbnail
+                });
+                return false;
+            } else {
+                // lyrics have been requested, prevent search
+                setSelectedSong({
+                    ...selectedSong,
+                    songID: choice.songID,
+                    songArtistAlbum: `${choice.title} - ${choice.artist}`,
+                    albumThumbnail: choice.wholeObj.thumbnail
+                });
+                return true;
+            }
+        }
+    }
+
     // handles state of the selected song
     const handleSongSelect = async (e, choice) => {
         const cardHead = e.target;
         console.log(cardHead.id);
+        console.log(choice);
         // cardHead grabs the clicked card
         // allSongCards grabs all cards
         const allSongCards = document.querySelectorAll(".card-selector, .songTitle");
@@ -76,12 +136,26 @@ export default function BlurbInput() {
             cardHead.parentElement.classList.add("green-bg");
         }
         cardHead.classList.add("green-bg");
+        console.log(choice);
         // update the state of the selected song
-        setSelectedSong({
-            songID: choice.songID,
-            songArtistAlbum: `${choice.title} - ${choice.artist}`,
-            lyrics: "Loading...",
-        });
+        // setSelectedSong({ 
+        //     songID: choice.songID,
+        //     songArtistAlbum: `${choice.title} - ${choice.artist}`,
+        //     lyrics: "Loading....",
+        //     albumThumbnail: choice.wholeObj.thumbnail
+        // });
+        // console.log("SET THE SONG");
+        // console.log(choice.wholeObj.thumbnail)
+        // console.log(selectedSong);
+
+        // ! CHECK BEFORE FIRING API CALL
+        let shouldPrevent = lyricSearchPrevent(cardHead, choice);
+        if(shouldPrevent){
+            // leave the function
+            // prevents searching for lyrics
+            // if already done before
+            return;
+        }
         let lyricSearchRes;
         if(cardHead.parentElement.classList[0] === "card-selector" || true){
             // try {
@@ -103,28 +177,38 @@ export default function BlurbInput() {
                 } catch (error) {
                     throw error;
                 }
-                console.log("we are back in blurb Input");
+                console.log("we are back in blurb Input - if ");
                 console.log(lyricSearchRes.data);
-                setSelectedSong({...selectedSong, lyrics: lyricSearchRes.data});
+                setSelectedSong({ 
+                    songID: choice.songID,
+                    songArtistAlbum: `${choice.title} - ${choice.artist}`,
+                    lyrics: lyricSearchRes.data,
+                    albumThumbnail: choice.wholeObj.thumbnail
+                });
                 let integerStringId = parseInt(cardHead.parentElement.id);
                 console.log(integerStringId);
                 integerStringId = integerStringId + 3;
                 let pTag = document.getElementById(`${integerStringId}`);
-                pTag.innerText = lyricSearchRes.data;
+                pTag.textContent = lyricSearchRes.data;
             } else {
                 try {
                     lyricSearchRes = await API.getLyrics(cardHead.id);
                 } catch (error) {
                     throw error;
                 }
-                console.log("we are back in blurb Input");
+                console.log("we are back in blurb Input - else");
                 console.log(lyricSearchRes.data);
-                setSelectedSong({...selectedSong, lyrics: lyricSearchRes.data});
+                setSelectedSong({ 
+                    songID: choice.songID,
+                    songArtistAlbum: `${choice.title} - ${choice.artist}`,
+                    lyrics: lyricSearchRes.data,
+                    albumThumbnail: choice.wholeObj.thumbnail
+                });
                 let integerStringId = parseInt(cardHead.id);
                 console.log(integerStringId);
                 integerStringId = integerStringId + 3;
                 let pTag = document.getElementById(`${integerStringId}`);
-                pTag.innerText = lyricSearchRes.data;
+                pTag.textContent = lyricSearchRes.data;
             }
             
         }
@@ -134,7 +218,7 @@ export default function BlurbInput() {
 
     // takes in both actions from the POST and ANALYZE buttons
     const handleButtonClick = async (e) => {
-        const buttonPress = e.target.innerText;
+        const buttonPress = e.target.textContent;
         // do not call the api on an empty string
         if (TextAreaVal === "") return;
         // if we hit analyze, query genius API with
@@ -147,29 +231,44 @@ export default function BlurbInput() {
                 throw err;
             }
             const nounStringArray = nounsRes.data;
+            // before you execute!!!
+            // RESET THE LYRICS SECTION TO 'LOADING...'
+            let lyricsClass = document.querySelectorAll(".songLyrics");
+            lyricsClass.forEach( (elem) => {
+                elem.textContent = "LOADING...";
+            });
             handleGeniusCall(nounStringArray);
         } else { // we will submit the post!
             console.log("post button click!");
             const newMongoModelUpdate = {
                 $push: {
                     blurbs: {
-                        vibe: "dangerous",
+                        vibe: currentVibe,
                         body: TextAreaVal,
-                        chosenSongArtist: selectedSong.songArtistAlbum
+                        chosenSongArtist: selectedSong.songArtistAlbum,
+                        thumbnail: selectedSong.albumThumbnail
                     }
                     // could use this opportunity to push to 'songCollection' array
                     // in USER table
                 }
             }
+            console.log("here");
+            console.log(selectedSong);
             let postRes;
             try {
                 postRes = await API.postBlurb(newMongoModelUpdate);
             } catch (error) {
                 throw error;
             }
+            console.log("WAITING FOR THIS LOG UNDER ME")
             console.log(postRes);
             // TODO: trigger UI to show all my posts page
         }
+    }
+
+    const vibeCheck = (vibe) => {
+        console.log(`this is their current vibe ${vibe}`);
+        setCurrentVibe(vibe);
     }
 
     return (
@@ -187,7 +286,7 @@ export default function BlurbInput() {
                 </Row>
                 <Row className="mt-2">
                     <ButtonGroup handleButtonClick={handleButtonClick}/>
-                    <DropdownMood />
+                    <DropdownMood vibeCheck={vibeCheck}/>
                 </Row>
             </Container>
         </>
