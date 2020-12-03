@@ -13,6 +13,7 @@ import SongCardContainer from "./SongCardContainer";
 export default function BlurbInput() {
 
     // current state of the value in text area
+    const [currentVibe, setCurrentVibe] = useState("");
     const [TextAreaVal, setTextAreaVal] = useState("");
     const [SongPoolRes, setSongPoolRes] = useState([]);
     const [selectedSong, setSelectedSong] = useState({
@@ -152,7 +153,7 @@ export default function BlurbInput() {
 
     // takes in both actions from the POST and ANALYZE buttons
     const handleButtonClick = async (e) => {
-        const buttonPress = e.target.innerText;
+        const buttonPress = e.target.textContent;
         // do not call the api on an empty string
         if (TextAreaVal === "") return;
         // if we hit analyze, query genius API with
@@ -171,7 +172,7 @@ export default function BlurbInput() {
             const newMongoModelUpdate = {
                 $push: {
                     blurbs: {
-                        vibe: "dangerous",
+                        vibe: currentVibe,
                         body: TextAreaVal,
                         chosenSongArtist: selectedSong.songArtistAlbum,
                         thumbnail: selectedSong.albumThumbnail
@@ -194,6 +195,11 @@ export default function BlurbInput() {
         }
     }
 
+    const vibeCheck = (vibe) => {
+        console.log(`this is their current vibe ${vibe}`);
+        setCurrentVibe(vibe);
+    }
+
     return (
     <>
         <Container className="mt-5">
@@ -209,7 +215,7 @@ export default function BlurbInput() {
                 </Row>
                 <Row className="mt-2">
                     <ButtonGroup handleButtonClick={handleButtonClick}/>
-                    <DropdownMood />
+                    <DropdownMood vibeCheck={vibeCheck}/>
                 </Row>
             </Container>
         </>
