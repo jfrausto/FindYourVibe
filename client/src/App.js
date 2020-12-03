@@ -35,6 +35,7 @@ function App() {
         <Navbar />
         <Switch>
           <Route exact path="/" />
+          <Route path="/profile" />
         </Switch>
       </Router>
       <Container>
