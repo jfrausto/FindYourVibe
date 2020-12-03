@@ -1,9 +1,23 @@
 const Moods = [
-  "Happy 😊",
-  "Sad ☹",
-  "Wavy 😎",
+  "Lulz 🤣",
+  "Down 😢",
+  "Wavy 🏄‍♂️",
   "Funky 🕺",
-  "Clowny 🤡"
+  "Clowny 🤡",
+  "Magical 🧙‍♂️",
+  "Clairvoyant 🔮",
+  "Slumpy 🦥",
+  "Lovey-Dovey 💛",
+  "Popping Off 🖕",
+  "On One 🤪",
+  "Dead 💀",
+  "Chillin' 🥶",
+  "Meh 😑",
+  "Feelin' Good 😎",
+  "Flirty 🙊",
+  "Hating 💩",
+  "Hopeful 💭",
+  "Lit ✈"
 ];
 
 export default Moods;

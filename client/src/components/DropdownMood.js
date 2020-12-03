@@ -14,7 +14,7 @@ export default function DropdownMood({vibeCheck}) {
     {/* add a KEY prop for each child in a list <li>
         in this case, the 'list' <li> is the Dropdown.Item */}
       <Col>
-        <DropdownButton size="sm" id="dropdown-item-button" title={titleMood}>
+        <DropdownButton size="sm" id="dropdown-item-button" drop="up" title={titleMood}>
           {
             Moods.map( elem => {
               return <Dropdown.Item key={elem} as="button">
