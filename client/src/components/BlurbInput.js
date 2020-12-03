@@ -23,7 +23,7 @@ export default function BlurbInput() {
         albumThumbnail: ""
     });
     useEffect(() => {
-        console.log("i changed something");
+        console.log("i selected a song");
         console.log(selectedSong);
         // if (selectedSong.is)
     }, [selectedSong]);
@@ -63,6 +63,62 @@ export default function BlurbInput() {
         // update song pool state
         setSongPoolRes(addCountPool);
     }
+
+    //  * LYRIC CHECK PREVENT
+    // CHECKS IF THIS SONG HAS RENDERED ITS LYRICS ALREADY
+    // selected element could be the card head or the title element
+    // since we can return them out of handling selectedSong....
+    // ...we need to setSelectedSong here too!
+    const lyricSearchPrevent = (cardOrTitle, choice) => {
+        // title case
+        if(cardOrTitle.parentElement.classList[0] === "card-selector") {
+            let lyricsAreaId = parseInt(cardOrTitle.parentElement.id) +3;
+            let lyricElement = document.getElementById(`${lyricsAreaId}`);
+            if(lyricElement.textContent === "LOADING..."){ 
+                // lyrics NOT been requested yet, do not prevent search
+                setSelectedSong({ 
+                    songID: choice.songID,
+                    songArtistAlbum: `${choice.title} - ${choice.artist}`,
+                    lyrics: "LOADING...",
+                    albumThumbnail: choice.wholeObj.thumbnail
+                });
+                return false;
+            } else {
+                // lyrics have been requested, prevent search
+                // remember the lyrics
+                setSelectedSong({ 
+                    ...selectedSong,
+                    songID: choice.songID,
+                    songArtistAlbum: `${choice.title} - ${choice.artist}`,
+                    albumThumbnail: choice.wholeObj.thumbnail
+                });
+                return true;
+            }
+        } else { // card head case
+            let lyricsAreaId = parseInt(cardOrTitle.id) +3;
+            let lyricElement = document.getElementById(`${lyricsAreaId}`);
+            if(lyricElement.textContent === "LOADING..."){ 
+                // lyrics have NOT been requested yet, do not prevent search
+                setSelectedSong({ 
+                    songID: choice.songID,
+                    songArtistAlbum: `${choice.title} - ${choice.artist}`,
+                    lyrics: "LOADING...",
+                    albumThumbnail: choice.wholeObj.thumbnail
+                });
+                return false;
+            } else {
+                // lyrics have been requested, prevent search
+                setSelectedSong({
+                    ...selectedSong,
+                    songID: choice.songID,
+                    songArtistAlbum: `${choice.title} - ${choice.artist}`,
+                    albumThumbnail: choice.wholeObj.thumbnail
+                });
+                return true;
+            }
+        }
+    }
+
     // handles state of the selected song
     const handleSongSelect = async (e, choice) => {
         const cardHead = e.target;
@@ -91,6 +147,15 @@ export default function BlurbInput() {
         // console.log("SET THE SONG");
         // console.log(choice.wholeObj.thumbnail)
         // console.log(selectedSong);
+
+        // ! CHECK BEFORE FIRING API CALL
+        let shouldPrevent = lyricSearchPrevent(cardHead, choice);
+        if(shouldPrevent){
+            // leave the function
+            // prevents searching for lyrics
+            // if already done before
+            return;
+        }
         let lyricSearchRes;
         if(cardHead.parentElement.classList[0] === "card-selector" || true){
             // try {
@@ -124,7 +189,7 @@ export default function BlurbInput() {
                 console.log(integerStringId);
                 integerStringId = integerStringId + 3;
                 let pTag = document.getElementById(`${integerStringId}`);
-                pTag.innerText = lyricSearchRes.data;
+                pTag.textContent = lyricSearchRes.data;
             } else {
                 try {
                     lyricSearchRes = await API.getLyrics(cardHead.id);
@@ -143,7 +208,7 @@ export default function BlurbInput() {
                 console.log(integerStringId);
                 integerStringId = integerStringId + 3;
                 let pTag = document.getElementById(`${integerStringId}`);
-                pTag.innerText = lyricSearchRes.data;
+                pTag.textContent = lyricSearchRes.data;
             }
             
         }
@@ -166,6 +231,12 @@ export default function BlurbInput() {
                 throw err;
             }
             const nounStringArray = nounsRes.data;
+            // before you execute!!!
+            // RESET THE LYRICS SECTION TO 'LOADING...'
+            let lyricsClass = document.querySelectorAll(".songLyrics");
+            lyricsClass.forEach( (elem) => {
+                elem.textContent = "LOADING...";
+            });
             handleGeniusCall(nounStringArray);
         } else { // we will submit the post!
             console.log("post button click!");
