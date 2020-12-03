@@ -262,6 +262,7 @@ export default function BlurbInput() {
             }
             console.log("WAITING FOR THIS LOG UNDER ME")
             console.log(postRes);
+            window.location.replace("./profile");
             // TODO: trigger UI to show all my posts page
         }
     }

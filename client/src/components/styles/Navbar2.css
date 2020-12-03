@@ -4,6 +4,7 @@
 }
 
 .navbar-brand {
+  background-color: rgba(48, 48, 100, 0.774) !important;
   font-size: 2rem;
 }
 
