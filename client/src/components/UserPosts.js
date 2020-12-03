@@ -1,13 +1,13 @@
 import React, {useEffect, useState} from 'react';
+import TimeAgo from 'react-timeago';
 import Container from "react-bootstrap/Container";
 import API from "../utils/API";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import "./styles/UserPosts.css";
 
-
-
 export default function UserPosts() {
+
  const [UserBlurbs, setUserBlurbs] = useState([]);
  useEffect(() => {
   // looks for the user based on their email,
@@ -18,15 +18,23 @@ export default function UserPosts() {
    //    return;
    // }
    setUserBlurbs(res.data.blurbs);
-   console.log(res.data.blurbs);
+   console.log(`${res.data.blurbs} is the data passed into setUserBlurbs`);
  })
 }, []);
 
-
+// Changes the date to show how much time has passed from today 
+// ex. 5 minutes ago. The package will change from hour to days 
+//automatically if there is syntax issue the default can be 
+//changed. 
+const handleDateFormat = (date) => {
+   let format = React.createElement(TimeAgo, {date: date});
+   return format;
+}
  return (
      <div className="mt-2">
      {
-      UserBlurbs.map(blurb => {
+        //!! .reverse() returns a reference of userBlurbsArray 
+      UserBlurbs.reverse().map(blurb => {
        return <Container className="postDivContainerBackground mb-2 p-2"  key={blurb._id}>
        <Row>
        <Col className="postColColor my-auto" xs={2} lg={{span: 2, offset: 3}} >
@@ -57,7 +65,7 @@ export default function UserPosts() {
        <Row className="postFooter" >
        <Col xs={8} lg={{span:3, offset: 3 }} className="postColColor my-auto">
           <p className="postDate">
-           {blurb.time}
+           {handleDateFormat(blurb.time)}
           </p>
        </Col>
         <Col xs={4} lg={3} className="postColColor my-auto">
