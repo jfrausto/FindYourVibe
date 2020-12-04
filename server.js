@@ -16,11 +16,22 @@ if (process.env.NODE_ENV === "production") {
 // this defines our api routes
 app.use("/api", apiRoutes);
 
+// start socket io stuff
+// define middleware first before passing in app to http server
+var http = require("http").createServer(app);
+var io = require("socket.io")(http);
+
 // Send every other request to the React app
 // Define any API routes before this runs
 // ! this means that these are all the HTML/view routes
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "./client/build/index.html"));
+});
+
+// could maybe define a whole bunch of functions and event listeners here
+// use require, and define the event listeners elsewhere i think
+io.on("connection", (socket) => {
+  console.log('----------------------a user connected!')
 });
 
 // Connect to the Mongo DB
@@ -31,6 +42,8 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/viBee", {
   useCreateIndex: true,
 });
 
-app.listen(PORT, () => {
+// instead we are making the http listen,
+// since we created the server by passing in the app express instance
+http.listen(PORT, () => {
   console.log(`🌎 ==> API server now on port ${PORT}!`);
 });

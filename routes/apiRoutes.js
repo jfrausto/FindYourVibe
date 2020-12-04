@@ -138,11 +138,11 @@ router.get("/users", (req, res) => {
 });
 
 router.get("/blurbs/:userEmail", (req, res) => {
-  console.log("................................SPECIFIC USER (l:141)...");
+  console.log("................................finding SPECIFIC USER (l:141)...");
   const {userEmail} = req.params;
   db.User.findOne({email: userEmail}).then( (data) => {
-    console.log("Found that User you were looking for!");
-    console.log(data);
+    console.log(".................Found that User you were looking for! (l:144)...");
+    // console.log(data);
     // ! THIS CODE SHOULD CHECK FOR 'THIS USER HAS NO POSTS' CASE
     // if(data === null){
     //   res.json({message: "you have no posts! vibe out!"});
