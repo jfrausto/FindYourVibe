@@ -21,8 +21,5 @@ export default {
     },
     getLyrics: function(cardID) {
         return axios.get("/api/lyrics/" + cardID);
-    },
-    // getUserCollection: function() {
-    //     return axios.get("/api/userCollection");
-    // }    
+    }   
 };

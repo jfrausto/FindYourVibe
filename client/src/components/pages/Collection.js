@@ -6,6 +6,7 @@ import Col from "react-bootstrap/Col";
 import API from "../../utils/API";
 import Card from "react-bootstrap/Card";
 import Accordion from "react-bootstrap/Accordion";
+import "../styles/SongCardContainer.css";
 export default function Collection() {
  const [UserCollection, setUserCollection] = useState([]);
  useEffect(() => {
@@ -29,29 +30,36 @@ export default function Collection() {
                 </Jumbotron> 
             </Container>
         
-          <div className="mt-2">
+          <Container className="mt-2">
+           <Row>
           {
            UserCollection.map(collection => {
-            return <Accordion className="rounded bottom MarginFix px-sm-3">
+            return <Col xs={4} key={collection.songId}>
+            <Accordion className="rounded bottom MarginFix px-sm-3" >
             <Card className="cardBorder">
-                <Accordion.Toggle as={Card.Header} id={1} className="card-selector" eventKey="0">
-                    <img height="100px" width="100px"/>   
+                <Accordion.Toggle as={Card.Header}  className="card-selector" eventKey="0">
+                    <img src={collection.albumThumbnail}height="100px" width="100px"/>   
                     <h4 className="songTitle">
-                        {"songElement.songObj.title"} - {"songElement.songObj.artist.name"}
+                        {collection.songArtistAlbum}
                     </h4>
                 </Accordion.Toggle>
                 <Accordion.Collapse eventKey="0">
-                <Card.Body> <p className="songLyrics" id={1+3}>
-                    {collection.song}
-                    {collection.artist}
-                    {collection.album}
+                <Card.Body> 
+                 <h4>
+                  Lyrics
+                 </h4>
+                 <p className="songLyrics">
+                 
+                 {collection.lyrics}
                     </p></Card.Body>
                 </Accordion.Collapse>
             </Card>
             </Accordion>
+            </Col>
          })
           }
-       </div>
+          </Row>
+       </Container>
     </>
   );
 }

@@ -197,7 +197,7 @@ export default function BlurbInput() {
                     throw error;
                 }
                 console.log("we are back in blurb Input - else");
-                console.log(lyricSearchRes.data);
+                console.log(lyricSearchRes);
                 setSelectedSong({ 
                     songID: choice.songID,
                     songArtistAlbum: `${choice.title} - ${choice.artist}`,
@@ -248,9 +248,13 @@ export default function BlurbInput() {
                         body: TextAreaVal,
                         chosenSongArtist: selectedSong.songArtistAlbum,
                         thumbnail: selectedSong.albumThumbnail
+                    },
+                    songCollection: {
+                        songId: selectedSong.songID,
+                        songArtistAlbum: selectedSong.songArtistAlbum,
+                        lyrics: selectedSong.lyrics,
+                        albumThumbnail: selectedSong.albumThumbnail
                     }
-                    // could use this opportunity to push to 'songCollection' array
-                    // in USER table
                 }
             }
             console.log("here");
