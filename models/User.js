@@ -16,9 +16,10 @@ const UserSchema = new Schema({
         time: { type: Date, default: Date.now}
     }],
     songCollection: [{
-        song: String,
-        artist: String,
-        album: String
+        songId: String,
+        songArtistAlbum: String,
+        lyrics: String,
+        albumThumbnail: String
     }]
 }
 // ? could add more options here in the future

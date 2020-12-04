@@ -41,7 +41,6 @@ const handleDateFormat = (date) => {
        <img className="postSongImage" 
        //!!Need to change with the thumbnail from the users blurb
        src={blurb.thumbnail} 
-       
        height="50px" 
        width="50px"/>
        </Col>

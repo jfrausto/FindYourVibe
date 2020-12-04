@@ -1,15 +1,20 @@
 import React from "react";
+import {Link} from "react-router-dom";
 import API from "../../utils/API";
 import "../../App.css";
 import Container from "react-bootstrap/Container";
 import LandingSplash from "../LandingSplash";
 import UserPosts from "../UserPosts";
+import Button from "react-bootstrap/Button";
 
 export default function Profile() {
   return (
-    <div>
+    <div>     
       <Container>
-        <LandingSplash />
+      <Link to="/collection" >
+      <Button variant="danger">My Collections</Button>
+      </Link>
+      <LandingSplash />
         <UserPosts />
       </Container>
     </div>
