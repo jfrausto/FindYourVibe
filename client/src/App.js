@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import Collection from "./components/pages/Collection";
 import Navbar from "./components/Navbar";
 import Dashboard from "./components/pages/Dashboard";
 import Profile from "./components/pages/Profile";
@@ -27,6 +28,7 @@ function App() {
             <Switch>
               <PrivateRoute exact path="/" component={Dashboard} />
               <PrivateRoute path="/profile" component={Profile} />
+              <PrivateRoute path="/collection" component={Collection}/>
               
               <Container
                 className="d-flex align-items-center justify-content-center"
