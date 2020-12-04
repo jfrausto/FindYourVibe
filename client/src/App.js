@@ -9,10 +9,15 @@ import Signup from "./components/Signup";
 import Login from "./components/Login";
 import PrivateRoute from "./components/PrivateRoute";
 import { Container } from "react-bootstrap";
-import { AuthProvider } from "./contexts/AuthContext";
+import { useAuth, AuthProvider } from "./contexts/AuthContext";
 // import useNounFinder from "./utils/Hooks/NounFinderFolder/NounFinder";
 
 function App() {
+  // const [error, setError ] = useState("")
+  // const { currentUser, logout } = useAuth()
+  // const history = useHistory()
+  // 
+
   return (
     <div className="App">
       {/* Navigation  or other stuff can go here */}
@@ -21,7 +26,7 @@ function App() {
           <AuthProvider>
             <Switch>
               <PrivateRoute exact path="/" component={Dashboard} />
-              <Route path="/profile" component={Profile} />
+              <PrivateRoute path="/profile" component={Profile} />
               
               <Container
                 className="d-flex align-items-center justify-content-center"
