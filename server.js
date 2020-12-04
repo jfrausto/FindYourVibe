@@ -30,8 +30,17 @@ app.get("*", (req, res) => {
 
 // could maybe define a whole bunch of functions and event listeners here
 // use require, and define the event listeners elsewhere i think
+// could query our mongo db from here!!!!!!! and return data!
 io.on("connection", (socket) => {
-  console.log('----------------------a user connected!')
+  console.log('----------------------a user connected!');
+
+  // more listeners here
+  
+
+
+  socket.on('disconnect', () => {
+    console.log("user disconnected :(");
+  })
 });
 
 // Connect to the Mongo DB
