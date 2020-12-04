@@ -137,6 +137,7 @@ router.get("/users", (req, res) => {
     .catch((err) => res.status(422).json(err));
 });
 
+
 router.get("/blurbs/:userEmail", (req, res) => {
   console.log("................................SPECIFIC USER (l:141)...");
   const {userEmail} = req.params;
