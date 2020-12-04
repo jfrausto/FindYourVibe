@@ -1,10 +1,10 @@
 #navbar {
-  background-color: rgba(48, 48, 100, 0.774) !important;
+  background-color: rgba(48, 48, 100, 0.891) !important;
   height: 70px;
 }
 
 .navbar-brand {
-  background-color: rgba(48, 48, 100, 0.774) !important;
+  background-color: rgba(48, 48, 100, 0.891) !important;
   font-size: 2rem;
 }
 
@@ -32,21 +32,19 @@
   opacity: 1;
 }
 .btn--outline {
-  padding: 8px 20px;
   font-size: 20px;
   border-radius: 2px;
   outline: none;
-  border: none;
-  cursor: pointer;
   background-color: transparent !important;
   color: #fff;
   padding: 8px 20px;
   border: 1px solid #fff;
+  margin: 10px 5px;
   transition: all 0.3s ease-out;
 }
 
 .btn--outline:hover {
   background-color: #fff !important;
-  color: rgba(48, 48, 100, 0.774) !important;
+  color: rgba(48, 48, 100, 0.891) !important;
   transition: all 0.2s ease-out;
 }
