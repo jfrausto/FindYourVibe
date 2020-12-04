@@ -1,0 +1,29 @@
+.postHeader {
+  /* background-color: cyan;
+  color: brown; */
+  text-align: center;
+}
+
+.postFooter {
+  /* background-color: white; */
+  font-size: 14px;
+  text-align: right;
+}
+
+.postDate {
+  text-align: left;
+  color: gray;
+  font-size: 12px;
+}
+
+.postBlurb {
+  text-align: center;
+}
+
+.postSongTitle {
+  text-align: center;
+}
+
+.postDivContainerBackground {
+  background-color: white;
+}

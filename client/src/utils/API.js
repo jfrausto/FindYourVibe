@@ -16,7 +16,9 @@ export default {
     postBlurb: function(blurb) {
         return axios.post("/api/postBlurb", blurb);
     },
+    getUserPosts: function(email) {
+        return axios.get("/api/blurbs/" + email);
+    },
     getLyrics: function(cardID) {
         return axios.get("/api/lyrics/" + cardID);
-    }
-}
+    }};

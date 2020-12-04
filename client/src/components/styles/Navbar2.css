@@ -1,0 +1,52 @@
+#navbar {
+  background-color: rgba(48, 48, 100, 0.774) !important;
+  height: 70px;
+}
+
+.navbar-brand {
+  background-color: rgba(48, 48, 100, 0.774) !important;
+  font-size: 2rem;
+}
+
+.fa-forumbee {
+  margin-right: 0.5rem;
+  font-size: 2rem;
+}
+
+.nav-items {
+  color: #fff !important ;
+  display: flex;
+  align-items: center !important;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  height: 70px;
+}
+
+.nav-items:hover {
+  border-bottom: 4px solid #fff !important;
+  transition: all 0.2s ease-out;
+}
+
+.navbar-collapse {
+  background-color: rgba(48, 48, 100, 0.891) !important;
+  opacity: 1;
+}
+.btn--outline {
+  padding: 8px 20px;
+  font-size: 20px;
+  border-radius: 2px;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  background-color: transparent !important;
+  color: #fff;
+  padding: 8px 20px;
+  border: 1px solid #fff;
+  transition: all 0.3s ease-out;
+}
+
+.btn--outline:hover {
+  background-color: #fff !important;
+  color: rgba(48, 48, 100, 0.774) !important;
+  transition: all 0.2s ease-out;
+}
