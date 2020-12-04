@@ -7,6 +7,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 // in its own component
 // import socket from "./utils/socketTest";
 
+import Collection from "./components/pages/Collection";
 import Navbar from "./components/Navbar";
 import Dashboard from "./components/pages/Dashboard";
 import Profile from "./components/pages/Profile";
@@ -21,6 +22,7 @@ function App() {
         <Switch>
           <Route exact path="/" component={Dashboard} />
           <Route path="/profile" component={Profile} />
+          <Route path="/collection" component={Collection}/>
         </Switch>
       </Router>
       {/* we might not even want this landing splash thing in the future */}

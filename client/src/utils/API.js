@@ -21,4 +21,5 @@ export default {
     },
     getLyrics: function(cardID) {
         return axios.get("/api/lyrics/" + cardID);
-    }};
+    }   
+};
