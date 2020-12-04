@@ -240,10 +240,11 @@ export default function BlurbInput() {
             handleGeniusCall(nounStringArray);
         } else { // we will submit the post!
             console.log("post button click!");
+            console.log("TIME TO CHECK THE VIBE UNDER MEEEEE")
             const newMongoModelUpdate = {
                 $push: {
                     blurbs: {
-                        vibe: currentVibe,
+                        vibe: currentVibe === ""?"🤐": currentVibe,
                         body: TextAreaVal,
                         chosenSongArtist: selectedSong.songArtistAlbum,
                         thumbnail: selectedSong.albumThumbnail
@@ -266,9 +267,8 @@ export default function BlurbInput() {
             // TODO: trigger UI to show all my posts page
         }
     }
-
+    //** This handles the dropdown menu not the state
     const vibeCheck = (vibe) => {
-        console.log(`this is their current vibe ${vibe}`);
         setCurrentVibe(vibe);
     }
 
@@ -288,6 +288,7 @@ export default function BlurbInput() {
                 <Row className="mt-2">
                     <ButtonGroup handleButtonClick={handleButtonClick}/>
                     <DropdownMood vibeCheck={vibeCheck}/>
+
                 </Row>
             </Container>
         </>
