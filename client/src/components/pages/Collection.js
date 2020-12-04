@@ -34,7 +34,7 @@ export default function Collection() {
            <Row>
           {
            UserCollection.map(collection => {
-            return <Col xs={4} key={collection.songId}>
+            return <Col xs={6} md={4} lg={3} xl={3} key={collection.songId}>
             <Accordion className="rounded bottom MarginFix px-sm-3" >
             <Card className="cardBorder">
                 <Accordion.Toggle as={Card.Header}  className="card-selector" eventKey="0">
