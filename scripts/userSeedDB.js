@@ -25,7 +25,7 @@ const userSeed = [
         }],
         songCollection: [{
            songId: "274321",
-           sondArtistAlbum: "Fade - Kanye West",
+           songArtistAlbum: "Fade - Kanye West",
            lyrics: `[Intro: Rare Earth]
            Your love is fadin'
            Your love is fadin'
@@ -132,7 +132,7 @@ const userSeed = [
         }],
         songCollection: [{
           songId: "146987",
-          sondArtistAlbum: "Dream On - Aerosmith",
+          songArtistAlbum: "Dream On - Aerosmith",
           lyrics: `[Verse 1]
           Every time​ that I look in the mirror
           All these lines on my face getting clearer
