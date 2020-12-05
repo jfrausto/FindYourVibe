@@ -44,9 +44,6 @@ const handleDateFormat = (date) => {
        height="50px" 
        width="50px"/>
        </Col>
-       {/* styling can be changed using UserPosts.css file sheet 
-       currently it was just to differentiate how the columns looked
-       and where the data was being created at!!!*/}
        <Col xs={10} lg={4} className="postColColor my-auto" >
           <span className="postSongTitle">
           {blurb.chosenSongArtist}

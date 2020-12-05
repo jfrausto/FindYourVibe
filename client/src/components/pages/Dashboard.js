@@ -4,8 +4,6 @@ import "../../App.css";
 import LandingSplash from "../LandingSplash";
 import BlurbInput from "../BlurbInput";
 import Container from "react-bootstrap/Container";
-// import UserPosts from "../UserPosts";
-
 import DashboardFeed from "../DashboardFeed";
 import socket from "../../utils/socketTest";
 
@@ -16,8 +14,6 @@ export default function Dashboard() {
     API.getAllGlobalPosts().then((res) => {
       console.log("...got public posts from DB...!!!");
       console.log(res.data);
-      // const combinedArray = res.data[]
-      // sortPosts(res.data);
       setGlobalPosts(res.data);
     });
     // add SOCKET event listener upon mounting this component
@@ -33,7 +29,6 @@ export default function Dashboard() {
       <Container>
         <LandingSplash />
         <BlurbInput />
-        {/* <UserPosts /> */}
         <DashboardFeed globalPosts={globalPosts}/>
       </Container>
     </div>
