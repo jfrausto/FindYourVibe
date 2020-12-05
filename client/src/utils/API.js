@@ -16,6 +16,12 @@ export default {
     postBlurb: function(blurb) {
         return axios.post("/api/postBlurb", blurb);
     },
+    postGlobalBlurb: function(blurb) {
+        return axios.post("/api/postGlobal", blurb);
+    },
+    getAllGlobalPosts: function() {
+        return axios.get("/api/globalPosts");
+    },
     getUserPosts: function(email) {
         return axios.get("/api/blurbs/" + email);
     },

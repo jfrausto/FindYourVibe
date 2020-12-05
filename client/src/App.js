@@ -2,6 +2,11 @@ import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+
+// socket instance!
+// in its own component
+// import socket from "./utils/socketTest";
+
 import Collection from "./components/pages/Collection";
 import Navbar from "./components/Navbar";
 import Dashboard from "./components/pages/Dashboard";
