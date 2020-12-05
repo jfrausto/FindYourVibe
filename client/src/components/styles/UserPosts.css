@@ -16,6 +16,11 @@
   font-size: 12px;
 }
 
+.user-name {
+  color: gray;
+  font-style: italic;
+}
+
 .postBlurb {
   text-align: center;
 }

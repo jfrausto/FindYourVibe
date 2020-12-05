@@ -20,9 +20,6 @@ export default function Dashboard() {
       // sortPosts(res.data);
       setGlobalPosts(res.data);
     });
-
-    
-
     // add SOCKET event listener upon mounting this component
     socket.on("updating posts", (allData) => {
       console.log("we got the update over here!!");
@@ -31,21 +28,13 @@ export default function Dashboard() {
     })
   }, []);
 
-  // const sortPosts = (unsortedUserArray) => {
-
-    // unsortedUserArray.
-    
-    // setAllUsers(sortedArray);
-    // return sortedArray;
-  // }
-
   return (
     <div>
       <Container>
         <LandingSplash />
         <BlurbInput />
         {/* <UserPosts /> */}
-        {/* <DashboardFeed allUsers={allUsers}/> */}
+        <DashboardFeed globalPosts={globalPosts}/>
       </Container>
     </div>
   );
