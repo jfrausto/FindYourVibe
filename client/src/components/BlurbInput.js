@@ -1,12 +1,12 @@
-import React, { useRef, useEffect, useState } from "react";
-import Container from "react-bootstrap/Container";
-import TextareaCounter from "react-textarea-counter";
-import "./styles/BlurbInput.css";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import ButtonGroup from "./ButtonGroup";
-import DropdownMood from "./DropdownMood";
-import API from "../utils/API";
+import React, {useRef, useEffect, useState} from 'react';
+import Container from 'react-bootstrap/Container';
+import TextareaCounter from 'react-textarea-counter';
+import './styles/BlurbInput.css';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import ButtonGroup from './ButtonGroup';
+import DropdownMood from './DropdownMood';
+import API from '../utils/API';
 import SongCardContainer from "./SongCardContainer";
 
 
@@ -15,6 +15,7 @@ import socket from "../utils/socketTest";
 
 // input group component that allows user input
 export default function BlurbInput() {
+
     // current state of the value in text area
     const [currentVibe, setCurrentVibe] = useState("");
     const [TextAreaVal, setTextAreaVal] = useState("");
@@ -52,14 +53,20 @@ export default function BlurbInput() {
         }
         console.log(geniusRes.data);
 
-    const addCountPool = [];
-    for (let i = 0; i < 3; i++) {
-      addCountPool.push({
-        count: i + 1,
-        songObj: geniusRes.data[i],
-      });
+        const addCountPool = [];
+        for (let i = 0; i < 3; i++) {
+            addCountPool.push(
+                {
+                    count: i+1,
+                    songObj: geniusRes.data[i]
+                }
+            );
+            
+        }
+        console.log(addCountPool);
+        // update song pool state
+        setSongPoolRes(addCountPool);
     }
-  }
 
     //  * LYRIC CHECK PREVENT
     // CHECKS IF THIS SONG HAS RENDERED ITS LYRICS ALREADY
@@ -134,16 +141,6 @@ export default function BlurbInput() {
         }
         cardHead.classList.add("green-bg");
         console.log(choice);
-        // update the state of the selected song
-        // setSelectedSong({ 
-        //     songID: choice.songID,
-        //     songArtistAlbum: `${choice.title} - ${choice.artist}`,
-        //     lyrics: "Loading....",
-        //     albumThumbnail: choice.wholeObj.thumbnail
-        // });
-        // console.log("SET THE SONG");
-        // console.log(choice.wholeObj.thumbnail)
-        // console.log(selectedSong);
 
         // ! CHECK BEFORE FIRING API CALL
         let shouldPrevent = lyricSearchPrevent(cardHead, choice);
@@ -155,14 +152,6 @@ export default function BlurbInput() {
         }
         let lyricSearchRes;
         if(cardHead.parentElement.classList[0] === "card-selector" || true){
-            // try {
-            //     lyricSearchRes = await API.getLyrics(cardHead.id);
-            // } catch (error) {
-            //     throw error;
-            // }
-            // console.log("we are back in blurb Input");
-            // console.log(lyricSearchRes.data);
-            // setSelectedSong({...selectedSong, lyrics: lyricSearchRes.data});
             // ! THE JANK; THIS NEEDS TO BE REFACTORED FOR THE IF CASES, COULD BE A LOT CLEANER
             // ! JANKING AROUND WITH THE ID's OF ELEMENTS
             // TODO: -------------------------------------------------
@@ -209,16 +198,8 @@ export default function BlurbInput() {
             }
             
         }
-        console.log("we are back in blurb Input");
-        console.log(lyricSearchRes.data);
-        setSelectedSong({ ...selectedSong, lyrics: lyricSearchRes.data });
-        let integerStringId = parseInt(cardHead.id);
-        console.log(integerStringId);
-        integerStringId = integerStringId + 3;
-        let pTag = document.getElementById(`${integerStringId}`);
-        pTag.innerText = lyricSearchRes.data;
-    }
 
+    }
 
     // takes in both actions from the POST and ANALYZE buttons
     const handleButtonClick = async (e) => {

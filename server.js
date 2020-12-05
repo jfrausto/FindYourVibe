@@ -36,9 +36,7 @@ app.get("*", (req, res) => {
 // could query our mongo db from here!!!!!!! and return data!
 io.on("connection", (socket) => {
   console.log('----------------------a user connected!');
-
   // more listeners here
-
   socket.on("new blurb post", (msg) => {
     console.log("i heard that you posted something! from the server (l:39)");
     console.log(msg, "<----message from the front end");
@@ -47,14 +45,8 @@ io.on("connection", (socket) => {
             console.log("found all public posts");
             // emit back to users!
             io.emit("updating posts", data );
-
-            // res.json(data);
           });
-          // .catch((err) => res.status(422).json(err));
   });
-
-
-
   socket.on('disconnect', () => {
     console.log("user disconnected :(");
   })

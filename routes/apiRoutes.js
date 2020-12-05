@@ -12,18 +12,8 @@ const db = require("../models");
 let firstSong;
 let secondSong;
 let thirdSong;
-// const userController = require("../controllers/userController");
 
-let intervals = 0;
-const wait = (time) =>
-  new Promise((resolve) => {
-    setTimeout(() => {
-      intervals += 1;
-      console.log("Pausing... (to avoid ratelimiting)\n");
-      resolve();
-    }, time);
-  });
-const test = async (stringifiedNounsQuery) => {
+const getSongPool = async (stringifiedNounsQuery) => {
   console.log(`Genius-Lyrics v${Genius.Version}`);
   const searches = await Client.songs.search(stringifiedNounsQuery);
   // global vars! they are declared at the top ^^^^^
@@ -33,7 +23,6 @@ const test = async (stringifiedNounsQuery) => {
   const songPool = [firstSong, secondSong, thirdSong];
   return songPool;
 };
-
 
 // ---------------GET LYRICS FUNCTION
 const getLyrics = async (chosenSong) => {
@@ -46,8 +35,6 @@ const getLyrics = async (chosenSong) => {
   return lyricRes;
 };
 
-// ! -------------------- Define API routes here
-// * this matches with /api/songs
 // ! remember /api/ is implied in our server.js file
 router.get("/songs/:lyrics", (req, res) => {
   console.log("......................inside router.get('/songs/:lyrics')...");
@@ -56,7 +43,7 @@ router.get("/songs/:lyrics", (req, res) => {
   // replace the commas with a space
   stringifiedArray = stringifiedArray.replace(/,/g, " ");
   console.log(stringifiedArray);
-  test(stringifiedArray).then((data) => {
+  getSongPool(stringifiedArray).then((data) => {
     console.log("successfully returned song pool!");
     res.send(data);
   });
@@ -103,8 +90,7 @@ router.get("/blurbs/:userEmail", (req, res) => {
   const {userEmail} = req.params;
   db.User.findOne({email: userEmail}).then( (data) => {
     console.log(".................Found that User you were looking for! (l:144)...");
-    // console.log(data);
-    // ! THIS CODE SHOULD CHECK FOR 'THIS USER HAS NO POSTS' CASE
+    // TODO: THIS CODE SHOULD CHECK FOR 'THIS USER HAS NO POSTS' CASE
     // if(data === null){
     //   res.json({message: "you have no posts! vibe out!"});
     // }
@@ -140,7 +126,6 @@ router.get("/nouns/:words", (req, res) => {
 router.post("/postGlobal", (req, res) => {
   console.log(".......................................posting global blurb");
   const update = req.body;
-  // console.log(update);
   db.GlobalPost.insertMany([update]).then((data) => {
     console.log("inserted one record!");
     res.json(data);

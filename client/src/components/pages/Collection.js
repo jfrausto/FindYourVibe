@@ -7,8 +7,12 @@ import API from "../../utils/API";
 import Card from "react-bootstrap/Card";
 import Accordion from "react-bootstrap/Accordion";
 import "../styles/SongCardContainer.css";
+
+
 export default function Collection() {
+
  const [UserCollection, setUserCollection] = useState([]);
+
  useEffect(() => {
   // looks for the user based on their email,
   // as of right now the email is hardcoded in
@@ -21,6 +25,7 @@ export default function Collection() {
    console.log(res.data.songCollection);
  })
 }, []);
+
   return (
     <>
          <Container className="mt-3" fluid>
