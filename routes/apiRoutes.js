@@ -24,56 +24,19 @@ const wait = (time) =>
     }, time);
   });
 const test = async (stringifiedNounsQuery) => {
-  //   const startTime = Date.now();
   console.log(`Genius-Lyrics v${Genius.Version}`);
   const searches = await Client.songs.search(stringifiedNounsQuery);
-  //   return searches;
-  //   Lets see the first song
-  //   console.log("length of songs array: "+ searches.length)
+  // global vars! they are declared at the top ^^^^^
   firstSong = searches[0];
-  // await wait(100);
-  // const lyrics1 = await firstSong.lyrics();
-  // await wait(100);
   secondSong = searches[1];
-  // const lyrics2 = await secondSong.lyrics();
-  // await wait(100);
   thirdSong = searches[2];
-  // const lyrics3 = await thirdSong.lyrics();
-
-  // const songAndLyricPairs = [
-  //   { id: 1,
-  //     song: firstSong,
-  //     lyric: lyrics1
-  //   },
-  //   { id: 2,
-  //     song: secondSong,
-  //     lyric: lyrics2
-  //   },
-  //   { id: 3,
-  //     song: thirdSong,
-  //     lyric: lyrics3
-  //   }
-  // ];
-
-  // return songAndLyricPairs;
   const songPool = [firstSong, secondSong, thirdSong];
   return songPool;
-  //   console.log("About the Song:\n", firstSong, "\n");
-  // await wait(1000);
-  // Ok lets get the lyrics
-  // const lyrics = await firstSong.lyrics();
-  //   console.log("Lyrics of the Song:\n", lyrics, "\n");
-  // return lyrics;
-  //   await wait(1000);
 };
-// test();
+
 
 // ---------------GET LYRICS FUNCTION
 const getLyrics = async (chosenSong) => {
-  // console.log(`...getting --${chosenSong.title}-- lyrics...`);
-  // const searchLyrics = await Client.songs.search(`${singleSong.title} ${singleSong.artist.name}`);
-  // const result = searchLyrics[0];
-  // await wait(250);
   let lyricRes;
   try {
     lyricRes = await chosenSong.lyrics();
@@ -103,8 +66,6 @@ router.get("/songs/:lyrics", (req, res) => {
 // uses param option inside API.js axios request
 router.get("/lyrics/:cardID", (req, res) => {
   console.log("...................inside router.get('/lyrics/:songObj')...");
-  // let singleSong = JSON.parse(req.query.songObj);
-  // console.log(singleSong.title);
   const selectedCard = req.params.cardID;
   let singleSong;
   console.log(selectedCard);
@@ -119,7 +80,6 @@ router.get("/lyrics/:cardID", (req, res) => {
       singleSong = thirdSong;
       break;
   }
-
   getLyrics(singleSong).then((data) => {
     console.log(`successfully got lyrics from the backend!!`);
     res.send(data);
@@ -137,6 +97,7 @@ router.get("/users", (req, res) => {
     .catch((err) => res.status(422).json(err));
 });
 
+// get all this particular users posts
 router.get("/blurbs/:userEmail", (req, res) => {
   console.log("................................finding SPECIFIC USER (l:141)...");
   const {userEmail} = req.params;
@@ -152,6 +113,17 @@ router.get("/blurbs/:userEmail", (req, res) => {
   .catch( (err) => res.status(422).json(err));
 });
 
+// get all global public posts
+router.get("/globalPosts", (req, res) => {
+  console.log("................................finding global posts and sorting (l:131)...");
+  db.GlobalPost.find({}).sort({"time": -1})
+          .then((data) => {
+            console.log("found all public posts");
+            res.json(data);
+          })
+          .catch((err) => res.status(422).json(err));
+});
+
 // CALL NOUN FINDER API AND RETURNS AN ARRAY
 router.get("/nouns/:words", (req, res) => {
   console.log("...................... inside router.get('/nouns/:words')");
@@ -164,6 +136,16 @@ router.get("/nouns/:words", (req, res) => {
 });
 
 // ------------------POST ROUTES
+
+router.post("/postGlobal", (req, res) => {
+  console.log(".......................................posting global blurb");
+  const update = req.body;
+  // console.log(update);
+  db.GlobalPost.insertMany([update]).then((data) => {
+    console.log("inserted one record!");
+    res.json(data);
+  });
+});
 
 router.post("/postBlurb", (req, res) => {
   console.log("........................................posting blurb...");

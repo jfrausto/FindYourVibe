@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const { GlobalPost } = require("../models");
 const db = require("../models");
 
 // This file adds two sample users
@@ -9,6 +10,7 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/viBee", {
   useCreateIndex: true,
 });
 
+// const newTime = new Date.now;
 const userSeed = [
     {
         firstName: "John",
@@ -21,7 +23,7 @@ const userSeed = [
             body: "We need to organize",
             chosenSongArtist: "Fade by Kanye West",
             thumbnail: "https://via.placeholder.com/150",
-            time: new Date().toISOString()
+            time: new Date(new Date().toISOString())
         }],
         songCollection: [{
            songId: "274321",
@@ -128,7 +130,7 @@ const userSeed = [
             body: "I know what I know, I'm not going crazy. They came for me and they will be back",
             chosenSongArtist: "Fade by Kanye West",
             thumbnail: "https://via.placeholder.com/150",
-            time: new Date().toISOString()
+            time: new Date(new Date().toISOString())
         }],
         songCollection: [{
           songId: "146987",
@@ -194,8 +196,41 @@ const userSeed = [
     }  
 ];
 
+const GlobalPostSeed = [
+  {
+    _id: mongoose.Types.ObjectId(),
+    userName: "TerminatorsAreReal",
+    vibe: "zen",
+    body: "I know what I know, I'm not going crazy. They came for me and they will be back",
+    chosenSongArtist: "Fade by Kanye West",
+    thumbnail: "https://via.placeholder.com/150",
+    time: new Date(new Date().toISOString())
+  },
+  {
+    _id: mongoose.Types.ObjectId(),
+    userName: "hastaLaVista",
+    vibe: "determined",
+    body: "We need to organize",
+    chosenSongArtist: "Fade by Kanye West",
+    thumbnail: "https://via.placeholder.com/150",
+    time: new Date(new Date().toISOString())
+  },
+
+];
+
 db.User.deleteMany({})
   .then(() => db.User.collection.insertMany(userSeed))
+  .then(data => {
+    console.log(data.result.n + " records inserted!");
+    process.exit(0);
+  })
+  .catch(err => {
+    console.error(err);
+    process.exit(1);
+  });
+
+  db.GlobalPost.deleteMany({})
+  .then(() => db.GlobalPost.collection.insertMany(GlobalPostSeed))
   .then(data => {
     console.log(data.result.n + " records inserted!");
     process.exit(0);

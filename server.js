@@ -40,13 +40,11 @@ io.on("connection", (socket) => {
   // more listeners here
 
   socket.on("new blurb post", (msg) => {
-    console.log("i heard that you posted something! (l:39)");
-    console.log(msg);
-
-    // io.emit("updating posts", )
-    db.User.find({})
+    console.log("i heard that you posted something! from the server (l:39)");
+    console.log(msg, "<----message from the front end");
+    db.GlobalPost.find({}).sort({"time": -1})
           .then((data) => {
-            console.log("found all users");
+            console.log("found all public posts");
             // emit back to users!
             io.emit("updating posts", data );
 

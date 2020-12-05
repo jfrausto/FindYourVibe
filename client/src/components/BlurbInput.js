@@ -244,7 +244,7 @@ export default function BlurbInput() {
             handleGeniusCall(nounStringArray);
         } else { // we will submit the post!
             console.log("post button click!");
-            console.log("TIME TO CHECK THE VIBE UNDER MEEEEE")
+            // console.log("TIME TO CHECK THE VIBE UNDER MEEEEE");
             const newMongoModelUpdate = {
                 $push: {
                     blurbs: {
@@ -261,14 +261,27 @@ export default function BlurbInput() {
                     }
                 }
             }
-            console.log("here");
-            console.log(selectedSong);
+            const newGlobalModel = {
+                // write in data that matches our new model
+                userName: "hastaLaVista",
+                vibe: currentVibe === ""?"🤐": currentVibe,
+                body: TextAreaVal,
+                chosenSongArtist: selectedSong.songArtistAlbum,
+                thumbnail: selectedSong.albumThumbnail,
+            }
             let postRes;
             try {
                 postRes = await API.postBlurb(newMongoModelUpdate);
             } catch (error) {
                 throw error;
             }
+            let globalPostRes;
+            try {
+                globalPostRes = await API.postGlobalBlurb(newGlobalModel);
+            } catch (error) {
+                throw error;
+            }
+            console.log("oh no");
             // EMIT SOCKET EVENT THAT WE POSTED A NEW BLURB
             socket.emit("new blurb post", "whoa! you heard me!");
             console.log("WAITING FOR THIS LOG UNDER ME")

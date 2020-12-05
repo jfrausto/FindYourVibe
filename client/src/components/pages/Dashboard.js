@@ -10,13 +10,15 @@ import DashboardFeed from "../DashboardFeed";
 import socket from "../../utils/socketTest";
 
 export default function Dashboard() {
-  const [allUsers, setAllUsers] = useState([]);
+  const [globalPosts, setGlobalPosts] = useState([]);
   useEffect(() => {
     // getting all users and their posts
-    API.getAllUsers().then((res) => {
-      console.log("...getting users from DB...");
+    API.getAllGlobalPosts().then((res) => {
+      console.log("...got public posts from DB...!!!");
       console.log(res.data);
-      setAllUsers(res.data);
+      // const combinedArray = res.data[]
+      // sortPosts(res.data);
+      setGlobalPosts(res.data);
     });
 
     
@@ -25,9 +27,17 @@ export default function Dashboard() {
     socket.on("updating posts", (allData) => {
       console.log("we got the update over here!!");
       console.log(allData);
-      setAllUsers(allUsersData);
+      setGlobalPosts(allData);
     })
   }, []);
+
+  // const sortPosts = (unsortedUserArray) => {
+
+    // unsortedUserArray.
+    
+    // setAllUsers(sortedArray);
+    // return sortedArray;
+  // }
 
   return (
     <div>
@@ -35,7 +45,7 @@ export default function Dashboard() {
         <LandingSplash />
         <BlurbInput />
         {/* <UserPosts /> */}
-        <DashboardFeed allUsers={allUsers}/>
+        {/* <DashboardFeed allUsers={allUsers}/> */}
       </Container>
     </div>
   );
