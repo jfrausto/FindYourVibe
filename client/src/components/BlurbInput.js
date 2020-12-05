@@ -9,6 +9,10 @@ import DropdownMood from './DropdownMood';
 import API from '../utils/API';
 import SongCardContainer from "./SongCardContainer";
 
+
+// socket
+import socket from "../utils/socketTest";
+
 // input group component that allows user input
 export default function BlurbInput() {
 
@@ -137,16 +141,6 @@ export default function BlurbInput() {
         }
         cardHead.classList.add("green-bg");
         console.log(choice);
-        // update the state of the selected song
-        // setSelectedSong({ 
-        //     songID: choice.songID,
-        //     songArtistAlbum: `${choice.title} - ${choice.artist}`,
-        //     lyrics: "Loading....",
-        //     albumThumbnail: choice.wholeObj.thumbnail
-        // });
-        // console.log("SET THE SONG");
-        // console.log(choice.wholeObj.thumbnail)
-        // console.log(selectedSong);
 
         // ! CHECK BEFORE FIRING API CALL
         let shouldPrevent = lyricSearchPrevent(cardHead, choice);
@@ -158,14 +152,6 @@ export default function BlurbInput() {
         }
         let lyricSearchRes;
         if(cardHead.parentElement.classList[0] === "card-selector" || true){
-            // try {
-            //     lyricSearchRes = await API.getLyrics(cardHead.id);
-            // } catch (error) {
-            //     throw error;
-            // }
-            // console.log("we are back in blurb Input");
-            // console.log(lyricSearchRes.data);
-            // setSelectedSong({...selectedSong, lyrics: lyricSearchRes.data});
             // ! THE JANK; THIS NEEDS TO BE REFACTORED FOR THE IF CASES, COULD BE A LOT CLEANER
             // ! JANKING AROUND WITH THE ID's OF ELEMENTS
             // TODO: -------------------------------------------------
@@ -197,7 +183,7 @@ export default function BlurbInput() {
                     throw error;
                 }
                 console.log("we are back in blurb Input - else");
-                console.log(lyricSearchRes.data);
+                console.log(lyricSearchRes);
                 setSelectedSong({ 
                     songID: choice.songID,
                     songArtistAlbum: `${choice.title} - ${choice.artist}`,
@@ -214,7 +200,6 @@ export default function BlurbInput() {
         }
 
     }
-
 
     // takes in both actions from the POST and ANALYZE buttons
     const handleButtonClick = async (e) => {
@@ -240,7 +225,7 @@ export default function BlurbInput() {
             handleGeniusCall(nounStringArray);
         } else { // we will submit the post!
             console.log("post button click!");
-            console.log("TIME TO CHECK THE VIBE UNDER MEEEEE")
+            // console.log("TIME TO CHECK THE VIBE UNDER MEEEEE");
             const newMongoModelUpdate = {
                 $push: {
                     blurbs: {
@@ -248,19 +233,38 @@ export default function BlurbInput() {
                         body: TextAreaVal,
                         chosenSongArtist: selectedSong.songArtistAlbum,
                         thumbnail: selectedSong.albumThumbnail
+                    },
+                    songCollection: {
+                        songId: selectedSong.songID,
+                        songArtistAlbum: selectedSong.songArtistAlbum,
+                        lyrics: selectedSong.lyrics,
+                        albumThumbnail: selectedSong.albumThumbnail
                     }
-                    // could use this opportunity to push to 'songCollection' array
-                    // in USER table
                 }
             }
-            console.log("here");
-            console.log(selectedSong);
+            const newGlobalModel = {
+                // write in data that matches our new model
+                userName: "hastaLaVista",
+                vibe: currentVibe === ""?"🤐": currentVibe,
+                body: TextAreaVal,
+                chosenSongArtist: selectedSong.songArtistAlbum,
+                thumbnail: selectedSong.albumThumbnail,
+            }
             let postRes;
             try {
                 postRes = await API.postBlurb(newMongoModelUpdate);
             } catch (error) {
                 throw error;
             }
+            let globalPostRes;
+            try {
+                globalPostRes = await API.postGlobalBlurb(newGlobalModel);
+            } catch (error) {
+                throw error;
+            }
+            console.log("oh no");
+            // EMIT SOCKET EVENT THAT WE POSTED A NEW BLURB
+            socket.emit("new blurb post", "whoa! you heard me!");
             console.log("WAITING FOR THIS LOG UNDER ME")
             console.log(postRes);
             window.location.replace("./profile");

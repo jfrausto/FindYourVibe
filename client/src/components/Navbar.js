@@ -1,10 +1,27 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { Button, Navbar, Nav } from "react-bootstrap";
 // import "./styles/Navbar.css";
 import "./styles/Navbar2.css";
 
 function NavMenu() {
+  const history = useHistory();
+  function handleSignupButton() {
+    try {
+      history.push("/signup")
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  function handleLoginButton() {
+    try {
+      history.push("/login")
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   return (
     <>
       <Navbar
@@ -26,14 +43,14 @@ function NavMenu() {
             <Nav.Link href="#pricing">Pricing</Nav.Link>
           </Nav> */}
           <Nav className="ml-auto">
-            <Nav.Link className="nav-items" href="/">
+            <Link className="nav-items" to="/">
               Home
-            </Nav.Link>
-            <Nav.Link className="nav-items" href="/profile">
+            </Link>
+            <Link className="nav-items" to="/profile">
               Profile
-            </Nav.Link>
-            <Button className="btn--outline">Sign Up</Button>{" "}
-            <Button className="btn--outline">Log In</Button>
+            </Link>
+            <Button onClick={handleSignupButton} className="btn--outline">Sign Up</Button>{" "}
+            <Button onClick={handleLoginButton}className="btn--outline">Log In</Button>
           </Nav>
         </Navbar.Collapse>
       </Navbar>
