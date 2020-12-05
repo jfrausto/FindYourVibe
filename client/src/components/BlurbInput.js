@@ -1,12 +1,12 @@
-import React, {useRef, useEffect, useState} from 'react';
-import Container from 'react-bootstrap/Container';
-import TextareaCounter from 'react-textarea-counter';
-import './styles/BlurbInput.css';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import ButtonGroup from './ButtonGroup';
-import DropdownMood from './DropdownMood';
-import API from '../utils/API';
+import React, { useRef, useEffect, useState } from "react";
+import Container from "react-bootstrap/Container";
+import TextareaCounter from "react-textarea-counter";
+import "./styles/BlurbInput.css";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import ButtonGroup from "./ButtonGroup";
+import DropdownMood from "./DropdownMood";
+import API from "../utils/API";
 import SongCardContainer from "./SongCardContainer";
 
 
@@ -15,7 +15,6 @@ import socket from "../utils/socketTest";
 
 // input group component that allows user input
 export default function BlurbInput() {
-
     // current state of the value in text area
     const [currentVibe, setCurrentVibe] = useState("");
     const [TextAreaVal, setTextAreaVal] = useState("");
@@ -53,20 +52,14 @@ export default function BlurbInput() {
         }
         console.log(geniusRes.data);
 
-        const addCountPool = [];
-        for (let i = 0; i < 3; i++) {
-            addCountPool.push(
-                {
-                    count: i+1,
-                    songObj: geniusRes.data[i]
-                }
-            );
-            
-        }
-        console.log(addCountPool);
-        // update song pool state
-        setSongPoolRes(addCountPool);
+    const addCountPool = [];
+    for (let i = 0; i < 3; i++) {
+      addCountPool.push({
+        count: i + 1,
+        songObj: geniusRes.data[i],
+      });
     }
+  }
 
     //  * LYRIC CHECK PREVENT
     // CHECKS IF THIS SONG HAS RENDERED ITS LYRICS ALREADY
@@ -216,7 +209,14 @@ export default function BlurbInput() {
             }
             
         }
-
+        console.log("we are back in blurb Input");
+        console.log(lyricSearchRes.data);
+        setSelectedSong({ ...selectedSong, lyrics: lyricSearchRes.data });
+        let integerStringId = parseInt(cardHead.id);
+        console.log(integerStringId);
+        integerStringId = integerStringId + 3;
+        let pTag = document.getElementById(`${integerStringId}`);
+        pTag.innerText = lyricSearchRes.data;
     }
 
 

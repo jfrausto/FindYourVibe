@@ -6,6 +6,7 @@
   "proxy": "http://localhost:3001/",
   "dependencies": {
     "bootstrap": "^4.5.3",
+    "firebase": "^8.1.1",
     "nounfinder": "^3.0.0",
     "react": "^16.13.1",
     "react-bootstrap": "^1.4.0",
