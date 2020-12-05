@@ -9,6 +9,10 @@ import DropdownMood from './DropdownMood';
 import API from '../utils/API';
 import SongCardContainer from "./SongCardContainer";
 
+
+// socket
+import socket from "../utils/socketTest";
+
 // input group component that allows user input
 export default function BlurbInput() {
 
@@ -265,6 +269,8 @@ export default function BlurbInput() {
             } catch (error) {
                 throw error;
             }
+            // EMIT SOCKET EVENT THAT WE POSTED A NEW BLURB
+            socket.emit("new blurb post", "whoa! you heard me!");
             console.log("WAITING FOR THIS LOG UNDER ME")
             console.log(postRes);
             window.location.replace("./profile");

@@ -16,9 +16,17 @@ export default function Dashboard() {
     API.getAllUsers().then((res) => {
       console.log("...getting users from DB...");
       console.log(res.data);
+      setAllUsers(res.data);
     });
-    // emit event
-    // or add event listener
+
+    
+
+    // add SOCKET event listener upon mounting this component
+    socket.on("updating posts", (allData) => {
+      console.log("we got the update over here!!");
+      console.log(allData);
+      setAllUsers(allUsersData);
+    })
   }, []);
 
   return (
@@ -26,8 +34,8 @@ export default function Dashboard() {
       <Container>
         <LandingSplash />
         <BlurbInput />
-        <UserPosts />
-        {/* <DashboardFeed allBlurbsArray={allBlurbsArray}/> */}
+        {/* <UserPosts /> */}
+        <DashboardFeed allUsers={allUsers}/>
       </Container>
     </div>
   );

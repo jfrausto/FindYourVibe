@@ -4,6 +4,9 @@ const PORT = process.env.PORT || 3001;
 const app = express();
 const mongoose = require("mongoose");
 const apiRoutes = require("./routes/apiRoutes");
+// might need our database here
+const db = require("./models");
+
 
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
@@ -35,7 +38,23 @@ io.on("connection", (socket) => {
   console.log('----------------------a user connected!');
 
   // more listeners here
-  
+
+  socket.on("new blurb post", (msg) => {
+    console.log("i heard that you posted something! (l:39)");
+    console.log(msg);
+
+    // io.emit("updating posts", )
+    db.User.find({})
+          .then((data) => {
+            console.log("found all users");
+            // emit back to users!
+            io.emit("updating posts", data );
+
+            // res.json(data);
+          });
+          // .catch((err) => res.status(422).json(err));
+  });
+
 
 
   socket.on('disconnect', () => {
