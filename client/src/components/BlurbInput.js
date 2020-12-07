@@ -8,6 +8,7 @@ import ButtonGroup from './ButtonGroup';
 import DropdownMood from './DropdownMood';
 import API from '../utils/API';
 import SongCardContainer from "./SongCardContainer";
+import PostToastError from "./PostToastError";
 
 
 // socket
@@ -17,6 +18,7 @@ import socket from "../utils/socketTest";
 export default function BlurbInput() {
 
     // current state of the value in text area
+    // current states of all user inputs
     const [currentVibe, setCurrentVibe] = useState("");
     const [TextAreaVal, setTextAreaVal] = useState("");
     const [SongPoolRes, setSongPoolRes] = useState([]);
@@ -26,7 +28,10 @@ export default function BlurbInput() {
         lyrics: "",
         albumThumbnail: ""
     });
+    // button states
     const [isThinking, setIsThinking] = useState(false);
+    const [showToast, setShowToast] = useState(false);
+
 
     useEffect(() => {
         console.log("i selected a song");
@@ -210,11 +215,32 @@ export default function BlurbInput() {
 
     }
 
+    const nestedSettingToast = () => {
+        setShowToast(false);
+        return;
+    }
+    let intervals = 0;
+    const wait = (time) =>
+        new Promise((resolve) => {
+            setTimeout(() => {
+                intervals += 1;
+                console.log("waiting...");
+                resolve();
+            }, time);
+    });
+
     // takes in both actions from the POST and ANALYZE buttons
     const handleButtonClick = async (e) => {
+        // reset this to false so we can reset to true in case of error
+        // setShowToast(false);
         const buttonPress = e.target.textContent;
         // do not call the api on an empty string
-        if (TextAreaVal === "") return;
+        if(TextAreaVal === "") {
+            setShowToast(true);
+            await wait(1500);
+            nestedSettingToast();
+            return;
+        }
         // if we hit analyze, query genius API with
         // extracted nouns from the text area
         if(buttonPress === "Analyze"){
@@ -239,8 +265,14 @@ export default function BlurbInput() {
             })
             handleGeniusCall(nounStringArray);
         } else { // we will submit the post!
+            if(TextAreaVal === "" || selectedSong.songArtistAlbum === "") {
+                setShowToast(true);
+                await wait(1500);
+                nestedSettingToast();
+                // setShowToast(false);
+                return;
+            }
             console.log("post button click!");
-            // console.log("TIME TO CHECK THE VIBE UNDER MEEEEE");
             const newMongoModelUpdate = {
                 $push: {
                     blurbs: {
@@ -303,12 +335,14 @@ export default function BlurbInput() {
                     <Col xs={12} md={{span: 8, offset: 2}}>
                         <TextareaCounter onChange={(e) => setTextAreaVal(e.target.value)} placeholder="What's on your mind?" countLimit={140} rows={3} />
                     </Col>
-                </Row>
-                <Row className="mt-2">
-                    <ButtonGroup isThinking={isThinking} handleButtonClick={handleButtonClick}/>
-                    <DropdownMood vibeCheck={vibeCheck}/>
-
-                </Row>
+            </Row>
+            <Row>
+                <PostToastError showToast={showToast} />
+            </Row>
+            <Row className="mt-2">
+                <ButtonGroup isThinking={isThinking} handleButtonClick={handleButtonClick}/>
+                <DropdownMood vibeCheck={vibeCheck}/>
+            </Row>
             </Container>
         </>
     )
