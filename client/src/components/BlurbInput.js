@@ -26,6 +26,8 @@ export default function BlurbInput() {
         lyrics: "",
         albumThumbnail: ""
     });
+    const [isThinking, setIsThinking] = useState(false);
+
     useEffect(() => {
         console.log("i selected a song");
         console.log(selectedSong);
@@ -66,6 +68,7 @@ export default function BlurbInput() {
         console.log(addCountPool);
         // update song pool state
         setSongPoolRes(addCountPool);
+        setIsThinking(false);
     }
 
     //  * LYRIC CHECK PREVENT
@@ -215,6 +218,7 @@ export default function BlurbInput() {
         // if we hit analyze, query genius API with
         // extracted nouns from the text area
         if(buttonPress === "Analyze"){
+            setIsThinking(true);
             let nounsRes;
             try {
                 nounsRes = await API.getNouns(TextAreaVal);
@@ -301,7 +305,7 @@ export default function BlurbInput() {
                     </Col>
                 </Row>
                 <Row className="mt-2">
-                    <ButtonGroup handleButtonClick={handleButtonClick}/>
+                    <ButtonGroup isThinking={isThinking} handleButtonClick={handleButtonClick}/>
                     <DropdownMood vibeCheck={vibeCheck}/>
 
                 </Row>
