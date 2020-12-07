@@ -8,6 +8,7 @@ import ButtonGroup from './ButtonGroup';
 import DropdownMood from './DropdownMood';
 import API from '../utils/API';
 import SongCardContainer from "./SongCardContainer";
+import PostToastError from "./PostToastError";
 
 
 // socket
@@ -17,6 +18,7 @@ import socket from "../utils/socketTest";
 export default function BlurbInput() {
 
     // current state of the value in text area
+    // current states of all user inputs
     const [currentVibe, setCurrentVibe] = useState("");
     const [TextAreaVal, setTextAreaVal] = useState("");
     const [SongPoolRes, setSongPoolRes] = useState([]);
@@ -26,6 +28,11 @@ export default function BlurbInput() {
         lyrics: "",
         albumThumbnail: ""
     });
+    // button states
+    const [isThinking, setIsThinking] = useState(false);
+    const [showToast, setShowToast] = useState(false);
+
+
     useEffect(() => {
         console.log("i selected a song");
         console.log(selectedSong);
@@ -66,6 +73,7 @@ export default function BlurbInput() {
         console.log(addCountPool);
         // update song pool state
         setSongPoolRes(addCountPool);
+        setIsThinking(false);
     }
 
     //  * LYRIC CHECK PREVENT
@@ -78,12 +86,12 @@ export default function BlurbInput() {
         if(cardOrTitle.parentElement.classList[0] === "card-selector") {
             let lyricsAreaId = parseInt(cardOrTitle.parentElement.id) +3;
             let lyricElement = document.getElementById(`${lyricsAreaId}`);
-            if(lyricElement.textContent === "LOADING..."){ 
+            if(lyricElement.textContent === ""){ 
                 // lyrics NOT been requested yet, do not prevent search
                 setSelectedSong({ 
                     songID: choice.songID,
                     songArtistAlbum: `${choice.title} - ${choice.artist}`,
-                    lyrics: "LOADING...",
+                    lyrics: "",
                     albumThumbnail: choice.wholeObj.thumbnail
                 });
                 return false;
@@ -101,12 +109,12 @@ export default function BlurbInput() {
         } else { // card head case
             let lyricsAreaId = parseInt(cardOrTitle.id) +3;
             let lyricElement = document.getElementById(`${lyricsAreaId}`);
-            if(lyricElement.textContent === "LOADING..."){ 
+            if(lyricElement.textContent === ""){ 
                 // lyrics have NOT been requested yet, do not prevent search
                 setSelectedSong({ 
                     songID: choice.songID,
                     songArtistAlbum: `${choice.title} - ${choice.artist}`,
-                    lyrics: "LOADING...",
+                    lyrics: "",
                     albumThumbnail: choice.wholeObj.thumbnail
                 });
                 return false;
@@ -175,6 +183,9 @@ export default function BlurbInput() {
                 console.log(integerStringId);
                 integerStringId = integerStringId + 3;
                 let pTag = document.getElementById(`${integerStringId}`);
+                let spinnerId = integerStringId + 3;
+                let spinnerElem = document.getElementById(`${spinnerId}`);
+                spinnerElem.hidden = true;
                 pTag.textContent = lyricSearchRes.data;
             } else {
                 try {
@@ -194,6 +205,9 @@ export default function BlurbInput() {
                 console.log(integerStringId);
                 integerStringId = integerStringId + 3;
                 let pTag = document.getElementById(`${integerStringId}`);
+                let spinnerId = integerStringId + 3;
+                let spinnerElem = document.getElementById(`${spinnerId}`);
+                spinnerElem.hidden = true;
                 pTag.textContent = lyricSearchRes.data;
             }
             
@@ -201,14 +215,36 @@ export default function BlurbInput() {
 
     }
 
+    const nestedSettingToast = () => {
+        setShowToast(false);
+        return;
+    }
+    let intervals = 0;
+    const wait = (time) =>
+        new Promise((resolve) => {
+            setTimeout(() => {
+                intervals += 1;
+                console.log("waiting...");
+                resolve();
+            }, time);
+    });
+
     // takes in both actions from the POST and ANALYZE buttons
     const handleButtonClick = async (e) => {
+        // reset this to false so we can reset to true in case of error
+        // setShowToast(false);
         const buttonPress = e.target.textContent;
         // do not call the api on an empty string
-        if (TextAreaVal === "") return;
+        if(TextAreaVal === "") {
+            setShowToast(true);
+            await wait(1500);
+            nestedSettingToast();
+            return;
+        }
         // if we hit analyze, query genius API with
         // extracted nouns from the text area
         if(buttonPress === "Analyze"){
+            setIsThinking(true);
             let nounsRes;
             try {
                 nounsRes = await API.getNouns(TextAreaVal);
@@ -217,15 +253,26 @@ export default function BlurbInput() {
             }
             const nounStringArray = nounsRes.data;
             // before you execute!!!
-            // RESET THE LYRICS SECTION TO 'LOADING...'
+            // RESET THE LYRICS SECTION TO empty! ''
             let lyricsClass = document.querySelectorAll(".songLyrics");
             lyricsClass.forEach( (elem) => {
-                elem.textContent = "LOADING...";
+                elem.textContent = "";
             });
+            // show spinners again
+            let spinnersClass = document.querySelectorAll("spinners");
+            spinnersClass.forEach( spinner => {
+                spinner.hidden = false;
+            })
             handleGeniusCall(nounStringArray);
         } else { // we will submit the post!
+            if(TextAreaVal === "" || selectedSong.songArtistAlbum === "") {
+                setShowToast(true);
+                await wait(1500);
+                nestedSettingToast();
+                // setShowToast(false);
+                return;
+            }
             console.log("post button click!");
-            // console.log("TIME TO CHECK THE VIBE UNDER MEEEEE");
             const newMongoModelUpdate = {
                 $push: {
                     blurbs: {
@@ -288,12 +335,14 @@ export default function BlurbInput() {
                     <Col xs={12} md={{span: 8, offset: 2}}>
                         <TextareaCounter onChange={(e) => setTextAreaVal(e.target.value)} placeholder="What's on your mind?" countLimit={140} rows={3} />
                     </Col>
-                </Row>
-                <Row className="mt-2">
-                    <ButtonGroup handleButtonClick={handleButtonClick}/>
-                    <DropdownMood vibeCheck={vibeCheck}/>
-
-                </Row>
+            </Row>
+            <Row>
+                <PostToastError showToast={showToast} />
+            </Row>
+            <Row className="mt-2">
+                <ButtonGroup isThinking={isThinking} handleButtonClick={handleButtonClick}/>
+                <DropdownMood vibeCheck={vibeCheck}/>
+            </Row>
             </Container>
         </>
     )
