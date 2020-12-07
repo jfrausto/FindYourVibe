@@ -78,12 +78,12 @@ export default function BlurbInput() {
         if(cardOrTitle.parentElement.classList[0] === "card-selector") {
             let lyricsAreaId = parseInt(cardOrTitle.parentElement.id) +3;
             let lyricElement = document.getElementById(`${lyricsAreaId}`);
-            if(lyricElement.textContent === "LOADING..."){ 
+            if(lyricElement.textContent === ""){ 
                 // lyrics NOT been requested yet, do not prevent search
                 setSelectedSong({ 
                     songID: choice.songID,
                     songArtistAlbum: `${choice.title} - ${choice.artist}`,
-                    lyrics: "LOADING...",
+                    lyrics: "",
                     albumThumbnail: choice.wholeObj.thumbnail
                 });
                 return false;
@@ -101,12 +101,12 @@ export default function BlurbInput() {
         } else { // card head case
             let lyricsAreaId = parseInt(cardOrTitle.id) +3;
             let lyricElement = document.getElementById(`${lyricsAreaId}`);
-            if(lyricElement.textContent === "LOADING..."){ 
+            if(lyricElement.textContent === ""){ 
                 // lyrics have NOT been requested yet, do not prevent search
                 setSelectedSong({ 
                     songID: choice.songID,
                     songArtistAlbum: `${choice.title} - ${choice.artist}`,
-                    lyrics: "LOADING...",
+                    lyrics: "",
                     albumThumbnail: choice.wholeObj.thumbnail
                 });
                 return false;
@@ -175,6 +175,9 @@ export default function BlurbInput() {
                 console.log(integerStringId);
                 integerStringId = integerStringId + 3;
                 let pTag = document.getElementById(`${integerStringId}`);
+                let spinnerId = integerStringId + 3;
+                let spinnerElem = document.getElementById(`${spinnerId}`);
+                spinnerElem.hidden = true;
                 pTag.textContent = lyricSearchRes.data;
             } else {
                 try {
@@ -194,6 +197,9 @@ export default function BlurbInput() {
                 console.log(integerStringId);
                 integerStringId = integerStringId + 3;
                 let pTag = document.getElementById(`${integerStringId}`);
+                let spinnerId = integerStringId + 3;
+                let spinnerElem = document.getElementById(`${spinnerId}`);
+                spinnerElem.hidden = true;
                 pTag.textContent = lyricSearchRes.data;
             }
             
@@ -217,11 +223,16 @@ export default function BlurbInput() {
             }
             const nounStringArray = nounsRes.data;
             // before you execute!!!
-            // RESET THE LYRICS SECTION TO 'LOADING...'
+            // RESET THE LYRICS SECTION TO empty! ''
             let lyricsClass = document.querySelectorAll(".songLyrics");
             lyricsClass.forEach( (elem) => {
-                elem.textContent = "LOADING...";
+                elem.textContent = "";
             });
+            // show spinners again
+            let spinnersClass = document.querySelectorAll("spinners");
+            spinnersClass.forEach( spinner => {
+                spinner.hidden = false;
+            })
             handleGeniusCall(nounStringArray);
         } else { // we will submit the post!
             console.log("post button click!");

@@ -1,6 +1,7 @@
 import React from 'react';
 import Accordion from "react-bootstrap/Accordion";
 import Card from "react-bootstrap/Card";
+import Spinner from 'react-bootstrap/Spinner';
 
 //song element takes in prop from songCardContainer
 //BlurbInput => SongCardContainer => SongCard
@@ -26,9 +27,14 @@ export default function SongCard({songElement, handleSongSelect}) {
                             </h4>
                         </Accordion.Toggle>
                         <Accordion.Collapse eventKey="0">
-                        <Card.Body> <p className="songLyrics" id={songElement.count+3}>
-                            LOADING...
-                            </p></Card.Body>
+                            <Card.Body> 
+                                <Spinner animation="border" variant="warning" className="spinners mt-3" id={songElement.count + 6} />
+                                <p className="songLyrics" id={songElement.count+3}>
+                                {/* LOADING... */}
+                                {/* giving id and class to each spinner */}
+                                
+                                </p>
+                            </Card.Body>
                         </Accordion.Collapse>
                     </Card>
                     </Accordion>
