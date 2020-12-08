@@ -13,6 +13,9 @@ export default {
     getNouns: function(words) {
         return axios.get("/api/nouns/" + words);
     },
+    postNewUser: function(user) {
+        return axios.post("/api/newUser", user);
+    },
     postBlurb: function(blurb) {
         return axios.post("/api/postBlurb", blurb);
     },

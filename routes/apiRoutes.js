@@ -123,6 +123,21 @@ router.get("/nouns/:words", (req, res) => {
 
 // ------------------POST ROUTES
 
+router.post("/newUser", (req, res) => {
+  console.log(".....................................creating new user...");
+  const newUser = req.body;
+  console.log("new user below vvvvvvvvvv");
+  console.log(newUser);
+  db.User.insertMany([newUser]).then((data) => {
+    console.log("...................................created new user!");
+    res.json(data);
+  }).catch( (err) => {
+    res.status(422).json(err);
+  });
+  // res.json({hello: "hello"});
+
+});
+
 router.post("/postGlobal", (req, res) => {
   console.log(".......................................posting global blurb");
   const update = req.body;
