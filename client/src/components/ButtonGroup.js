@@ -2,6 +2,7 @@ import React from 'react';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import Spinner from 'react-bootstrap/Spinner';
+import { Link } from 'react-router-dom';
 
 // button group that is adjacent to drop down chooser
 export default function ButtonGroup({handleButtonClick, isThinking}) {
@@ -19,7 +20,9 @@ export default function ButtonGroup({handleButtonClick, isThinking}) {
         </Button>
       </Col>
       <Col>
-        <Button onClick={handleButtonClick} className="px-md-5" size="sm" variant="dark">Post</Button>
+        <Link to="/profile">
+          <Button onClick={handleButtonClick} className="px-md-5" size="sm" variant="dark">Post</Button>
+        </Link>
       </Col>
     </>
   )

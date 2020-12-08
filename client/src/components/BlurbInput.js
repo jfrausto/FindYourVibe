@@ -329,7 +329,7 @@ export default function BlurbInput() {
             socket.emit("new blurb post", "whoa! you heard me!");
             console.log("WAITING FOR THIS LOG UNDER ME")
             console.log(postRes);
-            window.location.replace("./profile");
+            // window.location.replace("./profile");
             // TODO: trigger UI to show all my posts page
         }
     }
