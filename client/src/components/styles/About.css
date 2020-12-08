@@ -1,0 +1,17 @@
+.quote {
+  color: white;
+  text-align: justify;
+}
+
+.profileImg {
+  float: left;
+  width: 200px;
+  height: 160px;
+  padding: 0 10px 0 0;
+}
+
+.aboutContainer {
+  /* margin: 150px auto; */
+  width: 100%;
+  padding: 8px;
+}

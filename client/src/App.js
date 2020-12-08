@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-
+import About from "./components/pages/About";
 // socket instance!
 // in its own component
 // import socket from "./utils/socketTest";
@@ -34,6 +34,7 @@ function App() {
               <PrivateRoute exact path="/" component={Dashboard} />
               <PrivateRoute path="/profile" component={Profile} />
               <PrivateRoute path="/collection" component={Collection}/>
+              <PrivateRoute path="/about" component={About}/>
               
               <Container
                 className="d-flex align-items-center justify-content-center"
