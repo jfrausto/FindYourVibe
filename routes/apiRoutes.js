@@ -149,13 +149,13 @@ router.post("/postGlobal", (req, res) => {
 
 router.post("/postBlurb", (req, res) => {
   console.log("........................................posting blurb...");
-  const update = req.body;
-  console.log(update);
+  const request = req.body;
+  // console.log(update);
   // find and update john connor for now
   // update object is found in BlurbInput.js
   db.User.findOneAndUpdate(
-    { firstName: "John", lastName: "Connor" },
-    update
+    {email: request.email},
+    request.update
   ).then((data) => {
     console.log("updated one record!");
     res.json(data);

@@ -6,13 +6,18 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import "./styles/UserPosts.css";
 
+import { useAuth } from '../contexts/AuthContext';
+
+
 export default function UserPosts() {
 
+ // ! super important!
+ const { currentUser } = useAuth();
  const [UserBlurbs, setUserBlurbs] = useState([]);
- useEffect(() => {
+   useEffect(() => {
   // looks for the user based on their email,
   // as of right now the email is hardcoded in
-  API.getUserPosts("connorjohn@gmail.com").then( res => {
+  API.getUserPosts(currentUser.email).then( res => {
    // ! THIS SHOULD FINISH THE CHECK FOR "THIS USER HAS NO POSTS" CASE
    // if(res.data.blurbs === null){
    //    return;

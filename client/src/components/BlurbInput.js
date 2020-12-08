@@ -10,6 +10,7 @@ import API from '../utils/API';
 import SongCardContainer from "./SongCardContainer";
 import PostToastError from "./PostToastError";
 
+import { useAuth } from '../contexts/AuthContext';
 
 // socket
 import socket from "../utils/socketTest";
@@ -31,6 +32,8 @@ export default function BlurbInput() {
     // button states
     const [isThinking, setIsThinking] = useState(false);
     const [showToast, setShowToast] = useState(false);
+    // ! super important!
+    const { currentUser } = useAuth();
 
 
     useEffect(() => {
@@ -289,9 +292,21 @@ export default function BlurbInput() {
                     }
                 }
             }
+            // add email to the update blurb array request
+            let dynamicQuery = {
+                email: currentUser.email,
+                update: newMongoModelUpdate
+            }
+            let getUserNameRes;
+            try {
+                getUserNameRes = await API.getUserPosts(currentUser.email);
+            } catch (error) {
+                throw error;
+            }
+            console.log(getUserNameRes.data.userName);
             const newGlobalModel = {
                 // write in data that matches our new model
-                userName: "hastaLaVista",
+                userName: getUserNameRes.data.userName,
                 vibe: currentVibe === ""?"🤐": currentVibe,
                 body: TextAreaVal,
                 chosenSongArtist: selectedSong.songArtistAlbum,
@@ -299,7 +314,7 @@ export default function BlurbInput() {
             }
             let postRes;
             try {
-                postRes = await API.postBlurb(newMongoModelUpdate);
+                postRes = await API.postBlurb(dynamicQuery);
             } catch (error) {
                 throw error;
             }
