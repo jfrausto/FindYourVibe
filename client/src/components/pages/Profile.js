@@ -12,7 +12,7 @@ export default function Profile() {
     <div>     
       <Container>
       <Link to="/collection" >
-      <Button variant="danger">My Collections</Button>
+        <Button variant="danger">My Collections</Button>
       </Link>
       <LandingSplash />
         <UserPosts />
