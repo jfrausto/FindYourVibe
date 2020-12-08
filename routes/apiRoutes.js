@@ -123,6 +123,21 @@ router.get("/nouns/:words", (req, res) => {
 
 // ------------------POST ROUTES
 
+router.post("/newUser", (req, res) => {
+  console.log(".....................................creating new user...");
+  const newUser = req.body;
+  console.log("new user below vvvvvvvvvv");
+  console.log(newUser);
+  db.User.insertMany([newUser]).then((data) => {
+    console.log("...................................created new user!");
+    res.json(data);
+  }).catch( (err) => {
+    res.status(422).json(err);
+  });
+  // res.json({hello: "hello"});
+
+});
+
 router.post("/postGlobal", (req, res) => {
   console.log(".......................................posting global blurb");
   const update = req.body;
@@ -134,13 +149,13 @@ router.post("/postGlobal", (req, res) => {
 
 router.post("/postBlurb", (req, res) => {
   console.log("........................................posting blurb...");
-  const update = req.body;
-  console.log(update);
+  const request = req.body;
+  // console.log(update);
   // find and update john connor for now
   // update object is found in BlurbInput.js
   db.User.findOneAndUpdate(
-    { firstName: "John", lastName: "Connor" },
-    update
+    {email: request.email},
+    request.update
   ).then((data) => {
     console.log("updated one record!");
     res.json(data);

@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { Button, Navbar, Nav } from "react-bootstrap";
+import { useAuth } from "../contexts/AuthContext";
 // import "./styles/Navbar.css";
 import "./styles/Navbar2.css";
 
-function NavMenu() {
+export default function NavMenu() {
   const history = useHistory();
+  const { logout } = useAuth()
+
   function handleSignupButton() {
     try {
       history.push("/signup")
@@ -16,6 +19,15 @@ function NavMenu() {
 
   function handleLoginButton() {
     try {
+      history.push("/login")
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  async function handleLogoutButton() {
+    try {
+      await logout()
       history.push("/login")
     } catch (error) {
       console.log(error)
@@ -50,7 +62,8 @@ function NavMenu() {
               Profile
             </Link>
             <Button onClick={handleSignupButton} className="btn--outline">Sign Up</Button>{" "}
-            <Button onClick={handleLoginButton}className="btn--outline">Log In</Button>
+            <Button onClick={handleLoginButton} className="btn--outline">Log In</Button>
+            <Button onClick={handleLogoutButton} className="btn--outline">Log Out</Button>
           </Nav>
         </Navbar.Collapse>
       </Navbar>
@@ -58,7 +71,7 @@ function NavMenu() {
   );
 }
 
-// function Navbar() {
+// export default function Navbar() {
 //   const [click, setClick] = useState(false);
 //   const [button, setButton] = useState(false);
 
@@ -139,5 +152,5 @@ function NavMenu() {
 //   );
 // }
 
-export default NavMenu;
+// export default NavMenu;
 // export default Navbar;

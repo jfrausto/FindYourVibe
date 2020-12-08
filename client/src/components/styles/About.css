@@ -1,6 +1,8 @@
 .quote {
   color: white;
+  font-size: 24px;
   text-align: justify;
+  font-family: serif;
 }
 
 .profileImg {
@@ -14,4 +16,8 @@
   /* margin: 150px auto; */
   width: 100%;
   padding: 8px;
+}
+
+body {
+  background-color: white;
 }

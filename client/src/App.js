@@ -28,8 +28,8 @@ function App() {
     <div className="App">
       {/* Navigation  or other stuff can go here */}
         <Router>
-          <Navbar />
           <AuthProvider>
+          <Navbar />
             <Switch>
               <PrivateRoute exact path="/" component={Dashboard} />
               <PrivateRoute path="/profile" component={Profile} />

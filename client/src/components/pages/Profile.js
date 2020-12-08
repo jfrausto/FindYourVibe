@@ -11,8 +11,8 @@ export default function Profile() {
   return (
     <div>     
       <Container>
-      <Link to="/about">
-      <Button variant="danger">My Collections</Button>
+      <Link to="/collection" >
+        <Button variant="danger">My Collections</Button>
       </Link>
       <LandingSplash />
         <UserPosts />
