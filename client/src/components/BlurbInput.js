@@ -299,7 +299,11 @@ export default function BlurbInput() {
             }
             let getUserNameRes;
             try {
-                getUserNameRes = await API.getUserPosts(currentUser.email);
+                if ( currentUser) {
+                    getUserNameRes = await API.getUserPosts(currentUser.email);
+                } else {
+                    console.log("No current users")
+                }
             } catch (error) {
                 throw error;
             }

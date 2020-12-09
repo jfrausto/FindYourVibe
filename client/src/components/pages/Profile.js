@@ -6,16 +6,18 @@ import Container from "react-bootstrap/Container";
 import LandingSplash from "../LandingSplash";
 import UserPosts from "../UserPosts";
 import Button from "react-bootstrap/Button";
+import ProfileDetails from "../ProfileDetails"
 
 export default function Profile() {
   return (
     <div>     
       <Container>
-      <Link to="/collection" >
+      {/* <Link to="/collection" >
         <Button variant="danger">My Collections</Button>
-      </Link>
-      <LandingSplash />
-        <UserPosts />
+      </Link> */}
+      {/* <LandingSplash /> */}
+      <ProfileDetails />
+      <UserPosts />
       </Container>
     </div>
   );

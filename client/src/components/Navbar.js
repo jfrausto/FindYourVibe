@@ -61,6 +61,9 @@ export default function NavMenu() {
             <Link className="nav-items" to="/profile">
               Profile
             </Link>
+            <Link className="nav-items" to="/collection">
+              My Collection
+            </Link>
             <Button onClick={handleSignupButton} className="btn--outline">Sign Up</Button>{" "}
             <Button onClick={handleLoginButton} className="btn--outline">Log In</Button>
             <Button onClick={handleLogoutButton} className="btn--outline">Log Out</Button>
