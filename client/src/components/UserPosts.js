@@ -17,15 +17,17 @@ export default function UserPosts() {
    useEffect(() => {
   // looks for the user based on their email,
   // as of right now the email is hardcoded in
-  API.getUserPosts(currentUser.email).then( res => {
-   // ! THIS SHOULD FINISH THE CHECK FOR "THIS USER HAS NO POSTS" CASE
-   // if(res.data.blurbs === null){
-   //    return;
-   // }
-   setUserBlurbs(res.data.blurbs);
-   console.log(`${res.data.blurbs} is the data passed into setUserBlurbs`);
- })
-}, []);
+  if(currentUser){
+      API.getUserPosts(currentUser.email).then( res => {
+      // ! THIS SHOULD FINISH THE CHECK FOR "THIS USER HAS NO POSTS" CASE
+      // if(res.data.blurbs === null){
+      //    return;
+      // }
+      setUserBlurbs(res.data.blurbs);
+      console.log(`${res.data.blurbs} is the data passed into setUserBlurbs`);
+   });
+  }
+}, [currentUser]);
 
 // Changes the date to show how much time has passed from today 
 // ex. 5 minutes ago. The package will change from hour to days 
