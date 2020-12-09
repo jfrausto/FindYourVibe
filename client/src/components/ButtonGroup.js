@@ -20,9 +20,9 @@ export default function ButtonGroup({handleButtonClick, isThinking}) {
         </Button>
       </Col>
       <Col>
-        <Link to="/profile">
+        {/* <Link to="/profile"> */}
           <Button onClick={handleButtonClick} className="px-md-5" size="sm" variant="dark">Post</Button>
-        </Link>
+        {/* </Link> */}
       </Col>
     </>
   )

@@ -1,4 +1,5 @@
 import React, {useRef, useEffect, useState} from 'react';
+import{ useHistory } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import TextareaCounter from 'react-textarea-counter';
 import './styles/BlurbInput.css';
@@ -34,13 +35,15 @@ export default function BlurbInput() {
     const [showToast, setShowToast] = useState(false);
     // ! super important!
     const { currentUser } = useAuth();
+    // to link to another page use History
+    const history = useHistory();
 
 
-    useEffect(() => {
-        console.log("i selected a song");
-        console.log(selectedSong);
-        // if (selectedSong.is)
-    }, [selectedSong]);
+    // useEffect(() => {
+    //     console.log("i selected a song");
+    //     console.log(selectedSong);
+    //     // if (selectedSong.is)
+    // }, [selectedSong]);
 
     // should always take in an array of words ([geniusQueryArray])
     // whether they be from Wordnik API
@@ -59,6 +62,7 @@ export default function BlurbInput() {
         // ? to keep it interesting everytime they hit analyze
         if(typeof geniusRes.data === "string"){
             console.log("Please provide words for genius");
+            setIsThinking(false);
             return;
         }
         console.log(geniusRes.data);
@@ -330,6 +334,7 @@ export default function BlurbInput() {
             console.log("WAITING FOR THIS LOG UNDER ME")
             console.log(postRes);
             // window.location.replace("./profile");
+            history.push("/profile");
             // TODO: trigger UI to show all my posts page
         }
     }
@@ -353,6 +358,7 @@ export default function BlurbInput() {
             </Row>
             <Row>
                 <PostToastError showToast={showToast} />
+                {/* need to refactor all of this with cleaner code, less buggy */}
             </Row>
             <Row className="mt-2">
                 <ButtonGroup isThinking={isThinking} handleButtonClick={handleButtonClick}/>
