@@ -20,9 +20,20 @@ export default function Dashboard() {
     socket.on("updating posts", (allData) => {
       console.log("we got the update over here!!");
       console.log(allData);
-      setGlobalPosts(allData);
-    })
+      updateGlobalPosts(allData);
+      // return () => setGlobalPosts([]);
+    });
+
+      return () => {
+        socket.off("updating posts");
+      }
+    
   }, []);
+
+  const updateGlobalPosts = (newData) => {
+    setGlobalPosts(newData);
+  }
+  
 
   return (
     <div>

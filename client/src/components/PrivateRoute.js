@@ -5,9 +5,6 @@ import { useAuth } from "../contexts/AuthContext";
 // brackets are wrapper for current route
 export default function PrivateRoute({ component: Component, ...rest }) {
   const { currentUser } = useAuth();
-  useEffect(() => {
-    console.log({currentUser}); 
-  }, [])
 
   if (currentUser) { console.log(currentUser.email) }
   return (
