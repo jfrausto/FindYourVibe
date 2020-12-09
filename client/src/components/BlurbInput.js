@@ -62,6 +62,7 @@ export default function BlurbInput() {
         // ? to keep it interesting everytime they hit analyze
         if(typeof geniusRes.data === "string"){
             console.log("Please provide words for genius");
+            setIsThinking(false);
             return;
         }
         console.log(geniusRes.data);
@@ -357,6 +358,7 @@ export default function BlurbInput() {
             </Row>
             <Row>
                 <PostToastError showToast={showToast} />
+                {/* need to refactor all of this with cleaner code, less buggy */}
             </Row>
             <Row className="mt-2">
                 <ButtonGroup isThinking={isThinking} handleButtonClick={handleButtonClick}/>
