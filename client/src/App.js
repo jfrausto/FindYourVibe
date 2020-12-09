@@ -34,7 +34,7 @@ function App() {
               <PrivateRoute exact path="/" component={Homepage} />
               <PrivateRoute path="/profile" component={Profile} />
               <PrivateRoute path="/collection" component={Collection}/>
-              <PrivateRoute path="/homepage" component={Dashboard}/>              
+              <PrivateRoute path="/dashboard" component={Dashboard}/>              
               <Container
                 className="d-flex align-items-center justify-content-center"
                 style={{ minHeight: "100vh" }}

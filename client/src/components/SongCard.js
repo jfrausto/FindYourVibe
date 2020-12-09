@@ -21,7 +21,7 @@ export default function SongCard({songElement, handleSongSelect}) {
                             wholeObj: songElement.songObj
                             // maybe grab the album and album art
                         })}>
-                            <img src={songElement.songObj.thumbnail} height="100px" width="100px"/>   
+                            <img src={songElement.songObj.thumbnail} alt="albumThumbnail" height="100px" width="100px"/>   
                             <h4 className="songTitle">
                                 {songElement.songObj.title} - {songElement.songObj.artist.name}
                             </h4>

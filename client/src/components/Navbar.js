@@ -55,8 +55,8 @@ export default function NavMenu() {
             <Nav.Link href="#pricing">Pricing</Nav.Link>
           </Nav> */}
           <Nav className="ml-auto">
-            <Link className="nav-items" to="/">
-              Home
+            <Link className="nav-items" to="/dashboard">
+              Dashboard
             </Link>
             <Link className="nav-items" to="/profile">
               Profile
