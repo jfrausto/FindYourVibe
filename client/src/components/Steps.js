@@ -11,7 +11,7 @@ export default function Steps() {
   <Container className="aboutBackground px-0" fluid>
    <Row>
     <Col md="12">
-     <img className="img-fluid welcomeImage" src="https://i.imgur.com/WIZ0EXQ.png" width="640px" height="1px"/>
+     <img  className="img-fluid welcomeImage" alt="profile" src="https://i.imgur.com/WIZ0EXQ.png" width="640px" height="1px"/>
     </Col>
    </Row>
     </Container>
