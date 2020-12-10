@@ -85,6 +85,7 @@ main {
   max-width: 600px;
   opacity: 0;
   animation: charge 0.5s 0.5s forwards;
+  margin-bottom: 4%;
 }
 
 .subtitle,
