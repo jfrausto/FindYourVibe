@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Link, useHistory } from "react-router-dom";
 import { Button, Navbar, Nav } from "react-bootstrap";
 import { useAuth } from "../contexts/AuthContext";

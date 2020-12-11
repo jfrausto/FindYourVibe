@@ -15,7 +15,7 @@ import Signup from "./components/Signup";
 import Login from "./components/Login";
 import PrivateRoute from "./components/PrivateRoute";
 import { Container } from "react-bootstrap";
-import { useAuth, AuthProvider } from "./contexts/AuthContext";
+import { AuthProvider } from "./contexts/AuthContext";
 // import useNounFinder from "./utils/Hooks/NounFinderFolder/NounFinder";
 
 function App() {
