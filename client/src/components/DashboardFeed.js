@@ -37,7 +37,8 @@ export default function DashboardFeed({globalPosts}) {
           //!!Need to change with the thumbnail from the users blurb
           src={blurb.thumbnail} 
           height="50px" 
-          width="50px"/>
+          width="50px"
+          alt="albumThumbnail"/>
           </Col>
           {/* styling can be changed using UserPosts.css file sheet 
           currently it was just to differentiate how the columns looked
