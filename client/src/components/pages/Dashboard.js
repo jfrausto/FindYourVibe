@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import API from "../../utils/API";
 import "../../App.css";
-import LandingSplash from "../LandingSplash";
 import BlurbInput from "../BlurbInput";
 import Container from "react-bootstrap/Container";
 import DashboardFeed from "../DashboardFeed";
@@ -38,7 +37,6 @@ export default function Dashboard() {
   return (
     <div>
       <Container>
-        <LandingSplash />
         <BlurbInput />
         <DashboardFeed globalPosts={globalPosts}/>
       </Container>

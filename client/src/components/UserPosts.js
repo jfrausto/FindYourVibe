@@ -45,7 +45,7 @@ const handleDateFormat = (date) => {
        return <Container className="postDivContainerBackground mb-2 p-2"  key={blurb._id}>
        <Row>
        <Col className="postColColor my-auto" xs={2} lg={{span: 2, offset: 3}} >
-       <img className="postSongImage" 
+       <img alt="albumThumbnail" className="postSongImage" 
        //!!Need to change with the thumbnail from the users blurb
        src={blurb.thumbnail} 
        height="50px" 

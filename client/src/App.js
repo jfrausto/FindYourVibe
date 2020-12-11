@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-
+import Homepage from "./components/pages/Homepage";
 // socket instance!
 // in its own component
 // import socket from "./utils/socketTest";
@@ -15,7 +15,7 @@ import Signup from "./components/Signup";
 import Login from "./components/Login";
 import PrivateRoute from "./components/PrivateRoute";
 import { Container } from "react-bootstrap";
-import { useAuth, AuthProvider } from "./contexts/AuthContext";
+import { AuthProvider } from "./contexts/AuthContext";
 // import useNounFinder from "./utils/Hooks/NounFinderFolder/NounFinder";
 
 function App() {
@@ -31,10 +31,10 @@ function App() {
           <AuthProvider>
           <Navbar />
             <Switch>
-              <PrivateRoute exact path="/" component={Dashboard} />
+              <PrivateRoute exact path="/" component={Homepage} />
               <PrivateRoute path="/profile" component={Profile} />
               <PrivateRoute path="/collection" component={Collection}/>
-              
+              <PrivateRoute path="/dashboard" component={Dashboard}/>              
               <Container
                 className="d-flex align-items-center justify-content-center"
                 style={{ minHeight: "100vh" }}

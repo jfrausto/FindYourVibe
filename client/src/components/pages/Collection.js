@@ -17,18 +17,33 @@ export default function Collection() {
 
  const [UserCollection, setUserCollection] = useState([]);
 
+
+ const uniqByKeepLast = (data, key) => {
+   return [
+      ...new Map(
+        data.map( x => [key(x), x])
+      ).values()
+   ]
+ }
+ 
+
  useEffect(() => {
   // looks for the user based on their email,
   // as of right now the email is hardcoded in
-  API.getUserPosts(currentUser.email).then( res => {
+  if(currentUser){
+    API.getUserPosts(currentUser.email).then( res => {
    // ! THIS SHOULD FINISH THE CHECK FOR "THIS USER HAS NO POSTS" CASE
    // if(res.data.blurbs === null){
    //    return;
    // }
-   setUserCollection(res.data.songCollection);
-   console.log(res.data.songCollection);
- })
-}, []);
+   const removedDups = uniqByKeepLast(res.data.songCollection, it => it.songId);
+   setUserCollection(removedDups);
+   console.log(removedDups); 
+    });
+  }
+  
+
+}, [currentUser]);
 
   return (
     <>
@@ -47,7 +62,7 @@ export default function Collection() {
             <Accordion className="rounded bottom MarginFix px-sm-3" >
             <Card className="cardBorder">
                 <Accordion.Toggle as={Card.Header}  className="card-selector" eventKey="0">
-                    <img src={collection.albumThumbnail}height="100px" width="100px"/>   
+                    <img src={collection.albumThumbnail} alt="albumThumbnail" height="100px" width="100px"/>   
                     <h4 className="songTitle">
                         {collection.songArtistAlbum}
                     </h4>

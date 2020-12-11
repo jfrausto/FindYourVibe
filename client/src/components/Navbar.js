@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Link, useHistory } from "react-router-dom";
 import { Button, Navbar, Nav } from "react-bootstrap";
 import { useAuth } from "../contexts/AuthContext";
@@ -55,8 +55,8 @@ export default function NavMenu() {
             <Nav.Link href="#pricing">Pricing</Nav.Link>
           </Nav> */}
           {/* <Nav className="ml-auto">
-            <Link className="nav-items" to="/">
-              Home
+            <Link className="nav-items" to="/dashboard">
+              Dashboard
             </Link>
             <Link className="nav-items" to="/profile">
               Profile
@@ -67,15 +67,17 @@ export default function NavMenu() {
           </Nav>
         </Navbar.Collapse>
       </Navbar> */}
+
+
       <Navbar className="m-0 custom-nav" bg="dark" variant="dark" id="navbar" expand="md">
-                <Navbar.Brand className="btn--outline" href="/"> 
+                <Navbar.Brand className="btn--outline" as={Link} to="/"> 
                   <i className="fab fa-forumbee" />
                   <span className="logo">ViBee</span>
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="ml-auto">
-                        <Nav.Link className="mx-0 nav-link btn--outline" as={Link} to={"/"}>Home</Nav.Link>
+                        <Nav.Link className="mx-0 nav-link btn--outline" as={Link} to={"/dashboard"}>Dashboard</Nav.Link>
                         <Nav.Link className="mx-0 nav-link btn--outline" as={Link} to={"/profile"}>Profile</Nav.Link>
                         <Nav.Link className="btn--outline" as={Button} onClick={handleSignupButton} >Sign Up</Nav.Link>
                         <Nav.Link className="btn--outline" as={Button} onClick={handleLoginButton}>

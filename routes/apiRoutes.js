@@ -13,10 +13,21 @@ let firstSong;
 let secondSong;
 let thirdSong;
 
+// shuffles the song pool array!
+function shuffle(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    let j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+}
+
 const getSongPool = async (stringifiedNounsQuery) => {
   console.log(`Genius-Lyrics v${Genius.Version}`);
-  const searches = await Client.songs.search(stringifiedNounsQuery);
+  let searches = await Client.songs.search(stringifiedNounsQuery);
   // global vars! they are declared at the top ^^^^^
+  // shuffle results
+  searches =  shuffle(searches);
   firstSong = searches[0];
   secondSong = searches[1];
   thirdSong = searches[2];
