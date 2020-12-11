@@ -17,6 +17,16 @@ export default function Collection() {
 
  const [UserCollection, setUserCollection] = useState([]);
 
+
+ const uniqByKeepLast = (data, key) => {
+   return [
+      ...new Map(
+        data.map( x => [key(x), x])
+      ).values()
+   ]
+ }
+ 
+
  useEffect(() => {
   // looks for the user based on their email,
   // as of right now the email is hardcoded in
@@ -25,8 +35,9 @@ export default function Collection() {
    // if(res.data.blurbs === null){
    //    return;
    // }
-   setUserCollection(res.data.songCollection);
-   console.log(res.data.songCollection);
+   const removedDups = uniqByKeepLast(res.data.songCollection, it => it.songId);
+   setUserCollection(removedDups);
+   console.log(removedDups);
  })
 }, []);
 

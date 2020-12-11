@@ -65,8 +65,8 @@ export default function BlurbInput() {
             setIsThinking(false);
             return;
         }
+        // shuffle the song pool for fun!
         console.log(geniusRes.data);
-
         const addCountPool = [];
         for (let i = 0; i < 3; i++) {
             addCountPool.push(
