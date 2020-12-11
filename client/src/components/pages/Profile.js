@@ -1,6 +1,5 @@
 import React from "react";
 import {Link} from "react-router-dom";
-import API from "../../utils/API";
 import "../../App.css";
 import Container from "react-bootstrap/Container";
 import LandingSplash from "../LandingSplash";

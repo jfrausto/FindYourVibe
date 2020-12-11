@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Link, useHistory } from "react-router-dom";
 import { Button, Navbar, Nav } from "react-bootstrap";
 import { useAuth } from "../contexts/AuthContext";
@@ -55,8 +55,8 @@ export default function NavMenu() {
             <Nav.Link href="#pricing">Pricing</Nav.Link>
           </Nav> */}
           <Nav className="ml-auto">
-            <Link className="nav-items" to="/">
-              Home
+            <Link className="nav-items" to="/dashboard">
+              Dashboard
             </Link>
             <Link className="nav-items" to="/profile">
               Profile
