@@ -9,9 +9,6 @@ import "./styles/UserPosts.css";
 import { useAuth } from "../contexts/AuthContext";
 
 export default function UserPosts() {
-  // ! super important!
-  const { currentUser } = useAuth();
-
  // ! super important!
  const { currentUser } = useAuth();
  const [UserBlurbs, setUserBlurbs] = useState([]);
