@@ -47,7 +47,7 @@ export default function Collection() {
             <Accordion className="rounded bottom MarginFix px-sm-3" >
             <Card className="cardBorder">
                 <Accordion.Toggle as={Card.Header}  className="card-selector" eventKey="0">
-                    <img src={collection.albumThumbnail}height="100px" width="100px"/>   
+                    <img src={collection.albumThumbnail} alt="albumThumbnail" height="100px" width="100px"/>   
                     <h4 className="songTitle">
                         {collection.songArtistAlbum}
                     </h4>

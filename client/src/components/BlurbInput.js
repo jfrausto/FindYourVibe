@@ -1,4 +1,4 @@
-import React, {useRef, useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import{ useHistory } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import TextareaCounter from 'react-textarea-counter';
@@ -322,9 +322,9 @@ export default function BlurbInput() {
             } catch (error) {
                 throw error;
             }
-            let globalPostRes;
+            
             try {
-                globalPostRes = await API.postGlobalBlurb(newGlobalModel);
+            await API.postGlobalBlurb(newGlobalModel);
             } catch (error) {
                 throw error;
             }

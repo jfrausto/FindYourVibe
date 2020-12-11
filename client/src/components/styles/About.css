@@ -1,0 +1,191 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+main {
+  font-size: 12px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  overflow: hidden;
+  text-align: center;
+  line-height: 1.4;
+  overflow: hidden;
+  width: 100%;
+  background-color: black;
+}
+
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+}
+
+.code,
+main {
+  height: 100%;
+}
+
+@keyframes charge {
+  from {
+    transform: translateY(2rem);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes wave {
+  from {
+    transform: rotate(360deg);
+  }
+
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+.content {
+  color: #fff;
+  font-weight: 300;
+  padding: 0 2rem;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.content,
+.footer {
+  width: 100%;
+  position: relative;
+  z-index: 100;
+}
+
+.code,
+.content,
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.code,
+.content {
+  flex-direction: column;
+  margin-top: 4%;
+}
+
+.footer {
+  flex-wrap: wrap;
+  max-width: 600px;
+  opacity: 0;
+  animation: charge 0.5s 0.5s forwards;
+  margin-bottom: 4%;
+}
+
+.subtitle,
+.title {
+  margin: 0;
+}
+
+.footer a {
+  text-decoration: none;
+  width: 40%;
+  padding: 12px 18px;
+  font-size: 16px;
+  margin: 20px auto 0 auto;
+  cursor: pointer;
+  color: #fff;
+  border: 2px solid;
+  border-radius: 99em;
+  outline: none;
+  transition: all 0.3s;
+}
+
+.footer a:hover {
+  background-color: #fff;
+  color: #222;
+  border-color: #fff;
+}
+
+.subtitle,
+.text,
+.title {
+  backface-visibility: hidden;
+}
+
+.title {
+  font-size: 6.4rem;
+  font-weight: 400;
+  opacity: 0;
+  animation: charge 0.5s forwards;
+}
+
+.text {
+  max-width: 50rem;
+  font-weight: 400;
+  padding: 2rem 0;
+  font-size: 1.3rem;
+  color: rgba(255, 255, 255);
+  opacity: 0;
+  animation: charge 0.5s 0.3s forwards;
+}
+
+.wave {
+  opacity: 0.6;
+  position: absolute;
+  bottom: 40%;
+  left: 50%;
+  width: 6000px;
+  height: 6000px;
+  margin-left: -3000px;
+  transform-origin: 50% 48%;
+  border-radius: 46%;
+  animation: wave 12s infinite linear;
+  pointer-events: none;
+}
+
+.wave2 {
+  animation: wave 28s infinite linear;
+  opacity: 0.3;
+}
+
+.wave3 {
+  animation: wave 20s infinite linear;
+  opacity: 0.1;
+}
+
+.wave {
+  background: rgb(39, 39, 39);
+}
+
+.code {
+  position: relative;
+  background-color: rgb(0, 0, 0);
+  z-index: 999;
+}
+
+.ripple {
+  background-position: center;
+  transition: background 0.8s;
+}
+
+.ripple:hover {
+  background: black radial-gradient(circle, transparent 1%, #000000 1%)
+    center/15000%;
+}
+
+.ripple:active {
+  background-color: black;
+  background-size: 100%;
+  transition: background 0s;
+}
+
+.headerContainer {
+  background-color: #fff;
+}
