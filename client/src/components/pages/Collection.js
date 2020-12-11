@@ -30,16 +30,20 @@ export default function Collection() {
  useEffect(() => {
   // looks for the user based on their email,
   // as of right now the email is hardcoded in
-  API.getUserPosts(currentUser.email).then( res => {
+  if(currentUser){
+    API.getUserPosts(currentUser.email).then( res => {
    // ! THIS SHOULD FINISH THE CHECK FOR "THIS USER HAS NO POSTS" CASE
    // if(res.data.blurbs === null){
    //    return;
    // }
    const removedDups = uniqByKeepLast(res.data.songCollection, it => it.songId);
    setUserCollection(removedDups);
-   console.log(removedDups);
- })
-}, []);
+   console.log(removedDups); 
+    });
+  }
+  
+
+}, [currentUser]);
 
   return (
     <>
