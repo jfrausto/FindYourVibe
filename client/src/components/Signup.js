@@ -27,7 +27,7 @@ export default function Signup() {
     try {
       setError("");
       setLoading(true);
-      await signup(emailRef.current.value, passwordRef.current.value);
+      await signup(emailRef.current.value, passwordRef.current.value, userNameRef.current.value);
       let userObj = {
         firstName: firstNameRef.current.value,
         lastName: lastNameRef.current.value,
@@ -42,7 +42,7 @@ export default function Signup() {
       try {
         userObjRes = await API.postNewUser(userObj);
         console.log(userObjRes);
-        history.push("/");
+        history.push("/dashboard");
       } catch (error) {
         throw error;
       }

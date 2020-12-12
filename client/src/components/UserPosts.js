@@ -1,16 +1,14 @@
-import React, {useEffect, useState} from 'react';
-import TimeAgo from 'react-timeago';
+import React, { useEffect, useState } from "react";
+import TimeAgo from "react-timeago";
 import Container from "react-bootstrap/Container";
 import API from "../utils/API";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import "./styles/UserPosts.css";
 
-import { useAuth } from '../contexts/AuthContext';
-
+import { useAuth } from "../contexts/AuthContext";
 
 export default function UserPosts() {
-
  // ! super important!
  const { currentUser } = useAuth();
  const [UserBlurbs, setUserBlurbs] = useState([]);

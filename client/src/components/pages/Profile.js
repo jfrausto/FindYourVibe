@@ -2,18 +2,20 @@ import React from "react";
 import {Link} from "react-router-dom";
 import "../../App.css";
 import Container from "react-bootstrap/Container";
-import LandingSplash from "../LandingSplash";
 import UserPosts from "../UserPosts";
 import Button from "react-bootstrap/Button";
+import ProfileDetails from "../ProfileDetails"
+import '../styles/LandingSplash.css';
+
 
 export default function Profile() {
   return (
     <div>     
       <Container>
+      <ProfileDetails />
       <Link to="/collection" >
-        <Button variant="danger">My Collections</Button>
+        <Button variant="danger" className="my-3">My Collections</Button>
       </Link>
-      <LandingSplash />
         <UserPosts />
       </Container>
     </div>
