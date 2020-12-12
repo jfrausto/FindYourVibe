@@ -5,6 +5,7 @@
   margin: 0;
   padding: 0;
 }
+
 main {
   font-size: 12px;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
@@ -188,4 +189,9 @@ main {
 
 .headerContainer {
   background-color: #fff;
+}
+
+.wavySvgBackground {
+  /* border-top: 3px solid black;
+  margin-top: 0px; */
 }
