@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import { Link } from "react-router-dom";
 import "./styles/About.css";
 
 export default function Header() {
@@ -11,7 +12,8 @@ export default function Header() {
         <div className='text'>Express yourself and find your vibes. Connect with other people through music. Explore how other people are doing and catch a vibe.</div>
       </header>
       <footer className='footer'>
-        <a className='ripple noselect' href="/signup">Get Started now</a>
+        <Link className='ripple noselect' to="/signup">Get Started</Link>
+        {/* <a className='ripple noselect' href="/signup">Get Started</a> */}
       </footer>
      
       <div className='wave'></div>

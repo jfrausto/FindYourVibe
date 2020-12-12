@@ -31,7 +31,7 @@ function App() {
           <AuthProvider>
           <Navbar />
             <Switch>
-              <PrivateRoute exact path="/" component={Homepage} />
+              <Route exact path="/" component={Homepage} />
               <PrivateRoute path="/profile" component={Profile} />
               <PrivateRoute path="/collection" component={Collection}/>
               <PrivateRoute path="/dashboard" component={Dashboard}/>              
