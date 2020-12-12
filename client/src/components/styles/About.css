@@ -188,10 +188,11 @@ main {
 }
 
 .headerContainer {
-  background-color: #fff;
+  background-color: white;
 }
 
 .wavySvgBackground {
-  /* border-top: 3px solid black;
-  margin-top: 0px; */
+  margin-bottom: 0px;
+  background-color: black;
+  transform: rotate(180deg);
 }

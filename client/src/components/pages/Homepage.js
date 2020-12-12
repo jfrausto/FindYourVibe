@@ -6,8 +6,8 @@ import "../styles/About.css";
 
 export default function Homepage() {
   return (
-    <>
-    <Header/>
+   <>
+    <Header/> 
     <Steps/>
     </>
   );
