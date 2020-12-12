@@ -252,13 +252,7 @@ export default function BlurbInput() {
         // extracted nouns from the text area
         if(buttonPress === "Analyze"){
             setIsThinking(true);
-            let nounsRes;
-            try {
-                nounsRes = await API.getNouns(TextAreaVal);
-            } catch(err) {
-                throw err;
-            }
-            const nounStringArray = nounsRes.data;
+
             // before you execute!!!
             // RESET THE LYRICS SECTION TO empty! ''
             let lyricsClass = document.querySelectorAll(".songLyrics");
@@ -269,7 +263,32 @@ export default function BlurbInput() {
             let spinnersClass = document.querySelectorAll("spinners");
             spinnersClass.forEach( spinner => {
                 spinner.hidden = false;
-            })
+            });
+
+            // check for length of the textarea post
+            let count = 0;
+            for (let i = 0; i < TextAreaVal.length; i++) {
+                if(TextAreaVal.charAt(i) != ''){
+                    count = count + 1;
+                }
+            }
+            console.log(`the numbers of characters is ${count}!`);
+
+            // we have a short post, call genius with whole string post
+            if (count <= 50){
+                handleGeniusCall(TextAreaVal);
+                // exit
+                return;
+            }
+            // if its longer, extract the nouns
+            let nounsRes;
+            try {
+                nounsRes = await API.getNouns(TextAreaVal);
+            } catch(err) {
+                throw err;
+            }
+            const nounStringArray = nounsRes.data;
+            
             handleGeniusCall(nounStringArray);
         } else { // we will submit the post!
             if(TextAreaVal === "" || selectedSong.songArtistAlbum === "") {
