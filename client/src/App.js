@@ -6,7 +6,7 @@ import Homepage from "./components/pages/Homepage";
 // socket instance!
 // in its own component
 // import socket from "./utils/socketTest";
-
+import Steps from "./components/pages/Steps";
 import Collection from "./components/pages/Collection";
 import Navbar from "./components/Navbar";
 import Dashboard from "./components/pages/Dashboard";
@@ -34,7 +34,7 @@ function App() {
               <Route exact path="/" component={Homepage} />
               <PrivateRoute path="/profile" component={Profile} />
               <PrivateRoute path="/collection" component={Collection}/>
-              <PrivateRoute path="/dashboard" component={Dashboard}/>              
+              <PrivateRoute path="/dashboard" component={Dashboard}/>          
               <Container
                 className="d-flex align-items-center justify-content-center"
                 style={{ minHeight: "100vh" }}
@@ -42,6 +42,7 @@ function App() {
                 <div className="w-100" style={{ maxWidth: "400px" }}>
                   <Route path="/signup" component={Signup} />
                   <Route path="/login" component={Login} />
+                  <Route path="/howto" component={Steps}/>
                 </div>
               </Container>
 

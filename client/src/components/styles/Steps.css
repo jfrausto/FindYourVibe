@@ -17,7 +17,6 @@
   background-color: white;
   line-height: 1.6;
   color: black;
-  /* border-top: 20px white solid; */
 }
 
 .imgCarousel {
@@ -75,7 +74,7 @@
 
 div#next {
   position: absolute;
-  bottom: 330px;
+  bottom: 300px;
   right: 15px;
   color: rgb(255, 255, 255, 0.75);
   border-radius: 50%;
@@ -84,7 +83,7 @@ div#next {
 
 div#prev {
   position: absolute;
-  bottom: 330px;
+  bottom: 300px;
   left: 15px;
   color: rgb(255, 255, 255, 0.75);
   border-radius: 50%;
