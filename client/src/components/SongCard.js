@@ -2,20 +2,12 @@ import React from 'react';
 import Accordion from "react-bootstrap/Accordion";
 import Card from "react-bootstrap/Card";
 import Spinner from 'react-bootstrap/Spinner';
-import "./styles/BlurbInput.css";
 //song element takes in prop from songCardContainer
 //BlurbInput => SongCardContainer => SongCard
 //songElement is one of three songs from 
 //the array
-export default function SongCard({songElement, handleSongSelect, textInput, selectedSong}) {
-    let textAreaVal = textInput;
-    let lyrics = selectedSong.lyrics;
-
-    console.log("THIS ONE RIGHT HERE LOOK FOR ME RIGHT HERE!!!!");
-    console.log(textAreaVal);
-    console.log(songElement);
-    console.log(handleSongSelect);
-    console.log(selectedSong);
+export default function SongCard({songElement, handleSongSelect}) {
+    
     return (
         <div>
              <Accordion className="rounded bottom MarginFix px-sm-3">

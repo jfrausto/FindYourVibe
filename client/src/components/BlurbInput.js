@@ -37,7 +37,6 @@ export default function BlurbInput() {
     const { currentUser } = useAuth();
     // to link to another page use History
     const history = useHistory();
-    let checker;
     
     const searchedWords = (search) => {
         console.log(search);
@@ -223,8 +222,8 @@ export default function BlurbInput() {
                 }
                 console.log("we are back in blurb Input - else");
                 console.log(lyricSearchRes);
-                console.log(checker);
-                //!! RIGHT HERE CALL A FUNCTION TO HANDLE CHECKING WHAT THEY PICKED
+                 //!! RIGHT HERE IS WHERE DIV FROM SONGCARD.JS 
+                //!! GETS ASSIGNED ITS VALUE
                 setSelectedSong({ 
                     songID: choice.songID,
                     songArtistAlbum: `${choice.title} - ${choice.artist}`,
@@ -239,7 +238,8 @@ export default function BlurbInput() {
                 let spinnerElem = document.getElementById(`${spinnerId}`);
                 spinnerElem.hidden = true;
 
-                //!!RIGHT HERE IS WHERE P GETS ASSIGNED
+                //!! RIGHT HERE IS WHERE DIV ON SONGCARD.JS 
+                //!! GETS ASSIGNED ITS VALUE
                 let coloredWords = searchedWords(lyricSearchRes.data);
                 pTag.innerHTML = coloredWords;
             }
@@ -302,7 +302,7 @@ export default function BlurbInput() {
 
             // we have a short post, call genius with whole string post
             if (count <= 50){
-                checker = handleGeniusCall(TextAreaVal);
+                handleGeniusCall(TextAreaVal);
                
                 // exit
                 return;
@@ -398,7 +398,7 @@ export default function BlurbInput() {
         <Container className="mt-5">
             <Row>
                 <Col>
-                <SongCardContainer textInput={TextAreaVal} songPool={SongPoolRes} handleSongSelect={handleSongSelect} selectedSong={selectedSong} />
+                <SongCardContainer songPool={SongPoolRes} handleSongSelect={handleSongSelect} />
                 </Col>
             </Row>
             <Row className="mt-2">
