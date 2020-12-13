@@ -9,11 +9,18 @@ import Spinner from 'react-bootstrap/Spinner';
 //the array
 export default function SongCard({songElement, handleSongSelect, textInput, selectedSong}) {
     let textAreaVal = textInput;
+    let lyrics = selectedSong.lyrics;
+    
     console.log("THIS ONE RIGHT HERE LOOK FOR ME RIGHT HERE!!!!");
     console.log(textAreaVal);
     console.log(songElement);
     console.log(handleSongSelect);
     console.log(selectedSong);
+    
+    const changeFontWords = () => {
+        if ()
+    }
+
     return (
         <div>
              <Accordion className="rounded bottom MarginFix px-sm-3">
