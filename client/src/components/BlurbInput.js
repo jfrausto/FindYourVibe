@@ -268,7 +268,7 @@ export default function BlurbInput() {
             // check for length of the textarea post
             let count = 0;
             for (let i = 0; i < TextAreaVal.length; i++) {
-                if(TextAreaVal.charAt(i) != ''){
+                if(TextAreaVal.charAt(i) !== ''){
                     count = count + 1;
                 }
             }
