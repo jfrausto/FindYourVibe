@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from "react-router-dom";
-import "./styles/About.css";
+import "./styles/Header.css";
 
 export default function Header() {
  return (
@@ -9,7 +9,7 @@ export default function Header() {
     <main>
         <div className='code'>
       <header className='content'>
-        <h1 className='title'>ViBee</h1>
+        <h1 className='title'>Vibee</h1>
         <div className='text'>Express yourself and find your vibes. Connect with other people through music. Explore how other people are doing and catch a vibe.</div>
       </header>
       <footer className='footer'>

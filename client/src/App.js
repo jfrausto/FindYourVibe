@@ -6,7 +6,7 @@ import Homepage from "./components/pages/Homepage";
 // socket instance!
 // in its own component
 // import socket from "./utils/socketTest";
-
+import About from "./components/pages/About";
 import Collection from "./components/pages/Collection";
 import Navbar from "./components/Navbar";
 import Dashboard from "./components/pages/Dashboard";
@@ -42,6 +42,7 @@ function App() {
                 <div className="w-100" style={{ maxWidth: "400px" }}>
                   <Route path="/signup" component={Signup} />
                   <Route path="/login" component={Login} />
+                  <Route path="/about" component={About} />
                 </div>
               </Container>
 
