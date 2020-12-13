@@ -68,9 +68,13 @@
   transition: all 0.7s ease-in-out 0.3s;
 }
 
+.buttons {
+  position: relative;
+}
+
 div#next {
   position: absolute;
-  top: 130%;
+  bottom: 500px;
   right: 15px;
   color: rgb(255, 255, 255, 0.75);
   border-radius: 50%;
@@ -79,7 +83,7 @@ div#next {
 
 div#prev {
   position: absolute;
-  top: 130%;
+  bottom: 500px;
   left: 15px;
   color: rgb(255, 255, 255, 0.75);
   border-radius: 50%;

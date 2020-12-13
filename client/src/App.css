@@ -47,6 +47,7 @@ body {
       0 0,
     linear-gradient(90deg, #0c0d12 2%, #101424 0, #101424 98%, #0c0d12 0%) 0 0
       #101424; */
-  background: url("https://www.solidbackgrounds.com/images/3600x3600/3600x3600-black-solid-color-background.jpg");
-  background-size: 40px 60px;
+
+  background-color: black !important;
+  /* background-size: 40px 60px; */
 }
