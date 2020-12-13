@@ -192,5 +192,5 @@ main {
 
 .wavySvgBackground {
   background-color: black;
-  background: linear-gradient(to top, #050505 30%, #151515 100%);
+  background: linear-gradient(to top, #000000 0%, #101010 60%, #000000 100%);
 }
