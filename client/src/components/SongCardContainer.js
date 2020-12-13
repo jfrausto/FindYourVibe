@@ -4,6 +4,7 @@ import Container from "react-bootstrap/Container"
 import Row from "react-bootstrap/Row";
 import SongCard from "./SongCard";
 import "./styles/SongCardContainer.css";
+import "./styles/BlurbInput.css";
 
 //songpool takes in prop from BlurbInput
 //it contains the array of songs from 

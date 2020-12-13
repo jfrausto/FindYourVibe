@@ -2,7 +2,7 @@ import React from 'react';
 import Accordion from "react-bootstrap/Accordion";
 import Card from "react-bootstrap/Card";
 import Spinner from 'react-bootstrap/Spinner';
-
+import "./styles/BlurbInput.css";
 //song element takes in prop from songCardContainer
 //BlurbInput => SongCardContainer => SongCard
 //songElement is one of three songs from 
@@ -10,17 +10,12 @@ import Spinner from 'react-bootstrap/Spinner';
 export default function SongCard({songElement, handleSongSelect, textInput, selectedSong}) {
     let textAreaVal = textInput;
     let lyrics = selectedSong.lyrics;
-    
+
     console.log("THIS ONE RIGHT HERE LOOK FOR ME RIGHT HERE!!!!");
     console.log(textAreaVal);
     console.log(songElement);
     console.log(handleSongSelect);
     console.log(selectedSong);
-    
-    const changeFontWords = () => {
-        if ()
-    }
-
     return (
         <div>
              <Accordion className="rounded bottom MarginFix px-sm-3">
@@ -40,11 +35,11 @@ export default function SongCard({songElement, handleSongSelect, textInput, sele
                         <Accordion.Collapse eventKey="0">
                             <Card.Body> 
                                 <Spinner animation="border" variant="warning" className="spinners mt-3" id={songElement.count + 6} />
-                                <p className="songLyrics" id={songElement.count+3}>
+                                <div className="songLyrics" id={songElement.count+3}>
                                 {/* LOADING... */}
                                 {/* giving id and class to each spinner */}
                                 
-                                </p>
+                                </div>
                             </Card.Body>
                         </Accordion.Collapse>
                     </Card>

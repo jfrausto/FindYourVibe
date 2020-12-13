@@ -38,7 +38,29 @@ export default function BlurbInput() {
     // to link to another page use History
     const history = useHistory();
     let checker;
-
+    
+    const searchedWords = (search) => {
+        console.log(search);
+        JSON.stringify(search);
+        let lyrics = search.split(" ");
+        console.log("edited");
+        console.log(lyrics);
+        lyrics.toString().toLowerCase();
+        console.log("again");
+        console.log(lyrics);
+        let input = TextAreaVal;
+        input.toString().toLowerCase();
+        let matches = input.split(" ");
+        console.log(matches);
+        let formattedWords = lyrics.map(word => {
+            if (matches.indexOf(word) !== -1) {
+                return `<span class="match">` + word +`</span>`
+            } else {
+                return word;
+            }
+        })      
+        return formattedWords.join(" ");
+    };
     // useEffect(() => {
     //     console.log("i selected a song");
     //     console.log(selectedSong);
@@ -191,7 +213,8 @@ export default function BlurbInput() {
                 let spinnerId = integerStringId + 3;
                 let spinnerElem = document.getElementById(`${spinnerId}`);
                 spinnerElem.hidden = true;
-                pTag.textContent = lyricSearchRes.data;
+                let coloredWords = searchedWords(lyricSearchRes.data);
+                pTag.innerHTML = coloredWords;
             } else {
                 try {
                     lyricSearchRes = await API.getLyrics(cardHead.id);
@@ -215,7 +238,10 @@ export default function BlurbInput() {
                 let spinnerId = integerStringId + 3;
                 let spinnerElem = document.getElementById(`${spinnerId}`);
                 spinnerElem.hidden = true;
-                pTag.textContent = lyricSearchRes.data;
+
+                //!!RIGHT HERE IS WHERE P GETS ASSIGNED
+                let coloredWords = searchedWords(lyricSearchRes.data);
+                pTag.innerHTML = coloredWords;
             }
             
         }
