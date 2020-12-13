@@ -37,7 +37,7 @@ export default function BlurbInput() {
     const { currentUser } = useAuth();
     // to link to another page use History
     const history = useHistory();
-
+    let checker;
 
     // useEffect(() => {
     //     console.log("i selected a song");
@@ -169,8 +169,6 @@ export default function BlurbInput() {
         if(cardHead.parentElement.classList[0] === "card-selector" || true){
             // ! THE JANK; THIS NEEDS TO BE REFACTORED FOR THE IF CASES, COULD BE A LOT CLEANER
             // ! JANKING AROUND WITH THE ID's OF ELEMENTS
-            // TODO: -------------------------------------------------
-            // TODO: WE NEED TO NOT FIRE AN API CALL EVERYTIME THEY SELECT THE CARD HEADER
             // ! THIS WILL PUT A HUGE STRES ON OUR APP
             if(cardHead.parentElement.classList[0] === "card-selector" ){
                 try {
@@ -202,6 +200,8 @@ export default function BlurbInput() {
                 }
                 console.log("we are back in blurb Input - else");
                 console.log(lyricSearchRes);
+                console.log(checker);
+                //!! RIGHT HERE CALL A FUNCTION TO HANDLE CHECKING WHAT THEY PICKED
                 setSelectedSong({ 
                     songID: choice.songID,
                     songArtistAlbum: `${choice.title} - ${choice.artist}`,
@@ -276,7 +276,8 @@ export default function BlurbInput() {
 
             // we have a short post, call genius with whole string post
             if (count <= 50){
-                handleGeniusCall(TextAreaVal);
+                checker = handleGeniusCall(TextAreaVal);
+               
                 // exit
                 return;
             }
@@ -371,7 +372,7 @@ export default function BlurbInput() {
         <Container className="mt-5">
             <Row>
                 <Col>
-                <SongCardContainer songPool={SongPoolRes} handleSongSelect={handleSongSelect}/>
+                <SongCardContainer textInput={TextAreaVal} songPool={SongPoolRes} handleSongSelect={handleSongSelect} selectedSong={selectedSong} />
                 </Col>
             </Row>
             <Row className="mt-2">

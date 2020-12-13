@@ -81,6 +81,7 @@ router.get("/lyrics/:cardID", (req, res) => {
   getLyrics(singleSong).then((data) => {
     console.log(`successfully got lyrics from the backend!!`);
     res.send(data);
+    console.log(data);
   });
 });
 

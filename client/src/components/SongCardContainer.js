@@ -8,7 +8,7 @@ import "./styles/SongCardContainer.css";
 //songpool takes in prop from BlurbInput
 //it contains the array of songs from 
 //the Genius API call
-export default function SongCardContainer({songPool, handleSongSelect}) {
+export default function SongCardContainer({songPool, handleSongSelect, textInput, selectedSong}) {
 
     return (
         <Container>
@@ -16,7 +16,7 @@ export default function SongCardContainer({songPool, handleSongSelect}) {
             songPool.map(song => {
                 return <Row key={song.songObj.id} >
                             <Col xs="12" lg={{span: 10, offset: 1}} className="songCardCol my-auto">
-                                <SongCard songElement={song} handleSongSelect={handleSongSelect}/>   
+                                <SongCard textInput={textInput} songElement={song} handleSongSelect={handleSongSelect} selectedSong={selectedSong}/>   
                             </Col>
                         </Row>
             })  

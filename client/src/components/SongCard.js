@@ -7,9 +7,13 @@ import Spinner from 'react-bootstrap/Spinner';
 //BlurbInput => SongCardContainer => SongCard
 //songElement is one of three songs from 
 //the array
-export default function SongCard({songElement, handleSongSelect}) {
-
-
+export default function SongCard({songElement, handleSongSelect, textInput, selectedSong}) {
+    let textAreaVal = textInput;
+    console.log("THIS ONE RIGHT HERE LOOK FOR ME RIGHT HERE!!!!");
+    console.log(textAreaVal);
+    console.log(songElement);
+    console.log(handleSongSelect);
+    console.log(selectedSong);
     return (
         <div>
              <Accordion className="rounded bottom MarginFix px-sm-3">
