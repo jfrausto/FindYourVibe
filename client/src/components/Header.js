@@ -14,6 +14,7 @@ export default function Header() {
       </header>
       <footer className='footer'>
         <Link className='ripple noselect' to="/signup">Get Started</Link>
+        <Link className='ripple noselect' to="/about">Learn More</Link>
         {/* <a className='ripple noselect' href="/signup">Get Started</a> */}
       </footer>
      
