@@ -1,10 +1,11 @@
 import React from 'react';
-import { Link } from "react-router-dom";
+import {Link} from "react-router-dom";
 import "./styles/Header.css";
 
 export default function Header() {
  return (
    <>
+   {/* <Route path="/about" component={About} /> */}
   <div className="headerContainer">
     <main>
         <div className='code'>
