@@ -6,7 +6,7 @@ import Homepage from "./components/pages/Homepage";
 // socket instance!
 // in its own component
 // import socket from "./utils/socketTest";
-
+import About from "./components/pages/About";
 import Collection from "./components/pages/Collection";
 import Navbar from "./components/Navbar";
 import Dashboard from "./components/pages/Dashboard";
@@ -34,7 +34,8 @@ function App() {
               <Route exact path="/" component={Homepage} />
               <PrivateRoute path="/profile" component={Profile} />
               <PrivateRoute path="/collection" component={Collection}/>
-              <PrivateRoute path="/dashboard" component={Dashboard}/>              
+              <PrivateRoute path="/dashboard" component={Dashboard}/>
+              <Route path="/about" component={About} />              
               <Container
                 className="d-flex align-items-center justify-content-center"
                 style={{ minHeight: "100vh" }}
@@ -42,11 +43,12 @@ function App() {
                 <div className="w-100" style={{ maxWidth: "400px" }}>
                   <Route path="/signup" component={Signup} />
                   <Route path="/login" component={Login} />
+                  
                 </div>
               </Container>
-
             </Switch>
           </AuthProvider>
+        
         </Router>
         {/* we might not even want this landing splash thing in the future */}
         {/* perhaps some buttons to continue */}

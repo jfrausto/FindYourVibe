@@ -37,8 +37,29 @@ export default function BlurbInput() {
     const { currentUser } = useAuth();
     // to link to another page use History
     const history = useHistory();
-
-
+    
+    const searchedWords = (search) => {
+        console.log(search);
+        JSON.stringify(search);
+        let lyrics = search.split(" ");
+        console.log("edited");
+        console.log(lyrics);
+        lyrics.toString().toLowerCase();
+        console.log("again");
+        console.log(lyrics);
+        let input = TextAreaVal;
+        input.toString().toLowerCase();
+        let matches = input.split(" ");
+        console.log(matches);
+        let formattedWords = lyrics.map(word => {
+            if (matches.indexOf(word) !== -1) {
+                return `<span class="match">` + word +`</span>`
+            } else {
+                return word;
+            }
+        })      
+        return formattedWords.join(" ");
+    };
     // useEffect(() => {
     //     console.log("i selected a song");
     //     console.log(selectedSong);
@@ -169,8 +190,6 @@ export default function BlurbInput() {
         if(cardHead.parentElement.classList[0] === "card-selector" || true){
             // ! THE JANK; THIS NEEDS TO BE REFACTORED FOR THE IF CASES, COULD BE A LOT CLEANER
             // ! JANKING AROUND WITH THE ID's OF ELEMENTS
-            // TODO: -------------------------------------------------
-            // TODO: WE NEED TO NOT FIRE AN API CALL EVERYTIME THEY SELECT THE CARD HEADER
             // ! THIS WILL PUT A HUGE STRES ON OUR APP
             if(cardHead.parentElement.classList[0] === "card-selector" ){
                 try {
@@ -193,7 +212,8 @@ export default function BlurbInput() {
                 let spinnerId = integerStringId + 3;
                 let spinnerElem = document.getElementById(`${spinnerId}`);
                 spinnerElem.hidden = true;
-                pTag.textContent = lyricSearchRes.data;
+                let coloredWords = searchedWords(lyricSearchRes.data);
+                pTag.innerHTML = coloredWords;
             } else {
                 try {
                     lyricSearchRes = await API.getLyrics(cardHead.id);
@@ -202,6 +222,8 @@ export default function BlurbInput() {
                 }
                 console.log("we are back in blurb Input - else");
                 console.log(lyricSearchRes);
+                 //!! RIGHT HERE IS WHERE DIV FROM SONGCARD.JS 
+                //!! GETS ASSIGNED ITS VALUE
                 setSelectedSong({ 
                     songID: choice.songID,
                     songArtistAlbum: `${choice.title} - ${choice.artist}`,
@@ -215,7 +237,11 @@ export default function BlurbInput() {
                 let spinnerId = integerStringId + 3;
                 let spinnerElem = document.getElementById(`${spinnerId}`);
                 spinnerElem.hidden = true;
-                pTag.textContent = lyricSearchRes.data;
+
+                //!! RIGHT HERE IS WHERE DIV ON SONGCARD.JS 
+                //!! GETS ASSIGNED ITS VALUE
+                let coloredWords = searchedWords(lyricSearchRes.data);
+                pTag.innerHTML = coloredWords;
             }
             
         }
@@ -268,7 +294,7 @@ export default function BlurbInput() {
             // check for length of the textarea post
             let count = 0;
             for (let i = 0; i < TextAreaVal.length; i++) {
-                if(TextAreaVal.charAt(i) != ''){
+                if(TextAreaVal.charAt(i) !== ''){
                     count = count + 1;
                 }
             }
@@ -277,6 +303,7 @@ export default function BlurbInput() {
             // we have a short post, call genius with whole string post
             if (count <= 50){
                 handleGeniusCall(TextAreaVal);
+               
                 // exit
                 return;
             }
@@ -371,7 +398,7 @@ export default function BlurbInput() {
         <Container className="mt-5">
             <Row>
                 <Col>
-                <SongCardContainer songPool={SongPoolRes} handleSongSelect={handleSongSelect}/>
+                <SongCardContainer songPool={SongPoolRes} handleSongSelect={handleSongSelect} />
                 </Col>
             </Row>
             <Row className="mt-2">

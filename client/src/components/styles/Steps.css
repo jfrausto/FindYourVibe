@@ -1,8 +1,113 @@
 * {
   box-sizing: border-box;
   margin: 0;
-  padding: 0;
+  padding: none;
 }
+
+/* OVERRIDE AUTOMATIC STYLING FROM BOOTSTRAP */
+/* div.w-100 {
+  max-width: none !important;
+  width: none !important;
+  padding-right: none !important;
+  padding-left: none !important;
+  margin-left: none !important;
+  margin-right: none !important;
+  justify-content: none !important;
+} */
+
+/* OVERRIDE AUTOMATIC STYLING FROM BOOTSTRAP */
+/* div.d-flex {
+  max-width: none !important;
+  width: none !important;
+  padding-right: none !important;
+  padding-left: none !important;
+  margin-left: none !important;
+  margin-right: none !important;
+  justify-content: none !important;
+} */
+/* OVERRIDE AUTOMATIC STYLING FROM BOOTSTRAP */
+/* div.align-items-center {
+  max-width: none !important;
+  width: none !important;
+  padding-right: none !important;
+  padding-left: none !important;
+  margin-left: none !important;
+  margin-right: none !important;
+  justify-content: none !important;
+} */
+
+/* OVERRIDE AUTOMATIC STYLING FROM BOOTSTRAP */
+/* div.justify-content-center {
+  max-width: none !important;
+  width: none !important;
+  padding-right: none !important;
+  padding-left: none !important;
+  margin-left: none !important;
+  margin-right: none !important;
+  justify-content: none !important;
+} */
+
+/* OVERRIDE AUTOMATIC STYLING FROM BOOTSTRAP */
+/* .container,
+.container-fluid,
+.container-lg,
+.container-md,
+.container-sm,
+.container-xs {
+  max-width: none !important;
+  width: none !important;
+  padding-right: none !important;
+  padding-left: none !important;
+  margin-left: none !important;
+  margin-right: none !important;
+  justify-content: none !important;
+} */
+
+/* OVERRIDE AUTOMATIC STYLING FROM BOOTSTRAP */
+/* .d-flex.align-items-center.justify-content-center.container {
+  max-width: none !important;
+  width: none !important;
+  padding-right: none !important;
+  padding-left: none !important;
+  margin-left: none !important;
+  margin-right: none !important;
+  justify-content: none !important;
+  padding: none;
+} */
+
+/* OVERRIDE AUTOMATIC STYLING FROM BOOTSTRAP */
+/* .d-flex.align-items-center.justify-content-center.container::after {
+  max-width: none !important;
+  width: none !important;
+  padding-right: none !important;
+  padding-left: none !important;
+  margin-left: none !important;
+  margin-right: none !important;
+  justify-content: none !important;
+  padding: none !important;
+} */
+
+/* OVERRIDE AUTOMATIC STYLING FROM BOOTSTRAP */
+/* .d-flex.align-items-center.justify-content-center.container::before {
+  max-width: none !important;
+  width: none !important;
+  padding-right: none !important;
+  padding-left: none !important;
+  margin-left: none !important;
+  margin-right: none !important;
+  justify-content: none !important;
+  padding: none !important;
+} */
+
+/* OVERRIDE AUTOMATIC STYLING FROM BOOTSTRAP */
+/* .container {
+  line-height: 1.6;
+  color: black;
+  padding-left: 0px;
+  padding-right: 0px;
+  margin-right: 0px;
+  margin-left: 0px;
+} */
 
 /* #prev,
 #next {
@@ -13,23 +118,16 @@
   box-shadow: -2px 2px 0 white;
 } */
 
-.stepsContainer {
-  background-color: white;
-  line-height: 1.6;
-  color: black;
-}
-
 .imgCarousel {
   position: relative;
   overflow: hidden;
   height: 100vh;
   width: 100vw;
+  max-width: 100%;
 }
 
 .steps {
   position: absolute;
-  top: 0;
-  left: 0;
   width: 100%;
   height: 100%;
   opacity: 0;
@@ -68,18 +166,29 @@
   transition: all 0.7s ease-in-out 0.3s;
 }
 
+.buttons {
+  position: relative;
+}
+
 div#next {
   position: absolute;
-  top: 130%;
+  top: -500px;
   right: 15px;
   color: rgb(255, 255, 255, 0.75);
   border-radius: 50%;
   padding: 5px;
 }
 
+/* position: absolute;
+right: 15px;
+top: 460px;
+color: rgb(255, 255, 255, 0.75);
+border-radius: 50%;
+padding: 3px; */
+
 div#prev {
   position: absolute;
-  top: 130%;
+  top: -500px;
   left: 15px;
   color: rgb(255, 255, 255, 0.75);
   border-radius: 50%;
