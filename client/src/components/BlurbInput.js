@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import{ useHistory } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
+import Button from 'react-bootstrap/Button';
 import TextareaCounter from 'react-textarea-counter';
 import './styles/BlurbInput.css';
 import Row from 'react-bootstrap/Row';
@@ -356,6 +357,10 @@ export default function BlurbInput() {
                 </Col>
             </Row>
             <Row className="mt-2">
+                    <Col xs={12} md={{span: 8, offset: 2}}>
+                        <TextareaCounter onChange={(e) => setTextAreaVal(e.target.value)} placeholder="Have a song in mind?" countLimit={100} rows={1} />
+                        <Button >Search</Button>
+                    </Col>
                     <Col xs={12} md={{span: 8, offset: 2}}>
                         <TextareaCounter onChange={(e) => setTextAreaVal(e.target.value)} placeholder="What's on your mind?" countLimit={140} rows={3} />
                     </Col>
