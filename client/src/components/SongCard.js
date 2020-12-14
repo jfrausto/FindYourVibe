@@ -22,9 +22,9 @@ export default function SongCard({songElement, handleSongSelect}) {
                             // maybe grab the album and album art
                         })}>
                             <img src={songElement.songObj.thumbnail} alt="albumThumbnail" height="100px" width="100px"/>   
-                            <h4 className="songTitle">
+                            <h5 className="songTitle">
                                 {songElement.songObj.title} - {songElement.songObj.artist.name}
-                            </h4>
+                            </h5>
                         </Accordion.Toggle>
                         <Accordion.Collapse eventKey="0">
                             <Card.Body> 

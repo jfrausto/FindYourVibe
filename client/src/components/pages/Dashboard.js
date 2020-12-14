@@ -5,6 +5,8 @@ import BlurbInput from "../BlurbInput";
 import Container from "react-bootstrap/Container";
 import DashboardFeed from "../DashboardFeed";
 import socket from "../../utils/socketTest";
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 export default function Dashboard() {
   const [globalPosts, setGlobalPosts] = useState([]);
@@ -37,8 +39,14 @@ export default function Dashboard() {
   return (
     <div>
       <Container>
-        <BlurbInput />
-        <DashboardFeed globalPosts={globalPosts}/>
+        <Row>
+          <Col lg={5} className="global-feed">
+            <DashboardFeed globalPosts={globalPosts}/>
+          </Col>
+          <Col lg={{span: 6, offset:1}}>
+            <BlurbInput />
+          </Col>
+        </Row>
       </Container>
     </div>
   );

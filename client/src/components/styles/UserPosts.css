@@ -2,12 +2,14 @@
   /* background-color: cyan;
   color: brown; */
   text-align: center;
+  color: antiquewhite;
 }
 
 .postFooter {
   /* background-color: white; */
   font-size: 14px;
   text-align: right;
+  color: antiquewhite;
 }
 
 .postDate {
@@ -19,16 +21,21 @@
 .user-name {
   color: gray;
   font-style: italic;
+  margin-bottom: 3px !important;
 }
 
 .postBlurb {
-  text-align: center;
+  text-align: left;
+  color: antiquewhite;
 }
 
 .postSongTitle {
   text-align: center;
+  font-style: oblique;
+  color: antiquewhite;
+  margin-left: 5px !important;
 }
 
 .postDivContainerBackground {
-  background-color: white;
+  background-color: rgb(38, 47, 51);
 }
