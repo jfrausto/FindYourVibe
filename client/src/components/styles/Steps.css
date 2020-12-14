@@ -123,7 +123,7 @@
   overflow: hidden;
   height: 100vh;
   width: 100vw;
-  max-width: 100vw;
+  max-width: 100%;
 }
 
 .steps {
@@ -172,7 +172,7 @@
 
 div#next {
   position: absolute;
-  bottom: 500px;
+  top: -500px;
   right: 15px;
   color: rgb(255, 255, 255, 0.75);
   border-radius: 50%;
@@ -188,7 +188,7 @@ padding: 3px; */
 
 div#prev {
   position: absolute;
-  bottom: 500px;
+  top: -500px;
   left: 15px;
   color: rgb(255, 255, 255, 0.75);
   border-radius: 50%;
