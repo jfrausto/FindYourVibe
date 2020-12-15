@@ -70,8 +70,8 @@ main {
 .content,
 .footer {
   display: flex;
-  align-items: center;
   justify-content: center;
+  margin-left: 6%;
 }
 
 .code,
@@ -113,17 +113,18 @@ main {
   border-color: #fff;
 }
 
-.subtitle,
+/* .subtitle,
 .text,
 .title {
   backface-visibility: hidden;
-}
+} */
 
 .title {
   font-size: 6.4rem;
   font-weight: 400;
   opacity: 0;
   animation: charge 0.5s forwards;
+  text-align: left;
 }
 
 .text {
@@ -134,6 +135,7 @@ main {
   color: rgba(255, 255, 255);
   opacity: 0;
   animation: charge 0.5s 0.3s forwards;
+  text-align: left;
 }
 
 .wave {
