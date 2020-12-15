@@ -113,11 +113,11 @@ main {
   border-color: #fff;
 }
 
-/* .subtitle,
+.subtitle,
 .text,
 .title {
   backface-visibility: hidden;
-} */
+}
 
 .title {
   font-size: 6.4rem;
