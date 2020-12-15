@@ -3,11 +3,6 @@ textarea + div {
   color: aliceblue !important;
 }
 
-.match {
-  color: red !important;
-  background-color: yellow;
-}
-
 .container {
   text-align: center;
 }

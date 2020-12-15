@@ -13,9 +13,6 @@ export default function Profile() {
     <div>     
       <Container>
       <ProfileDetails />
-      <Link to="/collection" >
-        <Button variant="danger" className="my-3">My Collections</Button>
-      </Link>
         <UserPosts />
       </Container>
     </div>

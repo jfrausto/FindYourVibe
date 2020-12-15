@@ -11,13 +11,13 @@ const Moods = [
   "Popping Off 🖕",
   "On One 🤪",
   "Dead 💀",
-  "Chillin' 🥶",
+  "Chillin' 🧊",
   "Meh 😑",
   "Feelin' Good 😎",
   "Flirty 🙊",
   "Hating 💩",
   "Hopeful 💭",
-  "Lit ✈"
+  "Lit 🔥"
 ];
 
 export default Moods;
