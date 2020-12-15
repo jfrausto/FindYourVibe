@@ -9,6 +9,9 @@ export default {
     getAllUsers: function() {
         return axios.get("/api/users");
     },
+    getCurrentUser: function(email) {
+        return axios.get("/api/users/" + email)
+    },
     // getNouns takes in a string
     getNouns: function(words) {
         return axios.get("/api/nouns/" + words);
@@ -30,5 +33,5 @@ export default {
     },
     getLyrics: function(cardID) {
         return axios.get("/api/lyrics/" + cardID);
-    }   
+    }
 };
