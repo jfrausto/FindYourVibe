@@ -81,7 +81,7 @@ export default function NavMenu() {
       >
         <Navbar.Brand className="btn--outline" as={Link} to="/">
           <i className="fab fa-forumbee" />
-          <span className="logo">ViBee</span>
+          <span className="logo">Vibee</span>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
