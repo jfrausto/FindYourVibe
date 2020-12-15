@@ -7,6 +7,14 @@ textarea + div {
   color: antiquewhite;
   background-color: #262f33;
   font-weight: 900;
+  transition: ease-out 0.125s;
+}
+
+.match:hover {
+  transition: ease-in 0.125s;
+  color: yellow;
+  background-color: black;
+  font-size: 18px;
 }
 
 .container {
