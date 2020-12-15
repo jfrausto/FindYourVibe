@@ -13,7 +13,7 @@ export default function Profile() {
     <div>     
       <Container>
       <ProfileDetails />
-        <UserPosts />
+      <UserPosts />
       </Container>
     </div>
   );

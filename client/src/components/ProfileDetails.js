@@ -2,6 +2,7 @@ import React from 'react';
 import { Container } from 'react-bootstrap';
 import { useAuth } from "../contexts/AuthContext";
 import API from '../utils/API';
+import "./styles/ProfileDetails.css";
 
 
 export default function ProfileDetails() {
@@ -15,7 +16,7 @@ export default function ProfileDetails() {
             return <h1>{currentUser.email}</h1>
         })
     }
-    
+
     return (
         <>
             <Container className="userProfileContainer">

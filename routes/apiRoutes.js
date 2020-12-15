@@ -101,6 +101,16 @@ router.get("/users", (req, res) => {
     .catch((err) => res.status(422).json(err));
 });
 
+// FIND SPECIFIC USER WITH EMAIL
+router.get("/users/:userEmail", (req, res) => {
+  console.log("FINDING ONE USER");
+  const { userEmail } = req.params;
+  db.User.findOne({email: userEmail}).then((data) => {
+    console.log("FOUND ONE USER")
+    res.json(data);
+  }).catch((err) => console.log(err))
+});
+
 // get all this particular users posts
 router.get("/blurbs/:userEmail", (req, res) => {
   console.log("................................finding SPECIFIC USER (l:141)...");
