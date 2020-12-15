@@ -15,15 +15,13 @@ export default function SongCardContainer({songPool, handleSongSelect}) {
         <Container>
             {
             songPool.map(song => {
-                return (
-                    <Row key={song.songObj.id} >
-                        <Col xs="12" lg={{span: 10, offset: 1}} className="songCardCol my-auto">
-                            <SongCard songElement={song} handleSongSelect={handleSongSelect}/>   
-                        </Col>
-                    </Row>
-                )
-            })
-            }
+                return <Row key={song.songObj.id} >
+                            <Col xs="12" lg={{span: 10, offset: 1}} className="songCardCol my-auto">
+                                <SongCard songElement={song} handleSongSelect={handleSongSelect} />   
+                            </Col>
+                        </Row>
+            })  
+            } 
         </Container>  
     )
 }
