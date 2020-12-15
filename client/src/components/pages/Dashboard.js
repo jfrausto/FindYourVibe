@@ -43,9 +43,9 @@ export default function Dashboard() {
           {/* feed column */}
           <Col xs={{span: 12, offset: 0, order: 2}} 
               sm={{span: 10, offset: 1, order: 2}} 
-              md={{span: 6, offset:0, order: 1}}  
-              lg={{span: 6, offset:0, order: 1}} 
-              xl={{span: 5, offset:1, order: 1}} className="global-feed mt-2 mt-sm-2 mt-md-3">
+              md={{span: 6, offset: 0, order: 1}}  
+              lg={{span: 6, offset: 0, order: 1}} 
+              xl={{span: 5, offset: 1, order: 1}} className="global-feed mt-2 mt-sm-2 mt-md-3">
             <DashboardFeed  
               globalPosts={globalPosts}
             />

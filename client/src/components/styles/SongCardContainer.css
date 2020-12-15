@@ -1,15 +1,25 @@
 .songCardCol {
   color: rgb(10, 14, 41);
-  text-align: center;
-  background-color: #fcb804;
+  /* text-align: center; */
+  background-color: #ffc107;
   padding: 10px;
-  border-top: 1px solid #fcb804;
+  border-top: 1px solid #ffc107;
 }
 
 .songLyrics {
   max-height: 200px;
   overflow-y: auto;
   padding: 10px;
+  font-size: 16px;
+}
+
+.album-thumbnail {
+  float: left;
+}
+
+.songTitle {
+  margin-top: 1.4rem;
+  font-size: 20px;
 }
 
 .cardBorder {

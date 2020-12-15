@@ -301,7 +301,7 @@ export default function BlurbInput() {
             console.log(`the numbers of characters is ${count}!`);
 
             // we have a short post, call genius with whole string post
-            if (count <= 50){
+            if (count <= 40){
                 handleGeniusCall(TextAreaVal);
                
                 // exit
@@ -403,7 +403,7 @@ export default function BlurbInput() {
             </Row>
             <Row className="mt-1">
                     <Col xs={12} md={{span: 12, offset: 0}}>
-                        <TextareaCounter onChange={(e) => setTextAreaVal(e.target.value)} placeholder="What's on your mind?" countLimit={140} rows={3} />
+                        <TextareaCounter onChange={(e) => setTextAreaVal(e.target.value)} placeholder="What's on your mind? Vibe check?" countLimit={140} rows={3} />
                     </Col>
             </Row>
             <Row>

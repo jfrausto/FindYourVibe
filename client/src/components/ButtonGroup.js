@@ -12,7 +12,7 @@ export default function ButtonGroup({handleButtonClick, isThinking}) {
         disabled={isThinking} 
         className="p-2 px-md-3" 
         size="sm" 
-        variant="dark">
+        variant="warning">
           {isThinking ? <div><Spinner
                           as="span"
                           animation="grow"
@@ -26,7 +26,7 @@ export default function ButtonGroup({handleButtonClick, isThinking}) {
           <Button onClick={handleButtonClick} 
           className="py-2 px-3 px-md-4"
           size="sm" 
-          variant="dark">Post</Button>
+          variant="warning">Post</Button>
       </Col>
     </>
   )

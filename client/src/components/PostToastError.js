@@ -13,9 +13,10 @@ export default function PostToastError({ showToast }) {
 
   return (
     <>
-      <Col xs={12} sm={{span: 8, offset: 2}} md={{span: 6, offset: 3}} lg={{span: 4, offset: 4}}>
-          <Toast animation={true} onClose={() => setShow(false)} show={show} delay={1500} autohide>
-            <Toast.Body>select a song and/or write your thoughts!</Toast.Body>
+      <Col xs={12}
+      >
+          <Toast animation={true} className="mx-auto" onClose={() => setShow(false)} show={show} delay={1500} autohide>
+            <Toast.Body className="alert-msg">select a song and/or write your thoughts!</Toast.Body>
           </Toast>
       </Col>
     </>

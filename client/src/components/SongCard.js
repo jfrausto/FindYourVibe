@@ -2,6 +2,9 @@ import React from 'react';
 import Accordion from "react-bootstrap/Accordion";
 import Card from "react-bootstrap/Card";
 import Spinner from 'react-bootstrap/Spinner';
+import "./styles/SongCardContainer.css";
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 //song element takes in prop from songCardContainer
 //BlurbInput => SongCardContainer => SongCard
 //songElement is one of three songs from 
@@ -19,10 +22,16 @@ export default function SongCard({songElement, handleSongSelect}) {
                             wholeObj: songElement.songObj
                             // maybe grab the album and album art
                         })}>
-                            <img src={songElement.songObj.thumbnail} alt="albumThumbnail" height="100px" width="100px"/>   
-                            <h5 className="songTitle">
-                                {songElement.songObj.title} - {songElement.songObj.artist.name}
-                            </h5>
+                            
+                                
+                                    <img src={songElement.songObj.thumbnail} className="album-thumbnail" alt="albumThumbnail" height="100px" width="100px"/>   
+                                
+                                
+                                    <p className="songTitle">
+                                        {songElement.songObj.title} - {songElement.songObj.artist.name}
+                                    </p>
+                                
+                            
                         </Accordion.Toggle>
                         <Accordion.Collapse eventKey="0">
                             <Card.Body> 
