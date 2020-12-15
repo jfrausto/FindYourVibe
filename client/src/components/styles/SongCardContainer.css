@@ -24,6 +24,7 @@
 
 .cardBorder {
   border: 1px solid #8693ab;
+  cursor: pointer;
 }
 
 .card {
@@ -33,4 +34,8 @@
 .card:hover {
   transform: scaleX(1.025) scaleY(1.025);
   border: 1px solid #8693ab;
+}
+
+.songTitle {
+  cursor: pointer;
 }

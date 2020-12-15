@@ -1,6 +1,12 @@
 /* hex background
     we can obvi change this later */
 /* https://projects.verou.me/css3patterns/#honeycomb */
+
+* {
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+
 body {
   background: url("https://www.solidbackgrounds.com/images/3600x3600/3600x3600-black-solid-color-background.jpg");
   background-size: 40px 60px;
