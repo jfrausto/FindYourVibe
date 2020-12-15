@@ -22,7 +22,7 @@ export default function DashboardFeed({globalPosts}) {
  }
 
   return (
-    <div className="mt-2">
+    <div className="mt-3">
       {
         allGlobalPosts.map( blurb => {
           return <Container className="postDivContainerBackground rounded mb-2 p-2"  key={blurb._id}>

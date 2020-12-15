@@ -16,6 +16,10 @@ textarea + div {
   background-color: lightgreen;
 }
 
+#dropdown-item-button {
+  padding: 0.55rem;
+}
+
 .spinners {
   justify-content: center;
 }
