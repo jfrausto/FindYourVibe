@@ -124,7 +124,7 @@ export default function NavMenu() {
                 as={Button}
                 onClick={handleLoginButton}
               >
-                Log In
+                Log In <span> </span>
                 <svg
                   width="1em"
                   height="1em"
@@ -150,7 +150,7 @@ export default function NavMenu() {
                 as={Button}
                 onClick={handleLogoutButton}
               >
-                Log Out
+                Log Out<span> </span>
                 <svg
                   width="1em"
                   height="1em"
