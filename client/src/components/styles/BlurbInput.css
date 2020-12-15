@@ -12,9 +12,13 @@ textarea + div {
 
 .match:hover {
   transition: ease-in 0.125s;
-  color: yellow;
+  color: #ffc107;
   background-color: black;
-  font-size: 18px;
+  font-size: 17px;
+}
+
+.songLyrics {
+  cursor: text;
 }
 
 .container {
