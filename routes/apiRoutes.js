@@ -31,7 +31,12 @@ const getSongPool = async (stringifiedNounsQuery) => {
   firstSong = searches[0];
   secondSong = searches[1];
   thirdSong = searches[2];
-  const songPool = [firstSong, secondSong, thirdSong];
+  let songPool;
+  if( searches.length < 3 ){
+    songPool = [...searches];
+  } else {
+    songPool = [firstSong, secondSong, thirdSong];
+  }
   return songPool;
 };
 
