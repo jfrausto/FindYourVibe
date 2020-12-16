@@ -10,10 +10,13 @@ export default function ProfileDetails() {
     const [loggedUser, setLoggedUser] = useState([]);
 
     function renderUserProfile() {
-        if (loggedUser) {
+        if (currentUser) {
             return (
                 <>
-                    <h1>@{loggedUser.userName}</h1>
+                    <img src="https://i.imgur.com/2MNpqfV.png" alt="Cartoon Goose Profile Photo" className="profilePic"/>
+                    <h1 id="displayName">{loggedUser.firstName} {loggedUser.lastName}</h1>
+                    <h2 id="username">@{loggedUser.userName}</h2>
+                    <p id="bio">I can't wait to update my bio with something really interesting to say!</p>
                 </>
             )
         }
