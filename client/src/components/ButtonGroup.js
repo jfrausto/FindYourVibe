@@ -19,7 +19,7 @@ export default function ButtonGroup({handleButtonClick, isThinking}) {
                           size="sm"
                           role="status"
                           aria-hidden="true"
-                          /> thinking...</div> : "Analyze"}
+                          /> Thinking...</div> : "Analyze"}
         </Button>
       </Col>
       <Col xs={{span: 4}}>
