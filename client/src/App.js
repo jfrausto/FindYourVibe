@@ -8,7 +8,6 @@ import Homepage from "./components/pages/Homepage";
 // import socket from "./utils/socketTest";
 import About from "./components/pages/About";
 import Collection from "./components/pages/Collection";
-import Navbar from "./components/Navbar";
 import Dashboard from "./components/pages/Dashboard";
 import Profile from "./components/pages/Profile";
 import Signup from "./components/Signup";
@@ -29,7 +28,6 @@ function App() {
       {/* Navigation  or other stuff can go here */}
         <Router>
           <AuthProvider>
-          <Navbar />
             <Switch>
               <Route exact path="/" component={Homepage} />
               <PrivateRoute path="/profile" component={Profile} />

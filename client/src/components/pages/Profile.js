@@ -1,6 +1,6 @@
 import React from "react";
-import {Link} from "react-router-dom";
 import "../../App.css";
+import Navbar from "../Navbar";
 import Container from "react-bootstrap/Container";
 import UserPosts from "../UserPosts";
 import { Row, Col } from "react-bootstrap";
