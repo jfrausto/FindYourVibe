@@ -8,8 +8,8 @@ import "./styles/UserPosts.css";
 // VERY SIMILAR TO USERPOSTS.JS
 // with a username display field in this one though
 export default function DashboardFeed({globalPosts}) {
-
   const [allGlobalPosts, setAllGlobalPosts] = useState([]);
+  
   useEffect(() => {
     
     setAllGlobalPosts(globalPosts);

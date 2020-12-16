@@ -9,10 +9,23 @@ export default function ProfileDetails() {
     const { currentUser } = useAuth()
     const [loggedUser, setLoggedUser] = useState([]);
 
+    function renderUserProfile() {
+        if (loggedUser) {
+            return (
+                <>
+                    <h1>@{loggedUser.userName}</h1>
+                </>
+            )
+        }
+    }
+
     useEffect(() => {
         if (currentUser) {
             API.getCurrentUser(currentUser.email).then(res => {
-                console.log(res)
+                setLoggedUser(res.data)
+                console.log(res.data)
+            }).catch(err => {
+                console.log(err)
             })
         }
     }, [currentUser]);
@@ -21,8 +34,8 @@ export default function ProfileDetails() {
     return (
         <>
             <Container className="userProfileContainer">
-                { (currentUser) ? <h1>{currentUser.email}</h1> : <h1> No User Logged In</h1> }
-                {/* {(currentUser != null) ? renderUserName() : <h1> No User Logged In</h1> } */}
+                {/* { (loggedUser) ? <h1>@{loggedUser.userName}</h1> : <h1> No User Logged In</h1> } */}
+                {(currentUser) ? renderUserProfile() : <h1>No User Logged In</h1>}
             </Container>
         </>
     )
