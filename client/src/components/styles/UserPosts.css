@@ -35,6 +35,7 @@
   font-style: oblique;
   color: antiquewhite;
   margin-left: 5px !important;
+  font-size: 15px;
 }
 
 .postDivContainerBackground {
@@ -49,6 +50,8 @@
 
 .postVibeEmoji {
   margin-bottom: 0px;
+  color: gray;
+  font-size: 15px;
 }
 
 /* .post-vibe-column,

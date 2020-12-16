@@ -39,44 +39,7 @@ const handleDateFormat = (date) => {
      <div className="mt-2">
      {
         //!! .reverse() returns a reference of userBlurbsArray 
-      UserBlurbs.reverse().map(blurb => {
-      //  return <Container className="postDivContainerBackground mb-2 p-2"  key={blurb._id}>
-      //  <Row>
-      //  <Col className="postColColor my-auto" xs={2} lg={{span: 2, offset: 3}} >
-      //  <img alt="albumThumbnail" className="postSongImage" 
-      //  //!!Need to change with the thumbnail from the users blurb
-      //  src={blurb.thumbnail} 
-      //  height="50px" 
-      //  width="50px"/>
-      //  </Col>
-      //  <Col xs={10} lg={4} className="postColColor my-auto" >
-      //     <span className="postSongTitle">
-      //     {blurb.chosenSongArtist}
-      //     </span>
-      //  </Col>
-    
-      //  </Row>
-      //  <Row >
-      //   <Col xs={12} lg={{span: 6, offset: 3}} className="postColColor my-auto" >
-      //    <p className="postBlurb">
-      //    {blurb.body}
-      //    </p>
-      //   </Col>
-      //  </Row>
-      //  <Row className="postFooter" >
-      //  <Col xs={8} lg={{span:3, offset: 3 }} className="postColColor my-auto">
-      //     <p className="postDate">
-      //      {handleDateFormat(blurb.time)}
-      //     </p>
-      //  </Col>
-      //   <Col xs={4} lg={3} className="postColColor my-auto">
-      //   <p>Vibe: <span className="postVibeEmoji">
-      //    {blurb.vibe}
-      //   </span></p>
-      //   </Col>
-      //  </Row>
-      //   </Container>  
-
+      UserBlurbs.reverse().map(blurb => { 
       return <Container className="postDivContainerBackground rounded mb-2 p-2"  key={blurb._id}>
           <Row>
             {/* left column of post */}
@@ -115,7 +78,7 @@ const handleDateFormat = (date) => {
                     {handleDateFormat(blurb.time)}
                   </p>
                 </Col>
-                <Col className="mr-2 mt-auto" post-vibe-column >
+                <Col className="mr-2 mt-auto">
                   <p className="postVibeEmoji">Vibe: <span>
                     {blurb.vibe}
                   </span></p>
