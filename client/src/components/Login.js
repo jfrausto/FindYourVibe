@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react";
 import { Form, Card, Button, Alert } from "react-bootstrap";
 import { useAuth } from "../contexts/AuthContext";
 import { Link, useHistory } from "react-router-dom";
+import "./styles/SignupLogin.css";
 
 export default function Login() {
   const emailRef = useRef();
@@ -29,6 +30,9 @@ export default function Login() {
     <>
       <Card>
         <Card.Body>
+          <Link to="/">
+            <i className ="far fa-times-circle" />
+          </Link>
           <h2 className="text-center mb-4">Log In</h2>
           {error && <Alert variant="danger">{error}</Alert>}
           <Form onSubmit={handleSubmit}>
@@ -40,14 +44,14 @@ export default function Login() {
               <Form.Label>Password</Form.Label>
               <Form.Control type="password" ref={passwordRef} required />
             </Form.Group>
-            <Button disabled={loading} className="w-100" type="submit">
+            <Button disabled={loading} className="w-100 submitButton" type="submit">
               Log In
             </Button>
           </Form>
         </Card.Body>
       </Card>
-      <div className="w-100 text-center mt-2">
-        Need an account? <Link to="/signup">Sign Up</Link>
+      <div className="w-100 text-center mt-2 switchLabel">
+        Need an account? <Link className="switchLink" to="/signup">Sign Up</Link>
       </div>
     </>
   );

@@ -10,7 +10,8 @@ import '../styles/LandingSplash.css';
 
 export default function Profile() {
   return (
-    <div>     
+    <div>
+      <Navbar />     
       <Container fluid>
         <Row>
           <Col xs={{span: 12, offset: 0}}

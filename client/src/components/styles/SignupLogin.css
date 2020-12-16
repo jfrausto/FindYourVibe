@@ -1,0 +1,25 @@
+.fa-times-circle {
+    font-size: 1.8rem;
+    position: absolute;
+    right: 15px;
+    top: 10px;
+    color: #000000;
+}
+
+.submitButton {
+    background-color: #ffc107;
+    border: none;
+    color: #000000;
+}
+
+.submitButton:hover {
+    background-color: #dba400;
+}
+
+.switchLink {
+    color: #ffc107 !important;
+}
+
+.switchLabel {
+    color: #fff !important;
+}
