@@ -39,3 +39,27 @@
 .songTitle {
   cursor: pointer;
 }
+
+/* width */
+::-webkit-scrollbar {
+  width: 1px;
+  height: 0px;
+  overflow: auto;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px #262f33;
+  border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #ffc107;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #bb8c00;
+}
