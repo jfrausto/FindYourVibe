@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Container } from 'react-bootstrap';
 import { useAuth } from "../contexts/AuthContext";
 import API from '../utils/API';
@@ -7,15 +7,16 @@ import "./styles/ProfileDetails.css";
 
 export default function ProfileDetails() {
     const { currentUser } = useAuth()
+    const [loggedUser, setLoggedUser] = useState([]);
 
-    async function renderUserName() {
-        await API.getCurrentUser(currentUser.email).then(res => {
-            console.log("THE USER IS HERE")
-            console.log(res)
-            console.log(currentUser)
-            return <h1>{currentUser.email}</h1>
-        })
-    }
+    useEffect(() => {
+        if (currentUser) {
+            API.getCurrentUser(currentUser.email).then(res => {
+                console.log(res)
+            })
+        }
+    }, [currentUser]);
+
 
     return (
         <>
