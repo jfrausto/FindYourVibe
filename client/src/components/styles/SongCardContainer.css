@@ -11,6 +11,29 @@
   overflow-y: auto;
   padding: 10px;
   font-size: 16px;
+  background-color: #00a676;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 1px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #ffc107;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #b30000;
 }
 
 .album-thumbnail {
@@ -25,6 +48,16 @@
 .cardBorder {
   border: 1px solid #8693ab;
   cursor: pointer;
+  background-color: #ffc107 !important;
+}
+
+.cardBody {
+  background-color: #262f33;
+  color: #262f33;
+}
+
+.cardBody h4 {
+  color: aliceblue;
 }
 
 .card {
@@ -38,4 +71,12 @@
 
 .songTitle {
   cursor: pointer;
+}
+
+.cardBorder {
+  margin: 7%;
+}
+
+#collectionsJumbotron {
+  background-color: #262f33 !important;
 }

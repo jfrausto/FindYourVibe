@@ -48,13 +48,12 @@ export default function Collection() {
   return (
     <>
          <Container className="mt-3" fluid>
-                <Jumbotron fluid>
+                <Jumbotron id="collectionsJumbotron" fluid>
                     <h1 className="text-center">Collections Page</h1>
-                    <p className="mt-4">~~~m y   v i b e s~~~</p>
                 </Jumbotron> 
             </Container>
         
-          <Container className="mt-2">
+          <Container className="mt-2" fluid>
            <Row>
           {
            UserCollection.map(collection => {
@@ -68,7 +67,7 @@ export default function Collection() {
                     </h4>
                 </Accordion.Toggle>
                 <Accordion.Collapse eventKey="0">
-                <Card.Body> 
+                <Card.Body className="cardBody"> 
                  <h4>
                   Lyrics
                  </h4>
