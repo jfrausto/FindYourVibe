@@ -1,0 +1,62 @@
+.postHeader {
+  /* background-color: cyan;
+  color: brown; */
+  text-align: center;
+  color: antiquewhite;
+}
+
+.postFooter {
+  /* background-color: white; */
+  font-size: 14px;
+  text-align: right;
+  color: antiquewhite;
+}
+
+.postDate {
+  text-align: right;
+  color: gray;
+  font-size: 14px;
+}
+
+.user-name {
+  color: gray;
+  font-style: italic;
+  margin-bottom: 3px !important;
+  text-align: left;
+}
+
+.postBlurb {
+  text-align: left;
+  color: antiquewhite;
+  font-size: 18px;
+  margin-bottom: 0%;
+}
+.postVibeEmoji {
+  color: gray;
+  font-size: 15px;
+}
+
+.postSongTitle {
+  text-align: left;
+  font-style: oblique;
+  color: antiquewhite;
+  /* margin-left: 5px !important; */
+  font-size: 15px;
+}
+
+.postDivContainerBackground {
+  background-color: rgb(38, 47, 51);
+  /* display: flex !important; */
+  flex-direction: row !important;
+  justify-content: space-around !important;
+}
+
+.blurb-row {
+  margin-bottom: 20%;
+}
+.time-vibe-row {
+  /* margin-top: 15%; */
+  /* display: grid; */
+  /* vertical-align: bottom; */
+  margin-top: 12%;
+}
