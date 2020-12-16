@@ -70,8 +70,10 @@ main {
 .content,
 .footer {
   display: flex;
-  justify-content: center;
-  margin-left: 6%;
+  justify-content: left;
+  margin: 6%;
+  margin-bottom: 0%;
+  margin-left: 3%;
 }
 
 .code,
@@ -98,7 +100,7 @@ main {
   width: 40%;
   padding: 12px 18px;
   font-size: 16px;
-  margin: 20px auto 0 auto;
+  margin: 10px auto 0 3%;
   cursor: pointer;
   color: #fff;
   border: 2px solid;
