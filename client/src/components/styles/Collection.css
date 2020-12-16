@@ -1,0 +1,28 @@
+#collectionsJumbotron {
+  background-color: #262f33 !important;
+}
+
+.collectionCards {
+  background-color: #ffc107;
+  margin: 7%;
+}
+
+.collectionCardBody {
+  background-color: #262f33;
+  color: aliceblue;
+}
+
+.collectionCardBody h4 {
+  text-decoration: underline solid #fcc107;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 2px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #ffc107;
+  border-radius: 10px;
+}
