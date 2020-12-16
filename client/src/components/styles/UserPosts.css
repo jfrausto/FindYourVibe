@@ -16,6 +16,7 @@
   text-align: left;
   color: gray;
   font-size: 12px;
+  margin-bottom: 0px;
 }
 
 .user-name {
@@ -30,7 +31,7 @@
 }
 
 .postSongTitle {
-  text-align: center;
+  text-align: left;
   font-style: oblique;
   color: antiquewhite;
   margin-left: 5px !important;
@@ -39,3 +40,19 @@
 .postDivContainerBackground {
   background-color: rgb(38, 47, 51);
 }
+
+.time-vibe-row {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+.postVibeEmoji {
+  margin-bottom: 0px;
+}
+
+/* .post-vibe-column,
+.post-date-column {
+  position: absolute;
+  bottom: 0;
+} */
