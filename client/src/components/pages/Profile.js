@@ -13,7 +13,7 @@ export default function Profile() {
     <div>     
       <Container fluid>
         <Row>
-          <Col xs={{span: 10, offset: 1}}
+          <Col xs={{span: 12, offset: 0}}
           sm={{span: 8, offset: 2}}
           md={{span: 5, offset: 0}}
           lg={{span: 3, offset: 1}}
