@@ -14,16 +14,11 @@ export default function Dashboard() {
   useEffect(() => {
     // getting all users and their posts
     API.getAllGlobalPosts().then((res) => {
-      console.log("...got public posts from DB...!!!");
-      console.log(res.data);
       setGlobalPosts(res.data);
     });
     // add SOCKET event listener upon mounting this component
     socket.on("updating posts", (allData) => {
-      console.log("we got the update over here!!");
-      console.log(allData);
       updateGlobalPosts(allData);
-      // return () => setGlobalPosts([]);
     });
 
       return () => {
@@ -32,6 +27,7 @@ export default function Dashboard() {
     
   }, []);
 
+  // external function helps updating State asynchronocity
   const updateGlobalPosts = (newData) => {
     setGlobalPosts(newData);
   }

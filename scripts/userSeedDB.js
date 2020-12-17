@@ -10,7 +10,6 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/viBee", {
   useCreateIndex: true,
 });
 
-// const newTime = new Date.now;
 const userSeed = [
     {
         firstName: "John",
@@ -218,6 +217,7 @@ const GlobalPostSeed = [
 
 ];
 
+// clear and populate models
 db.User.deleteMany({})
   .then(() => db.User.collection.insertMany(userSeed))
   .then(data => {

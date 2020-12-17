@@ -1,7 +1,3 @@
-/* hex background
-    we can obvi change this later */
-/* https://projects.verou.me/css3patterns/#honeycomb */
-
 * {
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
@@ -12,6 +8,7 @@ body {
   background-size: 40px 60px;
 }
 
+/* this is being used in Dashboard.js */
 .global-feed {
   max-height: 90vh;
   overflow-y: scroll;
