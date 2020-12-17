@@ -16,6 +16,10 @@
     background-color: #dba400;
 }
 
+.submitButton:active, .submitButton:focus {
+    background-color: #dba400 !important;
+}
+
 .switchLink {
     color: #ffc107 !important;
 }
