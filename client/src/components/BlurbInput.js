@@ -60,13 +60,8 @@ export default function BlurbInput() {
         })      
         return formattedWords.join(" ");
     };
-    // useEffect(() => {
-    //     console.log("i selected a song");
-    //     console.log(selectedSong);
-    //     // if (selectedSong.is)
-    // }, [selectedSong]);
 
-    // should always take in an array of words ([geniusQueryArray])
+    // should always take in an array of words ([geniusQueryArray]) or String
     // whether they be from Wordnik API
     // or REGEX FUNCTIONS, OR a combination of both
     const handleGeniusCall = async (geniusQueryArray) => {
@@ -77,12 +72,9 @@ export default function BlurbInput() {
         } catch (err) {
             throw err;
         }
-        console.log("...inside handleGeniusCall front-end...");
-        // these are the three songs to display now
-        // ? we could add song shuffling to get 3 new songs
-        // ? to keep it interesting everytime they hit analyze
+        // genius error handling for the case of:
+        // searching with an empty string, or null, or empty array
         if(typeof geniusRes.data === "string"){
-            console.log("Please provide words for genius");
             setIsThinking(false);
             return;
         }
@@ -98,7 +90,6 @@ export default function BlurbInput() {
             );
             
         }
-        console.log(addCountPool);
         // update song pool state
         setSongPoolRes(addCountPool);
         setIsThinking(false);
@@ -162,8 +153,6 @@ export default function BlurbInput() {
     // handles state of the selected song
     const handleSongSelect = async (e, choice) => {
         const cardHead = e.target;
-        console.log(cardHead.id);
-        console.log(choice);
         // cardHead grabs the clicked card
         // allSongCards grabs all cards
         const allSongCards = document.querySelectorAll(".card-selector, .songTitle");
@@ -171,12 +160,11 @@ export default function BlurbInput() {
         allSongCards.forEach( (songCard) =>  
             songCard.classList.remove("green-bg")
         )
-        // here SET the green-bg on the selected card
+        // here SET the green-bg on the selected card or BOTH parent and child
         if( cardHead.parentElement.classList[0] === "card-selector"){
             cardHead.parentElement.classList.add("green-bg");
         }
         cardHead.classList.add("green-bg");
-        console.log(choice);
 
         // ! CHECK BEFORE FIRING API CALL
         let shouldPrevent = lyricSearchPrevent(cardHead, choice);
@@ -187,71 +175,64 @@ export default function BlurbInput() {
             return;
         }
         let lyricSearchRes;
-        if(cardHead.parentElement.classList[0] === "card-selector" || true){
-            // ! THE JANK; THIS NEEDS TO BE REFACTORED FOR THE IF CASES, COULD BE A LOT CLEANER
-            // ! JANKING AROUND WITH THE ID's OF ELEMENTS
-            // ! THIS WILL PUT A HUGE STRES ON OUR APP
-            if(cardHead.parentElement.classList[0] === "card-selector" ){
-                try {
-                    lyricSearchRes = await API.getLyrics(cardHead.parentElement.id);
-                } catch (error) {
-                    throw error;
-                }
-                console.log("we are back in blurb Input - if ");
-                console.log(lyricSearchRes.data);
-                setSelectedSong({ 
-                    songID: choice.songID,
-                    songArtistAlbum: `${choice.title} - ${choice.artist}`,
-                    lyrics: lyricSearchRes.data,
-                    albumThumbnail: choice.wholeObj.thumbnail
-                });
-                let integerStringId = parseInt(cardHead.parentElement.id);
-                console.log(integerStringId);
-                integerStringId = integerStringId + 3;
-                let pTag = document.getElementById(`${integerStringId}`);
-                let spinnerId = integerStringId + 3;
-                let spinnerElem = document.getElementById(`${spinnerId}`);
-                spinnerElem.hidden = true;
-                let coloredWords = searchedWords(lyricSearchRes.data);
-                pTag.innerHTML = coloredWords;
-            } else {
-                try {
-                    lyricSearchRes = await API.getLyrics(cardHead.id);
-                } catch (error) {
-                    throw error;
-                }
-                console.log("we are back in blurb Input - else");
-                console.log(lyricSearchRes);
-                 //!! RIGHT HERE IS WHERE DIV FROM SONGCARD.JS 
-                //!! GETS ASSIGNED ITS VALUE
-                setSelectedSong({ 
-                    songID: choice.songID,
-                    songArtistAlbum: `${choice.title} - ${choice.artist}`,
-                    lyrics: lyricSearchRes.data,
-                    albumThumbnail: choice.wholeObj.thumbnail
-                });
-                let integerStringId = parseInt(cardHead.id);
-                console.log(integerStringId);
-                integerStringId = integerStringId + 3;
-                let pTag = document.getElementById(`${integerStringId}`);
-                let spinnerId = integerStringId + 3;
-                let spinnerElem = document.getElementById(`${spinnerId}`);
-                spinnerElem.hidden = true;
-
-                //!! RIGHT HERE IS WHERE DIV ON SONGCARD.JS 
-                //!! GETS ASSIGNED ITS VALUE
-                let coloredWords = searchedWords(lyricSearchRes.data);
-                pTag.innerHTML = coloredWords;
+        // checking for which element user clicked on
+        if(cardHead.parentElement.classList[0] === "card-selector" ){
+            // this was the child
+            try {
+                lyricSearchRes = await API.getLyrics(cardHead.parentElement.id);
+            } catch (error) {
+                throw error;
             }
-            
+            // update selected song state with lyrics as well
+            setSelectedSong({ 
+                songID: choice.songID,
+                songArtistAlbum: `${choice.title} - ${choice.artist}`,
+                lyrics: lyricSearchRes.data,
+                albumThumbnail: choice.wholeObj.thumbnail
+            });
+            // this section finds which song accordion to populate the lyrics with
+            // uses janky id selection that matches up with their parents 'hardcoded' id's
+            // ! id's come from songCard.js!
+            let integerStringId = parseInt(cardHead.parentElement.id);
+            integerStringId = integerStringId + 3;
+            let pTag = document.getElementById(`${integerStringId}`);
+            let spinnerId = integerStringId + 3;
+            let spinnerElem = document.getElementById(`${spinnerId}`);
+            spinnerElem.hidden = true;
+            let coloredWords = searchedWords(lyricSearchRes.data);
+            pTag.innerHTML = coloredWords;
+        } else { // this was the parent
+            try {
+                lyricSearchRes = await API.getLyrics(cardHead.id);
+            } catch (error) {
+                throw error;
+            }
+            setSelectedSong({ 
+                songID: choice.songID,
+                songArtistAlbum: `${choice.title} - ${choice.artist}`,
+                lyrics: lyricSearchRes.data,
+                albumThumbnail: choice.wholeObj.thumbnail
+            });
+            let integerStringId = parseInt(cardHead.id);
+            integerStringId = integerStringId + 3;
+            let pTag = document.getElementById(`${integerStringId}`);
+            let spinnerId = integerStringId + 3;
+            let spinnerElem = document.getElementById(`${spinnerId}`);
+            spinnerElem.hidden = true;
+            let coloredWords = searchedWords(lyricSearchRes.data);
+            pTag.innerHTML = coloredWords;
         }
+            
 
     }
 
+    // * sets show toast state to false after toast animation ends
     const nestedSettingToast = () => {
         setShowToast(false);
         return;
     }
+
+    // prevents quick button pressing to match with toast animation length
     let intervals = 0;
     const wait = (time) =>
         new Promise((resolve) => {
@@ -264,8 +245,6 @@ export default function BlurbInput() {
 
     // takes in both actions from the POST and ANALYZE buttons
     const handleButtonClick = async (e) => {
-        // reset this to false so we can reset to true in case of error
-        // setShowToast(false);
         const buttonPress = e.target.textContent;
         // do not call the api on an empty string
         if(TextAreaVal === "") {
@@ -298,7 +277,6 @@ export default function BlurbInput() {
                     count = count + 1;
                 }
             }
-            console.log(`the numbers of characters is ${count}!`);
 
             // we have a short post, call genius with whole string post
             if (count <= 40){
@@ -322,10 +300,8 @@ export default function BlurbInput() {
                 setShowToast(true);
                 await wait(1500);
                 nestedSettingToast();
-                // setShowToast(false);
                 return;
             }
-            console.log("post button click!");
             const newMongoModelUpdate = {
                 $push: {
                     blurbs: {
@@ -352,12 +328,10 @@ export default function BlurbInput() {
                 if ( currentUser) {
                     getUserNameRes = await API.getUserPosts(currentUser.email);
                 } else {
-                    console.log("No current users")
                 }
             } catch (error) {
                 throw error;
             }
-            console.log(getUserNameRes.data.userName);
             const newGlobalModel = {
                 // write in data that matches our new model
                 userName: getUserNameRes.data.userName,
@@ -378,14 +352,10 @@ export default function BlurbInput() {
             } catch (error) {
                 throw error;
             }
-            console.log("oh no");
             // EMIT SOCKET EVENT THAT WE POSTED A NEW BLURB
             socket.emit("new blurb post", "whoa! you heard me!");
-            console.log("WAITING FOR THIS LOG UNDER ME")
-            console.log(postRes);
-            // window.location.replace("./profile");
+            // go to profile component
             history.push("/profile");
-            // TODO: trigger UI to show all my posts page
         }
     }
     //** This handles the dropdown menu not the state
@@ -408,7 +378,6 @@ export default function BlurbInput() {
             </Row>
             <Row>
                 <PostToastError showToast={showToast} />
-                {/* need to refactor all of this with cleaner code, less buggy */}
             </Row>
             <Row className="mt-2">
                 <ButtonGroup isThinking={isThinking} handleButtonClick={handleButtonClick}/>

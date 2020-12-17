@@ -65,14 +65,11 @@ const getLyrics = async (chosenSong) => {
 // * to query Genius API
 // * sends back the song pool array
 router.get("/songs/:lyrics", (req, res) => {
-  console.log("......................inside router.get('/songs/:lyrics')...");
   // array was 'stringified by axios, now we remove the commas
   let stringifiedArray = req.params.lyrics;
   // replace the commas with a space
   stringifiedArray = stringifiedArray.replace(/,/g, " ");
-  console.log(stringifiedArray);
   getSongPool(stringifiedArray).then((data) => {
-    console.log("successfully returned song pool!");
     res.send(data);
   });
 });

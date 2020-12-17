@@ -22,7 +22,6 @@ export default function UserPosts() {
       //    return;
       // }
       setUserBlurbs(res.data.blurbs);
-      console.log(`${res.data.blurbs} is the data passed into setUserBlurbs`);
    });
   }
 }, [currentUser]);

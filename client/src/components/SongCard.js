@@ -3,8 +3,6 @@ import Accordion from "react-bootstrap/Accordion";
 import Card from "react-bootstrap/Card";
 import Spinner from 'react-bootstrap/Spinner';
 import "./styles/SongCardContainer.css";
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
 //song element takes in prop from songCardContainer
 //BlurbInput => SongCardContainer => SongCard
 //songElement is one of three songs from 
@@ -20,7 +18,6 @@ export default function SongCard({songElement, handleSongSelect}) {
                             title: songElement.songObj.title,
                             artist: songElement.songObj.artist.name,
                             wholeObj: songElement.songObj
-                            // maybe grab the album and album art
                         })}>
                             
                                 
@@ -36,10 +33,8 @@ export default function SongCard({songElement, handleSongSelect}) {
                         <Accordion.Collapse eventKey="0">
                             <Card.Body> 
                                 <Spinner animation="border" variant="warning" className="spinners mt-3" id={songElement.count + 6} />
-                                <div className="songLyrics" id={songElement.count+3}>
-                                {/* LOADING... */}
-                                {/* giving id and class to each spinner */}
-                                
+                                <div className="songLyrics" id={songElement.count+3}>                           
+                                {/* giving id and class to each spinner */}                               
                                 </div>
                             </Card.Body>
                         </Accordion.Collapse>

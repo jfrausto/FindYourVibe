@@ -6,7 +6,6 @@ import { useAuth } from "../contexts/AuthContext";
 export default function PrivateRoute({ component: Component, ...rest }) {
   const { currentUser } = useAuth();
 
-  if (currentUser) { console.log(currentUser.email) }
   return (
     <Route
       {...rest}
