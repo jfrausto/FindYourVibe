@@ -13,7 +13,7 @@ export default function ProfileDetails() {
         if (currentUser) {
             return (
                 <>
-                    <img src="https://i.imgur.com/2MNpqfV.png" alt="Cartoon Goose Profile Photo" className="profilePic"/>
+                    <img src="https://i.imgur.com/2MNpqfV.png" alt="Cartoon Goose" className="profilePic"/>
                     <h1 id="displayName">{loggedUser.firstName} {loggedUser.lastName}</h1>
                     <h2 id="username">@{loggedUser.userName}</h2>
                     <p id="bio">I can't wait to update my bio with something really interesting to say!</p>

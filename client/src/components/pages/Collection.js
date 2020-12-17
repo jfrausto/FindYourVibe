@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from "react";
 import Jumbotron from "react-bootstrap/Jumbotron";
+import Navbar from "../Navbar";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -48,6 +49,7 @@ export default function Collection() {
 
   return (
     <>
+      <Navbar />
          <Container className="mt-3" fluid>
                 <Jumbotron id="collectionsJumbotron" fluid>
                     <h1 className="text-center">Collections Page</h1>

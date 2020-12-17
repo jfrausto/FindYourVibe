@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import API from "../../utils/API";
 import "../../App.css";
+import Navbar from "../Navbar";
 import BlurbInput from "../BlurbInput";
 import Container from "react-bootstrap/Container";
 import DashboardFeed from "../DashboardFeed";
@@ -38,6 +39,7 @@ export default function Dashboard() {
 
   return (
     <div>
+      <Navbar />
       <Container fluid>
         <Row>
           {/* feed column */}

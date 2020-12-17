@@ -1,6 +1,6 @@
 import React from "react";
-import {Link} from "react-router-dom";
 import "../../App.css";
+import Navbar from "../Navbar";
 import Container from "react-bootstrap/Container";
 import UserPosts from "../UserPosts";
 import { Row, Col } from "react-bootstrap";
@@ -10,7 +10,8 @@ import '../styles/LandingSplash.css';
 
 export default function Profile() {
   return (
-    <div>     
+    <div>
+      <Navbar />     
       <Container fluid>
         <Row>
           <Col xs={{span: 12, offset: 0}}
