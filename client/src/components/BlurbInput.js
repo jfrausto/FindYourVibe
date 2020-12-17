@@ -39,18 +39,12 @@ export default function BlurbInput() {
     const history = useHistory();
     
     const searchedWords = (search) => {
-        console.log(search);
         JSON.stringify(search);
         let lyrics = search.split(" ");
-        console.log("edited");
-        console.log(lyrics);
         lyrics.toString().toLowerCase();
-        console.log("again");
-        console.log(lyrics);
         let input = TextAreaVal;
         input.toString().toLowerCase();
         let matches = input.split(" ");
-        console.log(matches);
         let formattedWords = lyrics.map(word => {
             if (matches.indexOf(word) !== -1) {
                 return `<span class="match">` + word +`</span>`
@@ -79,7 +73,6 @@ export default function BlurbInput() {
             return;
         }
         // shuffle the song pool for fun!
-        console.log(geniusRes.data);
         const addCountPool = [];
         for (let i = 0; i < geniusRes.data.length; i++) {
             addCountPool.push(
@@ -238,7 +231,6 @@ export default function BlurbInput() {
         new Promise((resolve) => {
             setTimeout(() => {
                 intervals += 1;
-                console.log("waiting...");
                 resolve();
             }, time);
     });
