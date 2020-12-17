@@ -4,7 +4,6 @@ const PORT = process.env.PORT || 3001;
 const app = express();
 const mongoose = require("mongoose");
 const apiRoutes = require("./routes/apiRoutes");
-// might need our database here
 const db = require("./models");
 
 
@@ -31,24 +30,20 @@ app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "./client/build/index.html"));
 });
 
-// could maybe define a whole bunch of functions and event listeners here
-// use require, and define the event listeners elsewhere i think
-// could query our mongo db from here!!!!!!! and return data!
+// start socket.io connection
 io.on("connection", (socket) => {
-  console.log('----------------------a user connected!');
-  // more listeners here
+  // listen for new blurb posts, and handle it
+  // if there was a new post, get all posts again and display them
   socket.on("new blurb post", (msg) => {
-    console.log("i heard that you posted something! from the server (l:39)");
-    console.log(msg, "<----message from the front end");
     db.GlobalPost.find({}).sort({"time": -1})
           .then((data) => {
-            console.log("found all public posts");
             // emit back to users!
             io.emit("updating posts", data );
           });
   });
+  // leave a message on the server when a socket disconnects
   socket.on('disconnect', () => {
-    console.log("user disconnected :(");
+    console.log("a user disconnected!");
   })
 });
 
@@ -60,8 +55,8 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/viBee", {
   useCreateIndex: true,
 });
 
-// instead we are making the http listen,
-// since we created the server by passing in the app express instance
+// http will listen,
+// since we created the server by passing in the app express() instance
 http.listen(PORT, () => {
   console.log(`🌎 ==> API server now on port ${PORT}!`);
 });

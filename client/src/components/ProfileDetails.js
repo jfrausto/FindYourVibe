@@ -37,7 +37,6 @@ export default function ProfileDetails() {
     return (
         <>
             <Container className="userProfileContainer">
-                {/* { (loggedUser) ? <h1>@{loggedUser.userName}</h1> : <h1> No User Logged In</h1> } */}
                 {(currentUser) ? renderUserProfile() : <h1>No User Logged In</h1>}
             </Container>
         </>

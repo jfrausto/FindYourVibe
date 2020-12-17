@@ -11,11 +11,11 @@ export default function DashboardFeed({globalPosts}) {
   const [allGlobalPosts, setAllGlobalPosts] = useState([]);
   
   useEffect(() => {
-    
     setAllGlobalPosts(globalPosts);
     // listen to changes in this prop
   }, [globalPosts])
 
+  // date format translator
   const handleDateFormat = (date) => {
     let format = React.createElement(TimeAgo, {date: date});
     return format;

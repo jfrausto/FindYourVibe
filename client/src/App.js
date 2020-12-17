@@ -15,20 +15,18 @@ import Login from "./components/Login";
 import PrivateRoute from "./components/PrivateRoute";
 import { Container } from "react-bootstrap";
 import { AuthProvider } from "./contexts/AuthContext";
-// import useNounFinder from "./utils/Hooks/NounFinderFolder/NounFinder";
 
 function App() {
-  // const [error, setError ] = useState("")
-  // const { currentUser, logout } = useAuth()
-  // const history = useHistory()
-  // 
 
   return (
     <div className="App">
-      {/* Navigation  or other stuff can go here */}
         <Router>
+          {/* AuthProvider surrounds all components
+          to provide access to firebase  */}
           <AuthProvider>
             <Switch>
+              {/* Private routes checks for 'logged in' status
+              and redirects users to login component */}
               <Route exact path="/" component={Homepage} />
               <PrivateRoute path="/profile" component={Profile} />
               <PrivateRoute path="/collection" component={Collection}/>
@@ -41,15 +39,11 @@ function App() {
                 <div className="w-100" style={{ maxWidth: "400px" }}>
                   <Route path="/signup" component={Signup} />
                   <Route path="/login" component={Login} />
-                  
                 </div>
               </Container>
             </Switch>
           </AuthProvider>
-        
         </Router>
-        {/* we might not even want this landing splash thing in the future */}
-        {/* perhaps some buttons to continue */}
     </div>
   )
 }

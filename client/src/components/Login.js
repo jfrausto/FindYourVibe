@@ -4,6 +4,7 @@ import { useAuth } from "../contexts/AuthContext";
 import { Link, useHistory } from "react-router-dom";
 import "./styles/SignupLogin.css";
 
+// component using states to handle login
 export default function Login() {
   const emailRef = useRef();
   const passwordRef = useRef();

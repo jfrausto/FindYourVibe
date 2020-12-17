@@ -7,7 +7,6 @@ export default function PostToastError({ showToast }) {
   const [show, setShow] = useState(false);
 
   useEffect(() => {
-    console.log("im in hereeeeeeeeeeeee");
     setShow(showToast);
   }, [showToast]);
 

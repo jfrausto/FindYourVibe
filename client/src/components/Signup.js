@@ -24,7 +24,6 @@ export default function Signup() {
     if (passwordRef.current.value !== passwordConfirmRef.current.value) {
       return setError("Passwords do not match");
     }
-    // let signUpRes;
     try {
       setError("");
       setLoading(true);
@@ -37,12 +36,9 @@ export default function Signup() {
         blurbs: [],
         songCollection: []
       };
-      console.log("userobj below vvvvvvvvvvv");
-      console.log(userObj);
       let userObjRes;
       try {
         userObjRes = await API.postNewUser(userObj);
-        console.log(userObjRes);
         history.push("/dashboard");
       } catch (error) {
         throw error;
@@ -52,9 +48,6 @@ export default function Signup() {
     } catch {
       setError("Failed to create an account");
     }
-    // console.log(firstNameRef.current.value);
-    // console.log(userObjRes);
-
     setLoading(false);
   }
   return (

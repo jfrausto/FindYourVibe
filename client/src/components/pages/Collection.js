@@ -50,9 +50,9 @@ export default function Collection() {
   return (
     <>
       <Navbar />
-         <Container className="mt-3" fluid>
+         <Container fluid>
                 <Jumbotron id="collectionsJumbotron" fluid>
-                    <h1 className="text-center">Collections Page</h1>
+                    <h1 className="text-center">Songs And Lyrics</h1>
                 </Jumbotron> 
             </Container>
         

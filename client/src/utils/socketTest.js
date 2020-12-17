@@ -1,8 +1,6 @@
 import io from 'socket.io-client';
 
-// connects only to local
-// const socket = io.connect(process.env.PORT || "http://localhost:3000");
-
+// ! connects to home(root) route on whatever server it's on dynamically
 const socket = io();
 
 export default socket;
