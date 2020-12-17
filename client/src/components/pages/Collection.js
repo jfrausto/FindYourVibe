@@ -40,7 +40,6 @@ export default function Collection() {
    // }
    const removedDups = uniqByKeepLast(res.data.songCollection, it => it.songId);
    setUserCollection(removedDups);
-   console.log(removedDups); 
     });
   }
   

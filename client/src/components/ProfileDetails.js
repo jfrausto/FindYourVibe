@@ -15,7 +15,7 @@ export default function ProfileDetails() {
                 <>
                     <img src="https://i.imgur.com/2MNpqfV.png" alt="Cartoon Goose" className="profilePic"/>
                     <h1 id="displayName">{loggedUser.firstName} {loggedUser.lastName}</h1>
-                    <h2 id="username">@{loggedUser.userName}</h2>
+                    <h2 id="user-name-detail">@{loggedUser.userName}</h2>
                     <p id="bio">I can't wait to update my bio with something really interesting to say!</p>
                 </>
             )
@@ -26,7 +26,6 @@ export default function ProfileDetails() {
         if (currentUser) {
             API.getCurrentUser(currentUser.email).then(res => {
                 setLoggedUser(res.data)
-                console.log(res.data)
             }).catch(err => {
                 console.log(err)
             })
