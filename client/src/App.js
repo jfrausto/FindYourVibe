@@ -6,11 +6,7 @@ import Homepage from "./components/pages/Homepage";
 // socket instance!
 // in its own component
 // import socket from "./utils/socketTest";
-<<<<<<< HEAD
-import Steps from "./components/pages/Steps";
-=======
 import About from "./components/pages/About";
->>>>>>> 251e9e121a715d495e1db395cce13de1ad37c820
 import Collection from "./components/pages/Collection";
 import Dashboard from "./components/pages/Dashboard";
 import Profile from "./components/pages/Profile";
@@ -34,12 +30,8 @@ function App() {
               <Route exact path="/" component={Homepage} />
               <PrivateRoute path="/profile" component={Profile} />
               <PrivateRoute path="/collection" component={Collection}/>
-<<<<<<< HEAD
-              <PrivateRoute path="/dashboard" component={Dashboard}/>          
-=======
               <PrivateRoute path="/dashboard" component={Dashboard}/>
               <Route path="/about" component={About} />              
->>>>>>> 251e9e121a715d495e1db395cce13de1ad37c820
               <Container
                 className="d-flex align-items-center justify-content-center"
                 style={{ minHeight: "100vh" }}
