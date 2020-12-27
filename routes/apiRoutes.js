@@ -13,7 +13,9 @@ let firstSong;
 let secondSong;
 let thirdSong;
 
-// shuffles the song pool array!
+// * params => array, an Array of any type that shuffles the elements
+// * shuffles the song pool array!
+// * returns the array
 function shuffle(array) {
   for (let i = array.length - 1; i > 0; i--) {
     let j = Math.floor(Math.random() * (i + 1));
@@ -22,20 +24,30 @@ function shuffle(array) {
   return array;
 }
 
+// * params => stringifiedNounsQuery, is a String
+// * Genius API is queried using this string
+// * returns an array of objects
 const getSongPool = async (stringifiedNounsQuery) => {
-  console.log(`Genius-Lyrics v${Genius.Version}`);
   let searches = await Client.songs.search(stringifiedNounsQuery);
-  // global vars! they are declared at the top ^^^^^
   // shuffle results
   searches =  shuffle(searches);
+  // global vars! they are declared at the top ^^^^^
   firstSong = searches[0];
   secondSong = searches[1];
   thirdSong = searches[2];
-  const songPool = [firstSong, secondSong, thirdSong];
+  let songPool;
+  if( searches.length < 3 ){
+    songPool = [...searches];
+  } else {
+    songPool = [firstSong, secondSong, thirdSong];
+  }
   return songPool;
 };
 
-// ---------------GET LYRICS FUNCTION
+// * params => a Genius API returned song object
+// ! cannot pass this object to front end and back;
+// ! this is the reason for the global vars that represent these songs
+// * returns a set of lyrics for this chosen song
 const getLyrics = async (chosenSong) => {
   let lyricRes;
   try {
@@ -47,26 +59,28 @@ const getLyrics = async (chosenSong) => {
 };
 
 // ! remember /api/ is implied in our server.js file
+
+// * getSongsPool()
+// * takes in an array or string and stringifies it to be used
+// * to query Genius API
+// * sends back the song pool array
 router.get("/songs/:lyrics", (req, res) => {
-  console.log("......................inside router.get('/songs/:lyrics')...");
   // array was 'stringified by axios, now we remove the commas
   let stringifiedArray = req.params.lyrics;
   // replace the commas with a space
   stringifiedArray = stringifiedArray.replace(/,/g, " ");
-  console.log(stringifiedArray);
   getSongPool(stringifiedArray).then((data) => {
-    console.log("successfully returned song pool!");
     res.send(data);
   });
 });
 
-// this route gets the lyrics of a particular song
-// uses param option inside API.js axios request
+// * getLyrics(cardID)
+// * this route gets the lyrics of a particular song
+// * uses param option inside API.js axios request
+// * sends back the string of lyrics
 router.get("/lyrics/:cardID", (req, res) => {
-  console.log("...................inside router.get('/lyrics/:songObj')...");
   const selectedCard = req.params.cardID;
   let singleSong;
-  console.log(selectedCard);
   switch (selectedCard) {
     case "1":
       singleSong = firstSong;
@@ -79,28 +93,34 @@ router.get("/lyrics/:cardID", (req, res) => {
       break;
   }
   getLyrics(singleSong).then((data) => {
-    console.log(`successfully got lyrics from the backend!!`);
     res.send(data);
   });
 });
 
-// FIND ALL USERS ROUTE
+// * getAllUsers()
+// * query our mongo db for all users
 router.get("/users", (req, res) => {
-  console.log("................................finding users (l:131)...");
   db.User.find({})
     .then((data) => {
-      console.log("found all users");
       res.json(data);
     })
     .catch((err) => res.status(422).json(err));
 });
 
-// get all this particular users posts
+// * getCurrentUser(email)
+// * returns all of a specific users info from mongo db
+router.get("/users/:userEmail", (req, res) => {
+  const { userEmail } = req.params;
+  db.User.findOne({email: userEmail}).then((data) => {
+    res.json(data);
+  }).catch((err) => console.log(err))
+});
+
+// * getUserPosts(email)
+// * returns all this particular users blurb posts
 router.get("/blurbs/:userEmail", (req, res) => {
-  console.log("................................finding SPECIFIC USER (l:141)...");
   const {userEmail} = req.params;
   db.User.findOne({email: userEmail}).then( (data) => {
-    console.log(".................Found that User you were looking for! (l:144)...");
     // TODO: THIS CODE SHOULD CHECK FOR 'THIS USER HAS NO POSTS' CASE
     // if(data === null){
     //   res.json({message: "you have no posts! vibe out!"});
@@ -110,65 +130,56 @@ router.get("/blurbs/:userEmail", (req, res) => {
   .catch( (err) => res.status(422).json(err));
 });
 
-// get all global public posts
+// * getAllGlobalPosts()
+// * returns all global public posts from mongo db
 router.get("/globalPosts", (req, res) => {
-  console.log("................................finding global posts and sorting (l:131)...");
   db.GlobalPost.find({}).sort({"time": -1})
           .then((data) => {
-            console.log("found all public posts");
             res.json(data);
           })
           .catch((err) => res.status(422).json(err));
 });
 
-// CALL NOUN FINDER API AND RETURNS AN ARRAY
+// * getNouns(stringOfWords)
+// * CALL NOUN FINDER API AND RETURNS AN ARRAY OF FILTERED NOUNS
 router.get("/nouns/:words", (req, res) => {
-  console.log("...................... inside router.get('/nouns/:words')");
   const text = req.params.words;
   nounFinder.getNounsFromText(text, function done(error, nouns) {
     if (error) throw error;
-    console.log(`Filtered nouns: ${nouns}`);
     res.send(nouns);
   });
 });
 
-// ------------------POST ROUTES
+// ! ------------------POST ROUTES
 
+// * postNewUser(user)
+// * posts a new user with passed Object
 router.post("/newUser", (req, res) => {
-  console.log(".....................................creating new user...");
   const newUser = req.body;
-  console.log("new user below vvvvvvvvvv");
-  console.log(newUser);
   db.User.insertMany([newUser]).then((data) => {
-    console.log("...................................created new user!");
     res.json(data);
   }).catch( (err) => {
     res.status(422).json(err);
   });
-  // res.json({hello: "hello"});
-
 });
 
+// * postGlobalBlurb(blurb)
+// * posts blurb Object
 router.post("/postGlobal", (req, res) => {
-  console.log(".......................................posting global blurb");
   const update = req.body;
   db.GlobalPost.insertMany([update]).then((data) => {
-    console.log("inserted one record!");
     res.json(data);
   });
 });
 
+// * postBlurb(blurb)
+// * posts blurb object to User model
 router.post("/postBlurb", (req, res) => {
-  console.log("........................................posting blurb...");
   const request = req.body;
-  // console.log(update);
-  // find and update john connor for now
-  // update object is found in BlurbInput.js
   db.User.findOneAndUpdate(
     {email: request.email},
     request.update
   ).then((data) => {
-    console.log("updated one record!");
     res.json(data);
   });
 });

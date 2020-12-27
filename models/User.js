@@ -24,13 +24,7 @@ const UserSchema = new Schema({
 }
 // ? could add more options here in the future
 );
-
-
 // ? could define some getter virtuals to compute things for us if needed
-// UserSchema.virtual("calculateSomething").get(function(){
-//     // some code
-//     // return code
-// });
 
 // save the model
 const User = mongoose.model("User", UserSchema);

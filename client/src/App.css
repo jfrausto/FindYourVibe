@@ -1,52 +1,20 @@
-/* hex background
-    we can obvi change this later */
-/* https://projects.verou.me/css3patterns/#honeycomb */
+* {
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+
 body {
-  /* background: radial-gradient(
-        circle farthest-side at 0% 50%,
-        #101424 23.5%,
-        rgba(240, 166, 17, 0) 0
-      )
-      21px 30px,
-    radial-gradient(
-        circle farthest-side at 0% 50%,
-        #0c0d12 24%,
-        rgba(240, 166, 17, 0) 0
-      )
-      19px 30px,
-    linear-gradient(
-        #101424 14%,
-        rgba(240, 166, 17, 0) 0,
-        rgba(240, 166, 17, 0) 85%,
-        #101424 0
-      )
-      0 0,
-    linear-gradient(
-        150deg,
-        #101424 24%,
-        #0c0d12 0,
-        #0c0d12 26%,
-        rgba(240, 166, 17, 0) 0,
-        rgba(240, 166, 17, 0) 74%,
-        #0c0d12 0,
-        #0c0d12 76%,
-        #101424 0
-      )
-      0 0,
-    linear-gradient(
-        30deg,
-        #101424 24%,
-        #0c0d12 0,
-        #0c0d12 26%,
-        rgba(240, 166, 17, 0) 0,
-        rgba(240, 166, 17, 0) 74%,
-        #0c0d12 0,
-        #0c0d12 76%,
-        #101424 0
-      )
-      0 0,
-    linear-gradient(90deg, #0c0d12 2%, #101424 0, #101424 98%, #0c0d12 0%) 0 0
-      #101424; */
   background: url("https://www.solidbackgrounds.com/images/3600x3600/3600x3600-black-solid-color-background.jpg");
   background-size: 40px 60px;
+}
+
+/* this is being used in Dashboard.js */
+.global-feed {
+  max-height: 90vh;
+  overflow-y: scroll;
+  /* overflow: hidden; */
+}
+.global-feed::-webkit-scrollbar {
+  width: 5px;
+  background: transparent; /* make scrollbar transparent */
 }

@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import "./styles/About.css";
+import { useAuth } from "../contexts/AuthContext";
+import "./styles/Header.css";
 
 export default function Header() {
+<<<<<<< HEAD
  return (
   <div className="headerContainer">
     <main>
@@ -31,4 +33,53 @@ export default function Header() {
     {/* <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#000000" fill-opacity="1" d="M0,160L34.3,181.3C68.6,203,137,245,206,256C274.3,267,343,245,411,224C480,203,549,181,617,170.7C685.7,160,754,160,823,144C891.4,128,960,96,1029,106.7C1097.1,117,1166,171,1234,181.3C1302.9,192,1371,160,1406,144L1440,128L1440,0L1405.7,0C1371.4,0,1303,0,1234,0C1165.7,0,1097,0,1029,0C960,0,891,0,823,0C754.3,0,686,0,617,0C548.6,0,480,0,411,0C342.9,0,274,0,206,0C137.1,0,69,0,34,0L0,0Z"></path></svg> */}
   </div>
  );
+=======
+  const { currentUser } = useAuth();
+  const [startLink, setStartLink] = useState("/signup");
+
+  // jump pad for user to go to rest of application
+  useEffect(() => {
+    if (currentUser != null) {
+      setStartLink("/dashboard");
+    } else {
+      setStartLink("/signup");
+    }
+  }, [currentUser]);
+
+  return (
+    <>
+      <div className="headerContainer">
+        <main>
+          <div className="code">
+            <header className="content">
+              <h1 className="title">Vibee</h1>
+              <div className="text">
+                Express yourself and find your vibes. Connect with other people
+                through music. Explore how other people are doing and catch a
+                vibe.
+              </div>
+            </header>
+            <footer className="footer">
+              <Link className="ripple noselect" to={startLink}>
+                Get Started
+              </Link>
+              <Link className="ripple noselect" to="/about">
+                Learn More
+              </Link>
+            </footer>
+
+            <div className="wave"></div>
+            <div className="wave wave2"></div>
+            <div className="wave wave3"></div>
+          </div>
+        </main>
+        <img
+          className="vibeeLamp"
+          src="https://i.imgur.com/iLVITNY.png"
+          alt="vibeeLamp"
+        />
+      </div>
+    </>
+  );
+>>>>>>> 251e9e121a715d495e1db395cce13de1ad37c820
 }

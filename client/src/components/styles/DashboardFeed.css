@@ -1,0 +1,80 @@
+@keyframes charge {
+  from {
+    transform: translateY(2rem);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* {
+  animation: charge 0.5s 0.5s forwards;
+} */
+.postDivContainerBackground {
+  background-color: rgb(38, 47, 51);
+  /* display: flex !important; */
+  flex-direction: row !important;
+  justify-content: space-around !important;
+}
+
+.postHeader {
+  /* background-color: cyan;
+  color: brown; */
+  text-align: center;
+  color: antiquewhite;
+}
+
+.postFooter {
+  /* background-color: white; */
+  font-size: 14px;
+  text-align: right;
+  color: antiquewhite;
+}
+
+.postDate {
+  text-align: right !important;
+  color: gray;
+  font-size: 14px;
+  margin-bottom: 0px;
+}
+
+.user-name {
+  color: gray;
+  font-style: italic;
+  margin-bottom: 3px !important;
+  text-align: left;
+}
+
+.postBlurb-dash {
+  text-align: left;
+  color: antiquewhite;
+  font-size: 18px;
+  margin-bottom: 0%;
+}
+
+.postSongTitle-dash {
+  text-align: left;
+  font-style: oblique;
+  color: antiquewhite;
+  /* margin-left: 5px !important; */
+  font-size: 15px;
+}
+
+/* .blurb-row {
+  margin-bottom: 20%;
+} */
+.time-vibe-row-dash {
+  position: absolute;
+  bottom: 0;
+  right: 10px;
+}
+.post-date-column {
+  text-align: right !important;
+}
+.postVibeEmoji-dash {
+  margin-bottom: 0px;
+  color: gray;
+  font-size: 15px;
+}

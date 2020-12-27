@@ -2,33 +2,60 @@
   /* background-color: cyan;
   color: brown; */
   text-align: center;
+  color: antiquewhite;
 }
 
 .postFooter {
   /* background-color: white; */
   font-size: 14px;
   text-align: right;
+  color: antiquewhite;
 }
 
 .postDate {
   text-align: left;
   color: gray;
   font-size: 12px;
+  margin-bottom: 0px;
 }
 
 .user-name {
   color: gray;
   font-style: italic;
+  margin-bottom: 3px !important;
 }
 
 .postBlurb {
-  text-align: center;
+  text-align: left;
+  color: antiquewhite;
 }
 
 .postSongTitle {
-  text-align: center;
+  text-align: left;
+  font-style: oblique;
+  color: antiquewhite;
+  margin-left: 5px !important;
+  font-size: 15px;
 }
 
 .postDivContainerBackground {
-  background-color: white;
+  background-color: rgb(38, 47, 51);
 }
+
+.time-vibe-row {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+.postVibeEmoji {
+  margin-bottom: 0px;
+  color: gray;
+  font-size: 15px;
+}
+
+/* .post-vibe-column,
+.post-date-column {
+  position: absolute;
+  bottom: 0;
+} */
