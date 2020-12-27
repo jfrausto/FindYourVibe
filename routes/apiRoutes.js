@@ -28,7 +28,13 @@ function shuffle(array) {
 // * Genius API is queried using this string
 // * returns an array of objects
 const getSongPool = async (stringifiedNounsQuery) => {
-  let searches = await Client.songs.search(stringifiedNounsQuery);
+  let searches;
+  
+  try {
+    searches = await Client.songs.search(stringifiedNounsQuery);
+  } catch (error) {
+    return error;
+  }
   // shuffle results
   searches =  shuffle(searches);
   // global vars! they are declared at the top ^^^^^
