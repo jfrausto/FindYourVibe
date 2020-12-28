@@ -19,6 +19,7 @@ import { AuthProvider } from "./contexts/AuthContext";
 function App() {
 
   return (
+    <>
     <div className="App">
         <Router>
           {/* AuthProvider surrounds all components
@@ -44,7 +45,9 @@ function App() {
             </Switch>
           </AuthProvider>
         </Router>
+        
     </div>
+    </>
   )
 }
 
