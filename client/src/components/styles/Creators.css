@@ -1,0 +1,12 @@
+.swiper-slide {
+  background-position: center;
+  background-size: cover;
+  width: 350px;
+  min-height: 350px;
+  background-color: #fff;
+}
+
+.testimonials {
+  position: relative;
+  max-width: 100%;
+}
