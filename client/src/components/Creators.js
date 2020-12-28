@@ -1,7 +1,6 @@
 import React from "react";
 import Swiper from "swiper";
 import "./styles/Creators.css";
- 
 
 class Creators extends React.Component {
  componentDidMount () {
@@ -11,15 +10,13 @@ class Creators extends React.Component {
    centeredSlides: true,
    slidesPerView: 'auto',
    coverflowEffect: {
-     rotate: 50,
+     rotate: 0,
      stretch: 0,
-     depth: 100,
+     depth: 0,
      modifier: 1,
      slideShadows: true,
    },
-   pagination: {
-     el: '.swiper-pagination',
-   },
+   loop: true,
  });
  }
  render () {
@@ -93,12 +90,9 @@ export default Creators;
 // import Swiper from "swiper";
 
 // export default function Creators() {
-//  useEffect(() => {
-//   effect
-//   return () => {
-//    cleanup
-//   }
-//  }, [input])
+
+
+
 //  return (
 //   <>
 //   <div className="testimonials">

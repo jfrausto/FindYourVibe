@@ -10,3 +10,16 @@
   position: relative;
   max-width: 100%;
 }
+
+/* .swiper-container-3d .swiper-slide-shadow-left {
+  background-image: linear-gradient(
+    to left,
+    rgba(0, 0, 0, 0.5),
+    rgb(0, 0, 0, 0)
+  );
+} */
+
+div.content {
+  margin: 0px;
+  padding: 0px;
+}
