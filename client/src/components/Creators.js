@@ -47,7 +47,7 @@ class Creators extends React.Component {
           <div className="content">
            <p style={{color: "black"}}>LOREM SHIT I AM WRITING RANDOM STUFF HERE SO BARE WITH ME IF THIS SEEMS TO BE OUT OF THE ORDINARY FOR YOU</p>
            <div className="img-Bx">
-            <img height="100px" width="100px" src="https://i.imgur.com/hCVt35Q.jpg"/>
+            <img height="100px" width="100px" src="https://i.imgur.com/C3Rj2Ti.png"/>
            </div>
            <div className="details">
             <h2 style={{color: "black"}}>Someone Famous<br/><span>Website Designer</span></h2>
@@ -62,7 +62,7 @@ class Creators extends React.Component {
           <div className="content">
            <p style={{color: "black"}}>LOREM SHIT I AM WRITING RANDOM STUFF HERE SO BARE WITH ME IF THIS SEEMS TO BE OUT OF THE ORDINARY FOR YOU</p>
            <div className="img-Bx">
-            <img height="100px" width="100px" src="https://i.imgur.com/hCVt35Q.jpg"/>
+            <img height="100px" width="100px" src="https://i.imgur.com/7a6lEgS.png"/>
            </div>
            <div className="details">
             <h2 style={{color: "black"}}>Someone Famous<br/><span>Website Designer</span></h2>
