@@ -6,7 +6,8 @@ export default function About() {
  return (
   <>
     <Navbar />
-    <Steps/>
+    {/* <Steps/> */}
+    
   </>
  )
 }
