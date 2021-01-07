@@ -70,6 +70,8 @@ export default function BlurbInput() {
         // searching with an empty string, or null, or empty array
         if(typeof geniusRes.data === "string"){
             setIsThinking(false);
+            // ? we need to display a message here saying "couldn't find any songs with your post"
+            // ? or something
             return;
         }
         // shuffle the song pool for fun!
