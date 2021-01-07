@@ -42,7 +42,7 @@ class Creators extends React.Component {
          </div>
         </div>
        </div>
-       {/* SECOND SLIDE HERE JESSE FRAUSTO */}
+       {/* SECOND SLIDE JESSE FRAUSTO */}
        <div className="swiper-slide">
         <div className="page">
          <div className="overlay"></div>
@@ -57,7 +57,7 @@ class Creators extends React.Component {
          </div>
         </div>
        </div>
-       {/* THIRD SLIDE HERE MICHAEL MORENO */}
+       {/* THIRD SLIDE MICHAEL MORENO */}
        <div className="swiper-slide">
         <div className="page">
          <div className="overlay"></div>
@@ -83,70 +83,3 @@ class Creators extends React.Component {
 }
 
 export default Creators;
-
-
-
-
-// import React from 'react';
-// import "./styles/Creators.css";
-// import Swiper from "swiper";
-
-// export default function Creators() {
-
-
-
-//  return (
-//   <>
-//   <div className="cardPicsLayout">
-//    <div className="swiper-container">
-//     <div className="swiper-wrapper">
-//      <div className="swiper-slide">
-//       <div className="page">
-//        <div className="overlay"></div>
-//         <div className="mainContent">
-//          <p style={{color: "white"}}>LOREM SHIT I AM WRITING RANDOM STUFF HERE SO BARE WITH ME IF THIS SEEMS TO BE OUT OF THE ORDINARY FOR YOU</p>
-//          <div className="img-Bx">
-//           <img height="100px" width="100px" src="https://i.imgur.com/hCVt35Q.jpg"/>
-//          </div>
-//          <div className="stats">
-//           <h2 style={{color: "white"}}>Someone Famous<br/><span>Website Designer</span></h2>
-//          </div>
-//        </div>
-//       </div>
-//      </div>
-//      {/* SECOND SLIDE HERE */}
-//      <div className="swiper-slide">
-//       <div className="page">
-//        <div className="overlay"></div>
-//         <div className="mainContent">
-//          <p style={{color: "white"}}>LOREM SHIT I AM WRITING RANDOM STUFF HERE SO BARE WITH ME IF THIS SEEMS TO BE OUT OF THE ORDINARY FOR YOU</p>
-//          <div className="img-Bx">
-//           <img height="100px" width="100px" src="https://i.imgur.com/hCVt35Q.jpg"/>
-//          </div>
-//          <div className="stats">
-//           <h2 style={{color: "white"}}>Someone Famous<br/><span>Website Designer</span></h2>
-//          </div>
-//        </div>
-//       </div>
-//      </div>
-//      {/* THIRD SLIDE HERE */}
-//      <div className="swiper-slide">
-//       <div className="page">
-//        <div className="overlay"></div>
-//         <div className="mainContent">
-//          <p style={{color: "white"}}>LOREM SHIT I AM WRITING RANDOM STUFF HERE SO BARE WITH ME IF THIS SEEMS TO BE OUT OF THE ORDINARY FOR YOU</p>
-//          <div className="img-Bx">
-//           <img height="100px" width="100px" src="https://i.imgur.com/hCVt35Q.jpg"/>
-//          </div>
-//          <div className="stats">
-//           <h2 style={{color: "white"}}>Someone Famous<br/><span>Website Designer</span></h2>
-//          </div>
-//        </div>
-//       </div>
-//      </div>
-//     </div>
-//    </div>
-//   </div>
-//   </>
-//  )
-// }
