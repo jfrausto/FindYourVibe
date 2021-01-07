@@ -2,6 +2,8 @@ import React from "react";
 import Swiper from "swiper";
 import "./styles/Creators.css";
 
+// USING OLD WAY T0 BRING IN SWIPER EFFECTS
+// FROM GIVEN EXAMPLES
 class Creators extends React.Component {
  componentDidMount () {
   this.swiper = new Swiper('.swiper-container', {
