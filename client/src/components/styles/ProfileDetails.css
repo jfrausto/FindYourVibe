@@ -1,0 +1,35 @@
+.userProfileContainer {
+  background-color: #ffc107;
+  margin-top: 15px;
+  padding: 10px;
+}
+
+.profilePic {
+  display: block;
+  width: 50%;
+  min-width: 125px;
+  height: auto;
+  /* rounded corners */
+  border-radius: 15%;
+  /* circle */
+  /* border-radius: 50% */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#displayName {
+  margin-top: 10px;
+  margin-bottom: 0px;
+  font-size: 25px;
+}
+
+#user-name-detail {
+  font-size: 20px;
+}
+
+#bio {
+  font-size: 16px;
+  padding: 3px;
+  border: 1px solid;
+  margin: 10px;
+}

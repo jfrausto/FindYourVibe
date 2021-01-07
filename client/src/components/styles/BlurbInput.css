@@ -4,8 +4,21 @@ textarea + div {
 }
 
 .match {
-  color: red !important;
-  background-color: yellow;
+  color: antiquewhite;
+  background-color: #262f33;
+  font-weight: 900;
+  transition: ease-out 0.125s;
+}
+
+.match:hover {
+  transition: ease-in 0.125s;
+  color: #ffc107;
+  background-color: black;
+  font-size: 17px;
+}
+
+.songLyrics {
+  cursor: text;
 }
 
 .container {
@@ -13,9 +26,25 @@ textarea + div {
 }
 
 .green-bg {
-  background-color: lightgreen;
+  /* background-color: lightgreen; */
+  background-color: #00a66a;
+  color: white;
+
+  /* background-color: #6ea4bf; */
+  /* background-color: #4f7cac; */
+  /* background-color: #539987; */
+  /* background-color: #75dddd; */
+  /* background-color: #99ddc8; */
+  /* background-color: #5688c7; */
 }
 
+#dropdown-item-button {
+  padding: 0.55rem;
+}
+
+.alert-msg {
+  font-size: 16px;
+}
 .spinners {
   justify-content: center;
 }

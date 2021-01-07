@@ -3,6 +3,7 @@ import Col from 'react-bootstrap/Col';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import Dropdown from 'react-bootstrap/Dropdown';
 import Moods from './DropdownItems/Moods';
+import Button from 'react-bootstrap/Button';
 
 export default function DropdownMood({vibeCheck}) {
 
@@ -13,11 +14,18 @@ export default function DropdownMood({vibeCheck}) {
     <>
     {/* add a KEY prop for each child in a list <li>
         in this case, the 'list' <li> is the Dropdown.Item */}
-      <Col>
-        <DropdownButton size="sm" id="dropdown-item-button" drop="up" title={titleMood}>
+      <Col className="my-auto">
+        <DropdownButton 
+        size="sm"
+        id="dropdown-item-button" 
+        drop="up" 
+        variant="warning"
+        title={titleMood}>
           {
             Moods.map( elem => {
-              return <Dropdown.Item key={elem} as="button">
+              return <Dropdown.Item 
+                        as="button"
+                        key={elem} >
                         <div onClick={ (e) => { 
                           vibeCheck(e.target.textContent)
                           setTitleMood(e.target.textContent)}}>

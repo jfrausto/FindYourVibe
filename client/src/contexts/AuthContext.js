@@ -7,6 +7,8 @@ export function useAuth() {
   return useContext(AuthContext);
 }
 
+// !there are two exports!
+// * this holds the firebase user authentication functions
 export function AuthProvider({ children }) {
   const [currentUser, setCurrentUser] = useState();
   const [loading, setLoading] = useState(true);
@@ -23,6 +25,7 @@ export function AuthProvider({ children }) {
     return auth.signOut();
   }
 
+  // * checking for change in user status
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       setLoading(false);
