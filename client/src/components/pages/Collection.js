@@ -9,6 +9,7 @@ import Card from "react-bootstrap/Card";
 import Accordion from "react-bootstrap/Accordion";
 import "../styles/SongCardContainer.css";
 import "../styles/Collection.css";
+import FadeIn from '../FadeIn';
 
 import { useAuth } from '../../contexts/AuthContext';
 
@@ -49,7 +50,10 @@ export default function Collection() {
   return (
     <>
       <Navbar />
-         <Container fluid>
+
+      { true && (
+          <FadeIn delay={450} duration={650}>
+            <Container fluid>
                 <Jumbotron id="collectionsJumbotron" fluid>
                     <h1 className="text-center">Songs And Lyrics</h1>
                 </Jumbotron> 
@@ -85,6 +89,9 @@ export default function Collection() {
           }
           </Row>
        </Container>
+          </FadeIn>
+        )
+      }
     </>
   );
 }
