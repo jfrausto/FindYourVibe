@@ -16,3 +16,13 @@
 .step3Col {
   margin-top: -3%;
 }
+
+#jumboTronAbout {
+  margin-top: 0px !important;
+  border-radius: 0px !important;
+  background-image: url("https://www.setaswall.com/wp-content/uploads/2017/03/Artistic-Landscape-4K-Wallpaper-3840x2160.jpg");
+}
+
+.fontColor {
+  color: black;
+}
