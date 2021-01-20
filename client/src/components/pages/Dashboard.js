@@ -8,6 +8,7 @@ import DashboardFeed from "../DashboardFeed";
 import socket from "../../utils/socketTest";
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import FadeIn from '../FadeIn';
 
 export default function Dashboard() {
   const [globalPosts, setGlobalPosts] = useState([]);
@@ -24,7 +25,6 @@ export default function Dashboard() {
       return () => {
         socket.off("updating posts");
       }
-    
   }, []);
 
   // external function helps updating State asynchronocity
@@ -44,9 +44,17 @@ export default function Dashboard() {
               md={{span: 6, offset: 0, order: 1}}  
               lg={{span: 6, offset: 0, order: 1}} 
               xl={{span: 5, offset: 1, order: 1}} className="global-feed mt-2 mt-sm-2 mt-md-3">
-            <DashboardFeed  
-              globalPosts={globalPosts}
-            />
+            
+            { true && (
+                <FadeIn delay={450} duration={650}>
+                  <DashboardFeed  
+                    globalPosts={globalPosts}
+                  />
+                </FadeIn>
+              )
+            }
+            
+            
           </Col>
           {/* input column */}
           <Col className="my-auto" xs={{span:12 , offset: 0, order: 1}} 
@@ -54,7 +62,14 @@ export default function Dashboard() {
           md={{span: 6, offset:0, order: 2}} 
           lg={{span: 6, offset:0, order: 1}}
           xl={{span: 5, offset:0, order: 1}}>
-            <BlurbInput />
+
+            { true && (
+                <FadeIn delay={450} duration={650}>
+                  <BlurbInput
+                  />
+                </FadeIn>
+              )
+            }
           </Col>
         </Row>
       </Container>

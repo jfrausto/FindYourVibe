@@ -19,6 +19,7 @@ textarea + div {
 
 .songLyrics {
   cursor: text;
+  text-align: left !important;
 }
 
 .container {
