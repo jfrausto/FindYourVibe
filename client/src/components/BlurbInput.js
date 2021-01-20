@@ -39,19 +39,36 @@ export default function BlurbInput() {
     const history = useHistory();
     
     const searchedWords = (search) => {
-        JSON.stringify(search);
         let lyrics = search.split(" ");
-        lyrics.toString().toLowerCase();
+        // replace the new lines with <br>
+        let removeNewLine = lyrics.map( dirtyWord =>{
+                // replace the new line character with html <BR>
+                return dirtyWord.replace(/\r?\n|\r/g, " <br/> ");
+            }
+        );
+        // remove special characters
+        let removeSpecialChars = removeNewLine.map( words => {
+            return words.replace(/[$@%?!.,:-]/g, '');
+        });
+
+        // join everything because of stray spaces and new lines into a string
+        let stringifiedRemoveSpecialChars = removeSpecialChars.join(" ");
+        // now make into an array with the correct split elements
+        let cleanedUpArray = stringifiedRemoveSpecialChars.split(" ");
+
         let input = TextAreaVal;
-        input.toString().toLowerCase();
+        input = input.toLowerCase();
+        // convert the input string into an array
+        // ! could strip special chars here on the input to match better
         let matches = input.split(" ");
-        let formattedWords = lyrics.map(word => {
-            if (matches.indexOf(word) !== -1) {
+        // now apply the highlighting of the words
+        let formattedWords = cleanedUpArray.map(word => {
+            if (matches.indexOf(word.toLowerCase()) !== -1) {
                 return `<span class="match">` + word +`</span>`
             } else {
                 return word;
             }
-        })      
+        });  
         return formattedWords.join(" ");
     };
 
