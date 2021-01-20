@@ -9,6 +9,7 @@ import ButtonGroup from './ButtonGroup';
 import DropdownMood from './DropdownMood';
 import API from '../utils/API';
 import SongCardContainer from "./SongCardContainer";
+import SongChoice from "./SongChoice";
 import PostToastError from "./PostToastError";
 
 import { useAuth } from '../contexts/AuthContext';
@@ -289,7 +290,7 @@ export default function BlurbInput() {
             const nounStringArray = nounsRes.data;
             
             handleGeniusCall(nounStringArray);
-        } else { // we will submit the post!
+        } else  { // we will submit the post!
             if(TextAreaVal === "" || selectedSong.songArtistAlbum === "") {
                 setShowToast(true);
                 await wait(1500);
@@ -349,7 +350,7 @@ export default function BlurbInput() {
             // EMIT SOCKET EVENT THAT WE POSTED A NEW BLURB
             socket.emit("new blurb post", "whoa! you heard me!");
             // go to profile component
-            history.push("/profile");
+            // history.push("/profile");
         }
     }
     //** This handles the dropdown menu not the state
@@ -362,7 +363,12 @@ export default function BlurbInput() {
         <Container className="mt-3">
             <Row>
                 <Col>
-                <SongCardContainer songPool={SongPoolRes} handleSongSelect={handleSongSelect} />
+                    <SongCardContainer songPool={SongPoolRes} handleSongSelect={handleSongSelect} />
+                </Col>
+            </Row>
+            <Row className="mt-1">
+                <Col xs={12} md={{span: 12, offset:0}}>
+                    <SongChoice handleButtonClick={handleButtonClick} />
                 </Col>
             </Row>
             <Row className="mt-1">
@@ -377,7 +383,7 @@ export default function BlurbInput() {
                 <ButtonGroup isThinking={isThinking} handleButtonClick={handleButtonClick}/>
                 <DropdownMood vibeCheck={vibeCheck}/>
             </Row>
-            </Container>
-        </>
+        </Container>
+    </>
     )
 }
