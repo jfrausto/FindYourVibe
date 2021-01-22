@@ -11,6 +11,8 @@ export default function About() {
     <Navbar />
     <HeroImage/>
     <Instructions/>
+    {/* THERES NEEDS TO BE A WAY TO DIVIDE 
+        THESE SECTIONS TO LOOK NICE */}
     <Creators />
   </>
  )

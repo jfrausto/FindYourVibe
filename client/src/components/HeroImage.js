@@ -2,7 +2,7 @@ import React from 'react';
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import "./styles/Instructions.css";
+import "./styles/HeroImage.css";
 import Jumbotron from "react-bootstrap/Jumbotron";
 
 export default function Instructions() {
@@ -27,11 +27,6 @@ export default function Instructions() {
     </p>
   </Container>
 </Jumbotron>
-
-
-
-
-//!BACKUP.JS PASTE HERE  
 
   </>
  )

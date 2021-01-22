@@ -1,28 +1,14 @@
-.ohOne {
-  margin-top: -2%;
+.whiteTextChange {
+  color: #ffffff;
+  text-align: left;
 }
 
-.divider {
-  transform: rotate(90deg);
-  margin-top: 28%;
-  margin-left: -4px;
-  margin-bottom: 30%;
+.instructionsTitle {
+  text-align: left;
+  font-size: 24px;
+  color: #ffc107;
 }
 
-.divider2 {
-  margin-top: 30%;
-}
-
-.step3Col {
-  margin-top: -3%;
-}
-
-#jumboTronAbout {
-  margin-top: 0px !important;
-  border-radius: 0px !important;
-  background-image: url("https://www.setaswall.com/wp-content/uploads/2017/03/Artistic-Landscape-4K-Wallpaper-3840x2160.jpg");
-}
-
-.fontColor {
-  color: black;
+.textAlignRight {
+  text-align: right;
 }

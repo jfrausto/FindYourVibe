@@ -62,8 +62,8 @@
   margin: 0px auto 10px;
   border-radius: 50%;
   overflow: hidden;
-  border: 4px solid black;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  border: 4px solid #fcc107;
+  box-shadow: 0 10px 20px rgba(255, 174, 0, 0.2);
   color: #ffffff;
   transition: 0.5s;
 }
@@ -115,4 +115,19 @@
 div.mainContent {
   margin: 0px;
   padding: 0px;
+}
+
+#Jesse {
+  margin-left: -7px;
+  margin-top: -7px;
+}
+
+#Michael {
+  margin-right: -16px;
+  margin-top: -12px;
+}
+
+.quoteStyle {
+  color: #ffffff;
+  font-size: 24px;
 }

@@ -1,6 +1,8 @@
 import React from "react";
 import Swiper from "swiper";
 import "./styles/Creators.css";
+import Jesse from "./Images/JesseProfile.jpg";
+import Michael from "./Images/MichaelProfile.jpg";
 
 // USING OLD WAY T0 BRING IN SWIPER EFFECTS
 // FROM GIVEN EXAMPLES
@@ -24,6 +26,7 @@ class Creators extends React.Component {
  render () {
    return (
     <>
+
   {/* FIRST SLIDE JOSE ULICES PEREZ JR. */}
     <div className="cardPicsLayout">
      <div className="swiper-container">
@@ -32,27 +35,28 @@ class Creators extends React.Component {
         <div className="page">
          <div className="overlay"></div>
           <div className="mainContent">
-           <p style={{color: "white"}}>LOREM SHIT I AM WRITING RANDOM STUFF HERE SO BARE WITH ME IF THIS SEEMS TO BE OUT OF THE ORDINARY FOR YOU</p>
+           <p className="quoteStyle">"Solving Tomorrow's Problem Today!"</p>
            <div className="img-Bx">
-            <img alt="Creator-Selfie" height="100px" width="100px" src="https://i.imgur.com/hCVt35Q.jpg"/>
+            <img alt="Creator-Selfie" height="100px" width="110px" src="https://i.imgur.com/hCVt35Q.jpg"/>
            </div>
            <div className="stats">
-            <h2 style={{color: "white"}}>Someone Famous<br/><span>Website Designer</span></h2>
+            <h2 style={{color: "white"}}>Jose Ulices Perez Jr.<br/><span>Full Stack Web Developer</span></h2>
            </div>
          </div>
         </div>
        </div>
+
        {/* SECOND SLIDE JESSE FRAUSTO */}
        <div className="swiper-slide">
         <div className="page">
          <div className="overlay"></div>
           <div className="mainContent">
-           <p style={{color: "white"}}>LOREM SHIT I AM WRITING RANDOM STUFF HERE SO BARE WITH ME IF THIS SEEMS TO BE OUT OF THE ORDINARY FOR YOU</p>
+           <p className="quoteStyle">"I strive to be better everyday!"</p>
            <div className="img-Bx">
-            <img alt="Creator-Selfie" height="100px" width="100px" src="https://i.imgur.com/C3Rj2Ti.png"/>
+            <img id="Jesse" alt="Creator-Selfie" height="100px" width="100px" src={Jesse}/>
            </div>
            <div className="stats">
-            <h2 style={{color: "white"}}>Someone Famous<br/><span>Website Designer</span></h2>
+            <h2 style={{color: "white"}}>Jesse Frausto<br/><span>Full Stack Web Developer</span></h2>
            </div>
          </div>
         </div>
@@ -62,12 +66,12 @@ class Creators extends React.Component {
         <div className="page">
          <div className="overlay"></div>
           <div className="mainContent">
-           <p style={{color: "#ffffff"}}>LOREM SHIT I AM WRITING RANDOM STUFF HERE SO BARE WITH ME IF THIS SEEMS TO BE OUT OF THE ORDINARY FOR YOU</p>
+           <p className="quoteStyle">"True Hustlers are early birds!"</p>
            <div className="img-Bx">
-            <img alt="Creator-Selfie" height="100px" width="100px" src="https://i.imgur.com/7a6lEgS.png"/>
+            <img id="Michael" alt="Creator-Selfie" height="122px" width="108px" src={Michael}/>
            </div>
            <div className="stats">
-            <h2 style={{color: "#ffffff"}}>Someone Famous<br/><span>Website Designer</span></h2>
+            <h2 style={{color: "#ffffff"}}>Michael Moreno<br/><span>Full Stack Web Developer</span></h2>
            </div>
          </div>
         </div>
@@ -76,6 +80,15 @@ class Creators extends React.Component {
      </div>
     </div>
     
+    {/* JUST TO SEE REFLECTION ANIMATION 
+        ON THE BOTTOM CAN DELETE AFTER */}
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+
+
    </>
  );
  }
