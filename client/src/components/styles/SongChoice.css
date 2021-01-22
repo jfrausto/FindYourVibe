@@ -7,7 +7,7 @@
 
 .songInput input {
     height: 100%;
-    width: 100%;
+    width: 85%;
     border: none;
     outline: none;
     background: #fff;
@@ -16,7 +16,18 @@
     padding: 0 40px 0 20px;
 }
 
-.songInput .searchBtn {
+.searchBtn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-left: 5px;
+    color: #fff;
+    border-color: #ffc107;
+    background: #ffc107;
+    border-radius: 50px;
+}
+
+/* .searchBtn, .cancelBtn {
     position: absolute;
     top: 50%;
     right: 5px;
@@ -32,7 +43,7 @@
     cursor: pointer;
 }
 
-.songInput .cancelBtn {
+.cancelBtn {
     position: absolute;
     top: 50%;
     right: -25px;
@@ -40,4 +51,4 @@
     color: #fff;
     font-size: 20px;
     cursor: pointer;
-}
+} */

@@ -1,24 +1,32 @@
 import React from "react";
-// import { Row, Col, } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import "./styles/SongChoice.css";
 
-export default function SongChoice() {
-    
-
-  return (
-    <>
-        <div class="songInput">
-            <input type="text" placeholder="Have a song in mind?"></input>
-            <div class="searchBtn">
-                <i class="fas fa-search"></i>
+export default function SongChoice({handleButtonClick, isThinking}) {
+    return (
+        <>
+            <div class="songInput">
+                <input className="songSearch" type="text" placeholder="Have a song in mind?"></input>
+                <Button onClick={!isThinking ? handleButtonClick : null} className="searchBtn">
+                    Search
+                </Button>
             </div>
-            <div class="cancelBtn">
-                <i class="fas fa-times"></i>
-            </div>
-            <div className="musicBtn">
-                <i className="fas fa-music"></i>
-            </div>
-        </div>
-    </>
-  );
+        </>
+    );
+//   return (
+//     <>
+//         <div class="songInput">
+//             <input  type="text" placeholder="Have a song in mind?"></input>
+//             <div className="searchBtn">
+//                 <i className="fas fa-search"></i>
+//             </div>
+//             <div onClick={console.log("CLOSE BUTTON")} className="cancelBtn">
+//                 <i className="fas fa-times"></i>
+//             </div>
+//             <div className="musicBtn">
+//                 <i className="fas fa-music"></i>
+//             </div>
+//         </div>
+//     </>
+//   );
 }

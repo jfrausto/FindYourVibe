@@ -242,7 +242,7 @@ export default function BlurbInput() {
     const handleButtonClick = async (e) => {
         const buttonPress = e.target.textContent;
         // do not call the api on an empty string
-        if(TextAreaVal === "") {
+        if(TextAreaVal === "" && buttonPress != "Search") {
             setShowToast(true);
             await wait(1500);
             nestedSettingToast();
@@ -290,7 +290,18 @@ export default function BlurbInput() {
             const nounStringArray = nounsRes.data;
             
             handleGeniusCall(nounStringArray);
-        } else  { // we will submit the post!
+        } else if (buttonPress === "Search") {
+            setIsThinking(true);
+
+            //Reset Lyrics section to empty
+            let lyricsClass = document.querySelectorAll(".songLyrics");
+            lyricsClass.forEach( (elem) => {
+                elem.textContent = "";
+            });
+            setIsThinking(false);
+            return;
+        }
+        else  { // we will submit the post!
             if(TextAreaVal === "" || selectedSong.songArtistAlbum === "") {
                 setShowToast(true);
                 await wait(1500);
@@ -368,7 +379,7 @@ export default function BlurbInput() {
             </Row>
             <Row className="mt-1">
                 <Col xs={12} md={{span: 12, offset:0}}>
-                    <SongChoice handleButtonClick={handleButtonClick} />
+                    <SongChoice isThinking={isThinking} handleButtonClick={handleButtonClick} />
                 </Col>
             </Row>
             <Row className="mt-1">
