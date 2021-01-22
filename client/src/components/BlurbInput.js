@@ -32,26 +32,47 @@ export default function BlurbInput() {
     });
     // button states
     const [isThinking, setIsThinking] = useState(false);
-    const [showToast, setShowToast] = useState(false);
+    // make show toast an object to allow for no results error
+    const [showToast, setShowToast] = useState({
+        emptySong: false,
+        noResults: false    
+    });
     // ! super important!
     const { currentUser } = useAuth();
     // to link to another page use History
     const history = useHistory();
     
     const searchedWords = (search) => {
-        JSON.stringify(search);
         let lyrics = search.split(" ");
-        lyrics.toString().toLowerCase();
+        // replace the new lines with <br>
+        let removeNewLine = lyrics.map( dirtyWord =>{
+                // replace the new line character with html <BR>
+                return dirtyWord.replace(/\r?\n|\r/g, " <br/> ");
+            }
+        );
+        // remove special characters
+        let removeSpecialChars = removeNewLine.map( words => {
+            return words.replace(/[$@%?!.,:-]/g, '');
+        });
+
+        // join everything because of stray spaces and new lines into a string
+        let stringifiedRemoveSpecialChars = removeSpecialChars.join(" ");
+        // now make into an array with the correct split elements
+        let cleanedUpArray = stringifiedRemoveSpecialChars.split(" ");
+
         let input = TextAreaVal;
-        input.toString().toLowerCase();
+        input = input.toLowerCase();
+        // convert the input string into an array
+        // ! could strip special chars here on the input to match better
         let matches = input.split(" ");
-        let formattedWords = lyrics.map(word => {
-            if (matches.indexOf(word) !== -1) {
+        // now apply the highlighting of the words
+        let formattedWords = cleanedUpArray.map(word => {
+            if (matches.indexOf(word.toLowerCase()) !== -1) {
                 return `<span class="match">` + word +`</span>`
             } else {
                 return word;
             }
-        })      
+        });  
         return formattedWords.join(" ");
     };
 
@@ -66,12 +87,17 @@ export default function BlurbInput() {
         } catch (err) {
             throw err;
         }
+        console.log(geniusRes);
+
         // genius error handling for the case of:
         // searching with an empty string, or null, or empty array
         if(typeof geniusRes.data === "string"){
             setIsThinking(false);
             // ? we need to display a message here saying "couldn't find any songs with your post"
             // ? or something
+            setShowToast({...showToast, noResults:true});
+            await wait(1500);
+            nestedSettingToast();
             return;
         }
         // shuffle the song pool for fun!
@@ -223,7 +249,7 @@ export default function BlurbInput() {
 
     // * sets show toast state to false after toast animation ends
     const nestedSettingToast = () => {
-        setShowToast(false);
+        setShowToast({noResults: false, emptySong: false});
         return;
     }
 
@@ -242,7 +268,7 @@ export default function BlurbInput() {
         const buttonPress = e.target.textContent;
         // do not call the api on an empty string
         if(TextAreaVal === "") {
-            setShowToast(true);
+            setShowToast({...showToast, emptySong:true});
             await wait(1500);
             nestedSettingToast();
             return;
@@ -291,7 +317,7 @@ export default function BlurbInput() {
             handleGeniusCall(nounStringArray);
         } else { // we will submit the post!
             if(TextAreaVal === "" || selectedSong.songArtistAlbum === "") {
-                setShowToast(true);
+                setShowToast({...showToast, emptySong:true});
                 await wait(1500);
                 nestedSettingToast();
                 return;
