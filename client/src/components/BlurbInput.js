@@ -32,7 +32,11 @@ export default function BlurbInput() {
     });
     // button states
     const [isThinking, setIsThinking] = useState(false);
-    const [showToast, setShowToast] = useState(false);
+    // make show toast an object to allow for no results error
+    const [showToast, setShowToast] = useState({
+        emptySong: false,
+        noResults: false    
+    });
     // ! super important!
     const { currentUser } = useAuth();
     // to link to another page use History
@@ -83,12 +87,17 @@ export default function BlurbInput() {
         } catch (err) {
             throw err;
         }
+        console.log(geniusRes);
+
         // genius error handling for the case of:
         // searching with an empty string, or null, or empty array
         if(typeof geniusRes.data === "string"){
             setIsThinking(false);
             // ? we need to display a message here saying "couldn't find any songs with your post"
             // ? or something
+            setShowToast({...showToast, noResults:true});
+            await wait(1500);
+            nestedSettingToast();
             return;
         }
         // shuffle the song pool for fun!
@@ -240,7 +249,7 @@ export default function BlurbInput() {
 
     // * sets show toast state to false after toast animation ends
     const nestedSettingToast = () => {
-        setShowToast(false);
+        setShowToast({noResults: false, emptySong: false});
         return;
     }
 
@@ -259,7 +268,7 @@ export default function BlurbInput() {
         const buttonPress = e.target.textContent;
         // do not call the api on an empty string
         if(TextAreaVal === "") {
-            setShowToast(true);
+            setShowToast({...showToast, emptySong:true});
             await wait(1500);
             nestedSettingToast();
             return;
@@ -308,7 +317,7 @@ export default function BlurbInput() {
             handleGeniusCall(nounStringArray);
         } else { // we will submit the post!
             if(TextAreaVal === "" || selectedSong.songArtistAlbum === "") {
-                setShowToast(true);
+                setShowToast({...showToast, emptySong:true});
                 await wait(1500);
                 nestedSettingToast();
                 return;
