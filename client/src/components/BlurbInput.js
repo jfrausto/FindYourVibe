@@ -24,6 +24,7 @@ export default function BlurbInput() {
     // current states of all user inputs
     const [currentVibe, setCurrentVibe] = useState("");
     const [TextAreaVal, setTextAreaVal] = useState("");
+    const [songAreaVal, setSongAreaVal] = useState("");
     const [SongPoolRes, setSongPoolRes] = useState([]);
     const [selectedSong, setSelectedSong] = useState({
         songID: -1,
@@ -319,7 +320,7 @@ export default function BlurbInput() {
             handleGeniusCall(nounStringArray);
         } else if (buttonPress === "Search") {
             setIsThinking(true);
-
+            console.log("Song Area Value: " + songAreaVal)
             //Reset Lyrics section to empty
             let lyricsClass = document.querySelectorAll(".songLyrics");
             lyricsClass.forEach( (elem) => {
@@ -406,7 +407,7 @@ export default function BlurbInput() {
             </Row>
             <Row className="mt-1">
                 <Col xs={12} md={{span: 12, offset:0}}>
-                    <SongChoice isThinking={isThinking} handleButtonClick={handleButtonClick} />
+                    <SongChoice isThinking={isThinking} handleButtonClick={handleButtonClick} setSongArea={setSongAreaVal}/>
                 </Col>
             </Row>
             <Row className="mt-1">

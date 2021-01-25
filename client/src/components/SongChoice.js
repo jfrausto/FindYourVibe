@@ -2,11 +2,11 @@ import React from "react";
 import { Button } from "react-bootstrap";
 import "./styles/SongChoice.css";
 
-export default function SongChoice({handleButtonClick, isThinking}) {
+export default function SongChoice({handleButtonClick, isThinking, setSongArea}) {
     return (
         <>
             <div class="songInput">
-                <input className="songSearch" type="text" placeholder="Have a song in mind?"></input>
+                <input onChange={(e) => {setSongArea(e.target.value)}} className="songSearch" type="text" placeholder="Have a song in mind?"></input>
                 <Button onClick={!isThinking ? handleButtonClick : null} className="searchBtn">
                     Search
                 </Button>
