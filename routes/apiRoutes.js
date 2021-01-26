@@ -27,7 +27,7 @@ function shuffle(array) {
 // * params => stringifiedNounsQuery, is a String
 // * Genius API is queried using this string
 // * returns an array of objects
-const getSongPool = async (stringifiedNounsQuery) => {
+const getSongPool = async (stringifiedNounsQuery, queryType) => {
   let searches;
   
   try {
@@ -35,8 +35,11 @@ const getSongPool = async (stringifiedNounsQuery) => {
   } catch (error) {
     return error;
   }
-  // shuffle results
-  searches =  shuffle(searches);
+
+  // shuffle results if analyze button is pressed
+  if (queryType === "analyze") {
+    searches =  shuffle(searches);
+  }
   // global vars! they are declared at the top ^^^^^
   firstSong = searches[0];
   secondSong = searches[1];
@@ -67,15 +70,18 @@ const getLyrics = async (chosenSong) => {
 // ! remember /api/ is implied in our server.js file
 
 // * getSongsPool()
-// * takes in an array or string and stringifies it to be used
+// * takes in an object and stringifies it to be used
 // * to query Genius API
 // * sends back the song pool array
-router.get("/songs/:lyrics", (req, res) => {
+router.get("/songs/:lyrics/:queryType", (req, res) => {
   // array was 'stringified by axios, now we remove the commas
   let stringifiedArray = req.params.lyrics;
+  let qType = req.params.queryType
+  // console.log(stringifiedArray.query)
+  // console.log(stringifiedArray.queryType)
   // replace the commas with a space
   stringifiedArray = stringifiedArray.replace(/,/g, " ");
-  getSongPool(stringifiedArray).then((data) => {
+  getSongPool(stringifiedArray, qType).then((data) => {
     res.send(data);
   });
 });

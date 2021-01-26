@@ -3,8 +3,8 @@ import axios from "axios";
 // calls to Genius API, Wordnik API, and user database(eventually)
 export default {
     // getSongsPool takes in an array of strings
-    getSongsPool: function(lyricSnippet) {
-        return axios.get("/api/songs/" + lyricSnippet);
+    getSongsPool: function(lyricSnippet, queryType) {
+        return axios.get("/api/songs/" + lyricSnippet + "/" + queryType);
     },
     getAllUsers: function() {
         return axios.get("/api/users");

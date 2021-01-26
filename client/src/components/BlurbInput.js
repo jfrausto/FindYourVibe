@@ -81,11 +81,13 @@ export default function BlurbInput() {
     // should always take in an array of words ([geniusQueryArray]) or String
     // whether they be from Wordnik API
     // or REGEX FUNCTIONS, OR a combination of both
-    const handleGeniusCall = async (geniusQueryArray) => {
+    const handleGeniusCall = async (geniusQueryArray, queryType) => {
         
+        // console.log("query type is: " + queryType)
         let geniusRes;
+        // let geniusQueryObj = {query: geniusQueryArray, queryType: queryType}
         try {
-            geniusRes = await API.getSongsPool(geniusQueryArray);
+            geniusRes = await API.getSongsPool(geniusQueryArray, queryType);
         } catch (err) {
             throw err;
         }
@@ -303,7 +305,7 @@ export default function BlurbInput() {
 
             // we have a short post, call genius with whole string post
             if (count <= 40){
-                handleGeniusCall(TextAreaVal);
+                handleGeniusCall(TextAreaVal, "analyze");
                
                 // exit
                 return;
@@ -317,17 +319,16 @@ export default function BlurbInput() {
             }
             const nounStringArray = nounsRes.data;
             
-            handleGeniusCall(nounStringArray);
+            handleGeniusCall(nounStringArray, "analyze");
         } else if (buttonPress === "Search") {
             setIsThinking(true);
-            console.log("Song Area Value: " + songAreaVal)
+
             //Reset Lyrics section to empty
             let lyricsClass = document.querySelectorAll(".songLyrics");
             lyricsClass.forEach( (elem) => {
                 elem.textContent = "";
             });
-            setIsThinking(false);
-            return;
+            handleGeniusCall(songAreaVal, "search")
         }
         else  { // we will submit the post!
             if(TextAreaVal === "" || selectedSong.songArtistAlbum === "") {
