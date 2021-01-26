@@ -20,10 +20,9 @@ export default function Instructions() {
 
   <Jumbotron id="jumboTronAbout">
   <Container >
-    <h1 className="fontColor">Vibee</h1>
-    <p className="fontColor">
-      This is a modified jumbotron that occupies the entire horizontal space of
-      its parent.
+    <h1 className="fontTitle"><strong>Vibee</strong></h1>
+    <p className="fontBody">
+      Social Media Done Right!
     </p>
   </Container>
 </Jumbotron>

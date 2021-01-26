@@ -21,8 +21,17 @@
   margin-top: 0px !important;
   border-radius: 0px !important;
   background-image: url("https://www.setaswall.com/wp-content/uploads/2017/03/Artistic-Landscape-4K-Wallpaper-3840x2160.jpg");
+  height: 350px;
+  margin-bottom: 0px !important;
 }
 
-.fontColor {
+.fontTitle {
   color: black;
+  font-size: 50px;
+  padding: 20px;
+}
+
+.fontBody {
+  color: black;
+  font-size: 35px;
 }

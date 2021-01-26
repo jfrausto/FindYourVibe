@@ -63,7 +63,7 @@
   border-radius: 50%;
   overflow: hidden;
   border: 4px solid #fcc107;
-  box-shadow: 0 10px 20px rgba(255, 174, 0, 0.2);
+  box-shadow: 0 10px 20px rgba(250, 250, 250, 0.2);
   color: #ffffff;
   transition: 0.5s;
 }
@@ -130,4 +130,13 @@ div.mainContent {
 .quoteStyle {
   color: #ffffff;
   font-size: 24px;
+}
+
+.dividerSpacing {
+  color: #fcc107;
+  font-size: 24px;
+  text-align: center;
+  margin-left: 2%;
+  margin-top: 60px;
+  margin-bottom: 60px;
 }
