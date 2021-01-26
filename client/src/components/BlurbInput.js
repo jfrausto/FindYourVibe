@@ -34,6 +34,7 @@ export default function BlurbInput() {
     });
     // button states
     const [isThinking, setIsThinking] = useState(false);
+    const [isSearching, setIsSearching] = useState(false);
     // make show toast an object to allow for no results error
     const [showToast, setShowToast] = useState({
         emptySong: false,
@@ -91,12 +92,12 @@ export default function BlurbInput() {
         } catch (err) {
             throw err;
         }
-        console.log(geniusRes);
 
         // genius error handling for the case of:
         // searching with an empty string, or null, or empty array
         if(typeof geniusRes.data === "string"){
             setIsThinking(false);
+            setIsSearching(false);
             // ? we need to display a message here saying "couldn't find any songs with your post"
             // ? or something
             setShowToast({...showToast, noResults:true});
@@ -118,6 +119,7 @@ export default function BlurbInput() {
         // update song pool state
         setSongPoolRes(addCountPool);
         setIsThinking(false);
+        setIsSearching(false);
     }
 
     //  * LYRIC CHECK PREVENT
@@ -321,12 +323,17 @@ export default function BlurbInput() {
             
             handleGeniusCall(nounStringArray, "analyze");
         } else if (buttonPress === "Search") {
-            setIsThinking(true);
+            setIsSearching(true);
 
             //Reset Lyrics section to empty
             let lyricsClass = document.querySelectorAll(".songLyrics");
             lyricsClass.forEach( (elem) => {
                 elem.textContent = "";
+            });
+            //show spinners again
+            let spinnersClass = document.querySelectorAll("spinners");
+            spinnersClass.forEach( spinner => {
+                spinner.hidden = false;
             });
             handleGeniusCall(songAreaVal, "search")
         }
@@ -408,7 +415,7 @@ export default function BlurbInput() {
             </Row>
             <Row className="mt-1">
                 <Col xs={12} md={{span: 12, offset:0}}>
-                    <SongChoice isThinking={isThinking} handleButtonClick={handleButtonClick} setSongArea={setSongAreaVal}/>
+                    <SongChoice isSearching={isSearching} handleButtonClick={handleButtonClick} setSongArea={setSongAreaVal}/>
                 </Col>
             </Row>
             <Row className="mt-1">
