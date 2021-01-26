@@ -3,6 +3,7 @@ import Col from 'react-bootstrap/Col';
 import Container from "react-bootstrap/Container"
 import Row from "react-bootstrap/Row";
 import SongCard from "./SongCard";
+// import SongChoice from "./SongChoice";
 import "./styles/SongCardContainer.css";
 
 //songpool takes in prop from BlurbInput

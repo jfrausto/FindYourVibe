@@ -2,7 +2,6 @@ import React from 'react';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import Spinner from 'react-bootstrap/Spinner';
-
 // button group that is adjacent to drop down chooser
 export default function ButtonGroup({handleButtonClick, isThinking}) {
   return (
