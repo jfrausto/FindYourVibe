@@ -12,9 +12,9 @@ export default function Instructions() {
 
    {/* FIRST STEP */}
    <Row>
-    <Col xs={12}>
+    <Col xs={{span: 8, offset: 2}}>
      <div className="whiteTextChange instructionsTitle">
-      HOW IT WORKS
+     A social media experience like you've never had before
      </div>
     </Col>
     <Col xs={8}>
