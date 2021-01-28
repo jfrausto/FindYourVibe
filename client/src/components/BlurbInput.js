@@ -9,6 +9,7 @@ import ButtonGroup from './ButtonGroup';
 import DropdownMood from './DropdownMood';
 import API from '../utils/API';
 import SongCardContainer from "./SongCardContainer";
+import SongChoice from "./SongChoice";
 import PostToastError from "./PostToastError";
 
 import { useAuth } from '../contexts/AuthContext';
@@ -23,6 +24,7 @@ export default function BlurbInput() {
     // current states of all user inputs
     const [currentVibe, setCurrentVibe] = useState("");
     const [TextAreaVal, setTextAreaVal] = useState("");
+    const [songAreaVal, setSongAreaVal] = useState("");
     const [SongPoolRes, setSongPoolRes] = useState([]);
     const [selectedSong, setSelectedSong] = useState({
         songID: -1,
@@ -32,6 +34,7 @@ export default function BlurbInput() {
     });
     // button states
     const [isThinking, setIsThinking] = useState(false);
+    const [isSearching, setIsSearching] = useState(false);
     // make show toast an object to allow for no results error
     const [showToast, setShowToast] = useState({
         emptySong: false,
@@ -79,20 +82,22 @@ export default function BlurbInput() {
     // should always take in an array of words ([geniusQueryArray]) or String
     // whether they be from Wordnik API
     // or REGEX FUNCTIONS, OR a combination of both
-    const handleGeniusCall = async (geniusQueryArray) => {
+    const handleGeniusCall = async (geniusQueryArray, queryType) => {
         
+        // console.log("query type is: " + queryType)
         let geniusRes;
+        // let geniusQueryObj = {query: geniusQueryArray, queryType: queryType}
         try {
-            geniusRes = await API.getSongsPool(geniusQueryArray);
+            geniusRes = await API.getSongsPool(geniusQueryArray, queryType);
         } catch (err) {
             throw err;
         }
-        console.log(geniusRes);
 
         // genius error handling for the case of:
         // searching with an empty string, or null, or empty array
         if(typeof geniusRes.data === "string"){
             setIsThinking(false);
+            setIsSearching(false);
             // ? we need to display a message here saying "couldn't find any songs with your post"
             // ? or something
             setShowToast({...showToast, noResults:true});
@@ -114,6 +119,7 @@ export default function BlurbInput() {
         // update song pool state
         setSongPoolRes(addCountPool);
         setIsThinking(false);
+        setIsSearching(false);
     }
 
     //  * LYRIC CHECK PREVENT
@@ -267,8 +273,9 @@ export default function BlurbInput() {
     const handleButtonClick = async (e) => {
         const buttonPress = e.target.textContent;
         // do not call the api on an empty string
-        if(TextAreaVal === "") {
+        if(TextAreaVal === "" && buttonPress != "Search") {
             setShowToast({...showToast, emptySong:true});
+            
             await wait(1500);
             nestedSettingToast();
             return;
@@ -300,7 +307,7 @@ export default function BlurbInput() {
 
             // we have a short post, call genius with whole string post
             if (count <= 40){
-                handleGeniusCall(TextAreaVal);
+                handleGeniusCall(TextAreaVal, "analyze");
                
                 // exit
                 return;
@@ -314,8 +321,23 @@ export default function BlurbInput() {
             }
             const nounStringArray = nounsRes.data;
             
-            handleGeniusCall(nounStringArray);
-        } else { // we will submit the post!
+            handleGeniusCall(nounStringArray, "analyze");
+        } else if (buttonPress === "Search") {
+            setIsSearching(true);
+
+            //Reset Lyrics section to empty
+            let lyricsClass = document.querySelectorAll(".songLyrics");
+            lyricsClass.forEach( (elem) => {
+                elem.textContent = "";
+            });
+            //show spinners again
+            let spinnersClass = document.querySelectorAll("spinners");
+            spinnersClass.forEach( spinner => {
+                spinner.hidden = false;
+            });
+            handleGeniusCall(songAreaVal, "search")
+        }
+        else  { // we will submit the post!
             if(TextAreaVal === "" || selectedSong.songArtistAlbum === "") {
                 setShowToast({...showToast, emptySong:true});
                 await wait(1500);
@@ -375,7 +397,7 @@ export default function BlurbInput() {
             // EMIT SOCKET EVENT THAT WE POSTED A NEW BLURB
             socket.emit("new blurb post", "whoa! you heard me!");
             // go to profile component
-            history.push("/profile");
+            // history.push("/profile");
         }
     }
     //** This handles the dropdown menu not the state
@@ -388,7 +410,12 @@ export default function BlurbInput() {
         <Container className="mt-3">
             <Row>
                 <Col>
-                <SongCardContainer songPool={SongPoolRes} handleSongSelect={handleSongSelect} />
+                    <SongCardContainer songPool={SongPoolRes} handleSongSelect={handleSongSelect} />
+                </Col>
+            </Row>
+            <Row className="mt-1">
+                <Col xs={12} md={{span: 12, offset:0}}>
+                    <SongChoice isSearching={isSearching} handleButtonClick={handleButtonClick} setSongArea={setSongAreaVal}/>
                 </Col>
             </Row>
             <Row className="mt-1">
@@ -403,7 +430,7 @@ export default function BlurbInput() {
                 <ButtonGroup isThinking={isThinking} handleButtonClick={handleButtonClick}/>
                 <DropdownMood vibeCheck={vibeCheck}/>
             </Row>
-            </Container>
-        </>
+        </Container>
+    </>
     )
 }
