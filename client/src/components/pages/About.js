@@ -10,6 +10,8 @@ import Container from "react-bootstrap/Container";
 export default function About() {
  return (
   <>
+  <div style={{background: "#121212"}}>
+
     <Navbar /> 
     <HeroImage/>
     
@@ -37,6 +39,9 @@ export default function About() {
         THESE SECTIONS TO LOOK NICE */}
     
     <Creators /> 
+
+  </div>
+    
     
   </>
  )
