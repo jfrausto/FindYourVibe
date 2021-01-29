@@ -20,9 +20,14 @@
 #jumboTronAbout {
   margin-top: 0px !important;
   border-radius: 0px !important;
-  background-image: url("https://www.setaswall.com/wp-content/uploads/2017/03/Artistic-Landscape-4K-Wallpaper-3840x2160.jpg");
-  height: 350px;
+  background-image: url("../Images/Vibee_F.png");
+  background-color: #fcc107 !important;
+  height: 200px;
+  width: auto;
   margin-bottom: 0px !important;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 50%;
 }
 
 .fontTitle {
@@ -35,3 +40,10 @@
   color: black;
   font-size: 35px;
 }
+/* 
+#imageCentered {
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  align-self: center;
+} */

@@ -4,6 +4,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import "./styles/HeroImage.css";
 import Jumbotron from "react-bootstrap/Jumbotron";
+import Pistol from "./Images/Vibee_F.png";
 
 export default function Instructions() {
  return (
@@ -20,10 +21,11 @@ export default function Instructions() {
 
   <Jumbotron id="jumboTronAbout">
   <Container >
-    <h1 className="fontTitle"><strong>Vibee</strong></h1>
+    {/* <h1 className="fontTitle"><strong>Vibee</strong></h1>
     <p className="fontBody">
       Social Media Done Right!
-    </p>
+    </p> */}
+    {/* <img src={Pistol} id="imageCentered"/> */}
   </Container>
 </Jumbotron>
 

@@ -1,0 +1,5 @@
+#outsideContainer {
+  background: #121212;
+  overflow: hidden;
+  overflow-y: hidden;
+}

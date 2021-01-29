@@ -7,10 +7,12 @@ import Instructions from "../Instructions";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
+import "../styles/About.css";
+
 export default function About() {
  return (
   <>
-  <div style={{background: "#121212"}}>
+  <div id="outsideContainer">
 
     <Navbar /> 
     <HeroImage/>
@@ -21,7 +23,7 @@ export default function About() {
     
     <Instructions/>
 
-    <TrioPictures/>
+    {/* <TrioPictures/> */}
     {/* On Creator.css file */}
     {/* <div className="dividerSpacing">
       MEET THE TEAM
