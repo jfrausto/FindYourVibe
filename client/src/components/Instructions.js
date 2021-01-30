@@ -21,8 +21,18 @@ export default function Instructions() {
        Vibee is a social media app for users to be able to communicate with others through music and emojis.
      </div>
     </Col>
+    </Row>
+    
+    <Row>
+      <Col>
+        <div className="howToVibe">
+          HOW TO VIBE
+        </div>
 
+        
 
+      </Col>
+    </Row>
 
     <Row className="iconsToCenter">
       
@@ -69,15 +79,38 @@ export default function Instructions() {
 
     </Row>
 
-   </Row>
+    <Row style={{marginTop: "150px"}}>
+      <Col xs={6}>
+        <div className="whiteTextChange aboutusTitle">
+          ABOUT US
+        </div>
+        <div className="whiteTextChange missionMain">
+          Lorem Epsum Here at vibee we believe in teamwork and success brings the best of both worlds. You get the limo ride to the front. Hottest styles every shoe every color now if you think that it can be kind of fun. It's really you and nobody other. Who would of thought that a girl like me.
+        </div>
+      </Col>
+
+      <Col xs={6}>
+        <div className="whiteTextChange missionTitle">
+          OUR MISSION
+        </div>
+
+        <div className="whiteTextChange missionSmallText">
+          HJeres is where I am goihjng to talk about that we want to check in with mental health and whjat reall yu moved us to do this. This should be changed later I am niot even looking at the screen i am just guessing that I am actually typuing things that wil actually be legible for someone else to read.
+        </div>
+
+        <div className="whiteTextChange missionTitle">
+          WHATY  ANOTHER TITLE
+        </div>
+
+        <div className="whiteTextChange missionSmallText">
+          Another small subtext these should be smaller than the loem epsum in the column on the left the right one jhust as long but there are 4 orf it so bacwsically each section takes half odf the space if they were nice to each other.
+        </div>
+      </Col>
+    </Row>
 
 
-  <Row>
-    <Col >
-    
-    </Col>
-  </Row>
   </Container>
+
   </>
  )
 }
