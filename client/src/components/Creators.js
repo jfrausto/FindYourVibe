@@ -40,7 +40,7 @@ class Creators extends React.Component {
             <img alt="Creator-Selfie" height="100px" width="110px" src="https://i.imgur.com/hCVt35Q.jpg"/>
            </div>
            <div className="stats">
-            <h2 style={{color: "white"}}>Jose Ulices Perez Jr.<br/><span>Full Stack Web Developer</span></h2>
+            <h2 style={{color: "#ebebeb"}}>Jose Ulices Perez Jr.<br/><span>Full Stack Web Developer</span></h2>
            </div>
          </div>
         </div>
@@ -56,7 +56,7 @@ class Creators extends React.Component {
             <img id="Jesse" alt="Creator-Selfie" height="100px" width="100px" src={Jesse}/>
            </div>
            <div className="stats">
-            <h2 style={{color: "white"}}>Jesse Frausto<br/><span>Full Stack Web Developer</span></h2>
+            <h2 style={{color: "#ebebeb"}}>Jesse Frausto<br/><span>Full Stack Web Developer</span></h2>
            </div>
          </div>
         </div>
@@ -71,7 +71,7 @@ class Creators extends React.Component {
             <img id="Michael" alt="Creator-Selfie" height="122px" width="108px" src={Michael}/>
            </div>
            <div className="stats">
-            <h2 style={{color: "#ffffff"}}>Michael Moreno<br/><span>Full Stack Web Developer</span></h2>
+            <h2 style={{color: "#ebebeb"}}>Michael Moreno<br/><span>Full Stack Web Developer</span></h2>
            </div>
          </div>
         </div>

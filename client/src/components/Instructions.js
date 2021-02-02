@@ -80,7 +80,7 @@ export default function Instructions() {
     </Row>
 
     <Row style={{marginTop: "150px"}}>
-      <Col xs={6}>
+      <Col xs={12} className="mt-md-"  md={6}>
         <div className="whiteTextChange aboutusTitle">
           ABOUT US
         </div>
@@ -89,7 +89,7 @@ export default function Instructions() {
         </div>
       </Col>
 
-      <Col xs={6}>
+      <Col className="mt-3 mt-md-0" xs={6}  md={6}>
         <div className="whiteTextChange missionTitle">
           OUR MISSION
         </div>
@@ -97,15 +97,21 @@ export default function Instructions() {
         <div className="whiteTextChange missionSmallText">
           HJeres is where I am goihjng to talk about that we want to check in with mental health and whjat reall yu moved us to do this. This should be changed later I am niot even looking at the screen i am just guessing that I am actually typuing things that wil actually be legible for someone else to read.
         </div>
+        
+      </Col>
+        
+      <Col className="mt-3 mt-md-0" xs={6} md={{size: 6, offset: 6}}>
 
-        <div className="whiteTextChange missionTitle">
+           <div className="smallTitle2 whiteTextChange missionTitle">
           WHATY  ANOTHER TITLE
         </div>
 
         <div className="whiteTextChange missionSmallText">
           Another small subtext these should be smaller than the loem epsum in the column on the left the right one jhust as long but there are 4 orf it so bacwsically each section takes half odf the space if they were nice to each other.
-        </div>
+        </div> 
       </Col>
+      
+      
     </Row>
 
 

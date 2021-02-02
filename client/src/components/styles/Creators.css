@@ -64,7 +64,7 @@
   overflow: hidden;
   border: 4px solid #fcc107;
   box-shadow: 0 10px 20px rgba(250, 250, 250, 0.2);
-  color: #ffffff;
+  color: #ebebeb;
   transition: 0.5s;
 }
 
@@ -75,7 +75,7 @@
 
 .cardPicsLayout .page .mainContent h2 {
   font-size: 18px;
-  color: #ffffff;
+  color: #ebebeb;
   transition: 0.5s;
 }
 
@@ -84,10 +84,6 @@
   font-size: 14px;
   transition: 0.5s;
 }
-
-/* .cardPicsLayout .page:hover .mainContent h2 span {
-  color: #ffffff;
-} */
 
 /* LOREM SHIT mainContent P */
 .cardPicsLayout .page:hover .mainContent p {
@@ -102,8 +98,9 @@
 }
 
 .cardPicsLayout .page:hover .stats span {
-  color: #03a9f4;
+  color: #121212;
   transition: 0.25;
+  font-weight: 900;
   cursor: pointer;
 }
 
@@ -128,14 +125,6 @@ div.mainContent {
 }
 
 .quoteStyle {
-  color: #ffffff;
+  color: #ebebeb;
   font-size: 24px;
-}
-
-.dividerSpacing {
-  color: #fcc107;
-  font-size: 24px;
-  text-align: center;
-  margin-top: 60px;
-  margin-bottom: 60px;
 }

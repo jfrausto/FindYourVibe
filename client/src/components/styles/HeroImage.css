@@ -22,9 +22,11 @@
   border-radius: 0px !important;
   background-image: url("../Images/Vibee_F.png");
   background-color: #fcc107 !important;
-  height: 150px;
+  height: 185px;
   width: auto;
   margin-bottom: 0px !important;
+  padding-top: 190px !important;
+  padding-bottom: -400px !important;
   background-repeat: no-repeat;
   background-position: center;
   background-size: 240px;

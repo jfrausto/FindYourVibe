@@ -53,7 +53,7 @@ main {
 }
 
 .content {
-  color: #fff;
+  color: #ebebeb;
   font-weight: 300;
   padding: 0 2rem;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
@@ -102,7 +102,7 @@ main {
   font-size: 16px;
   margin: 10px auto 0 3%;
   cursor: pointer;
-  color: #fff;
+  color: #ebebeb;
   border: 2px solid;
   border-radius: 99em;
   outline: none;
@@ -110,9 +110,9 @@ main {
 }
 
 .footer a:hover {
-  background-color: #fff;
+  background-color: #ebebeb;
   color: #222;
-  border-color: #fff;
+  border-color: #ebebeb;
 }
 
 .subtitle,
@@ -134,7 +134,7 @@ main {
   font-weight: 400;
   padding: 2rem 0;
   font-size: 1.3rem;
-  color: rgba(255, 255, 255);
+  color: #ebebeb;
   opacity: 0;
   animation: charge 0.5s 0.3s forwards;
   text-align: left;
@@ -191,7 +191,7 @@ main {
 }
 
 .headerContainer {
-  background-color: #fff;
+  background-color: #ebebeb;
 }
 
 .wavySvgBackground {
