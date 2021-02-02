@@ -16,7 +16,8 @@
     "react-scripts": "3.4.3",
     "react-textarea-counter": "^1.0.0",
     "react-timeago": "^5.2.0",
-    "socket.io-client": "^3.0.3"
+    "socket.io-client": "^3.0.3",
+    "swiper": "^6.4.5"
   },
   "scripts": {
     "start": "react-scripts start",

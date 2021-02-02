@@ -1,0 +1,13 @@
+#outsideContainer {
+  background: #121212;
+  overflow: hidden;
+  overflow-y: hidden;
+}
+
+.dividerSpacing {
+  color: #fcc107;
+  font-size: 24px;
+  text-align: center;
+  margin-top: 150px;
+  margin-bottom: 150px;
+}
