@@ -1,8 +1,9 @@
 import React from "react";
 import Swiper from "swiper";
 import "./styles/Creators.css";
+import Jose from "./Images/JoseProfile.png";
 import Jesse from "./Images/JesseProfile.jpg";
-import Michael from "./Images/MichaelProfile.jpg";
+import Michael from "./Images/MichaelProfile.png";
 
 // USING OLD WAY T0 BRING IN SWIPER EFFECTS
 // FROM GIVEN EXAMPLES
@@ -37,7 +38,7 @@ class Creators extends React.Component {
           <div className="mainContent">
            <p className="quoteStyle">"Solving Tomorrow's Problem Today!"</p>
            <div className="img-Bx">
-            <img alt="Creator-Selfie" height="100px" width="110px" src="https://i.imgur.com/hCVt35Q.jpg"/>
+            <img id="Jose" alt="Creator-Selfie" height="100px" width="100px" src={Jose}/>
            </div>
            <div className="stats">
             <h2 style={{color: "#ebebeb"}}>Jose Ulices Perez Jr.<br/><span>Full Stack Web Developer</span></h2>
@@ -66,9 +67,9 @@ class Creators extends React.Component {
         <div className="page">
          <div className="overlay"></div>
           <div className="mainContent">
-           <p className="quoteStyle">"True Hustlers are early birds!"</p>
+           <p className="quoteStyle">"Change the World for the Better"</p>
            <div className="img-Bx">
-            <img id="Michael" alt="Creator-Selfie" height="122px" width="108px" src={Michael}/>
+            <img id="Michael" alt="Creator-Selfie" height="100px" width="100px" src={Michael}/>
            </div>
            <div className="stats">
             <h2 style={{color: "#ebebeb"}}>Michael Moreno<br/><span>Full Stack Web Developer</span></h2>
