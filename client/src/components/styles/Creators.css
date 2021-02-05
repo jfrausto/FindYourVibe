@@ -114,14 +114,19 @@ div.mainContent {
   padding: 0px;
 }
 
+#Jose {
+  margin-left: -4px;
+  margin-top: 0px;
+}
+
 #Jesse {
   margin-left: -7px;
   margin-top: -7px;
 }
 
 #Michael {
-  margin-right: -16px;
-  margin-top: -12px;
+  margin-left: -4px;
+  margin-top: -6px;
 }
 
 .quoteStyle {

@@ -15,10 +15,10 @@ export default function Instructions() {
      {/* TITLE  */}
     <Col xs={12}>
      <div className="whiteTextChange instructionsTitle">
-     A social media experience like you've never had before
+     A Social Media Experience Like You've Never Had Before
      </div>
      <div className="subtextTitle">
-       Vibee is a social media app for users to be able to communicate with others through music and emojis.
+       Vibee is a social media app where users can express themselves and communicate with others through music and emojis
      </div>
     </Col>
     </Row>
@@ -59,7 +59,7 @@ export default function Instructions() {
         FILL INFO
       </div>
       <div className="smallTextDescription">
-      Enter your personal information.
+        Enter your information and choose your username.
       </div>
       </Col>
 
@@ -72,8 +72,7 @@ export default function Instructions() {
         VIBE AWAY
       </div>
       <div className="smallTextDescription adjustWidth">
-        You're all set to start vibing.
-        LITMAS!🔥
+        You're all set to start vibing! 🔥
       </div>
       </Col>
 
@@ -85,17 +84,17 @@ export default function Instructions() {
           ABOUT US
         </div>
         <div className="whiteTextChange missionMain">
-          Lorem Epsum Here at vibee we believe in teamwork and success brings the best of both worlds. You get the limo ride to the front. Hottest styles every shoe every color now if you think that it can be kind of fun. It's really you and nobody other. Who would of thought that a girl like me.
+          At Vibee, we believe that teamwork and positive vibes bring out the best in all of us. Music is a defining interest for us and surely for many others, and we hope to give people a way to share these interests and add some life to whatever they're thinking.
         </div>
       </Col>
 
       <Col className="mt-3 mt-md-0" xs={6}  md={6}>
         <div className="whiteTextChange missionTitle">
-          OUR MISSION
+          OUR GOALS
         </div>
 
         <div className="whiteTextChange missionSmallText">
-          HJeres is where I am goihjng to talk about that we want to check in with mental health and whjat reall yu moved us to do this. This should be changed later I am niot even looking at the screen i am just guessing that I am actually typuing things that wil actually be legible for someone else to read.
+          With so many ways to connect with each other, we hope to give people the chance to share in similar interests. Music not only becomes a way to connect, but a way to provide a voice to flat text on a screen. We want this platform help others bring life to online social situations.
         </div>
         
       </Col>
@@ -103,11 +102,11 @@ export default function Instructions() {
       <Col className="mt-3 mt-md-0" xs={6} md={{size: 6, offset: 6}}>
 
            <div className="smallTitle2 whiteTextChange missionTitle">
-          WHATY  ANOTHER TITLE
+          OUR MISSION
         </div>
 
         <div className="whiteTextChange missionSmallText">
-          Another small subtext these should be smaller than the loem epsum in the column on the left the right one jhust as long but there are 4 orf it so bacwsically each section takes half odf the space if they were nice to each other.
+          We are dedicated to helping users evaluate what their words mean for their own mental health. With thousands of thoughts running through peoples' heads every day without a second glance, associating music to moments can help to make these thoughts feel special.
         </div> 
       </Col>
       

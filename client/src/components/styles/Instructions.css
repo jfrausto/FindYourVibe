@@ -92,6 +92,12 @@
   }
 }
 
+@media all and (min-width: 1200px) {
+  .smallTitle2 {
+    margin-top: -95px;
+  }
+}
+
 .navbar-dark .navbar-nav .nav-link {
   color: #ebebeb;
 }

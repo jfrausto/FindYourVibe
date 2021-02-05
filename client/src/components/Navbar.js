@@ -50,20 +50,24 @@ export default function NavMenu() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ml-auto">
-            <Nav.Link
-              className="mx-0 nav-link btn--outline"
-              as={Link}
-              to={"/dashboard"}
-            >
-              Dashboard
-            </Nav.Link>
-            <Nav.Link
-              className="mx-0 nav-link btn--outline"
-              as={Link}
-              to={"/profile"}
-            >
-              Profile
-            </Nav.Link>
+            {currentUser && (
+              <Nav.Link
+                className="mx-0 nav-link btn--outline"
+                as={Link}
+                to={"/dashboard"}
+              >
+                Dashboard
+              </Nav.Link>
+            )}
+            {currentUser && (
+              <Nav.Link
+                className="mx-0 nav-link btn--outline"
+                as={Link}
+                to={"/profile"}
+              >
+                Profile
+              </Nav.Link>
+            )}
             {currentUser && (
               <Nav.Link
                 className="mx-0 nav-link btn--outline"
