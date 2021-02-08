@@ -35,7 +35,7 @@ In this application, the user can write a blurb in which they can analyze their 
 ## User-Demo
 
 From the home screen, users can use the Get Started Button to sign-up/log in or the Learn More button to learn more about Vibee.<br><br>
-![Vibee Homepage](./client/public/assets/images/README/Vibee1.png)
+![Vibee Homepage](./client/public/assets/images/README/Vibee1.PNG)
 <br><br>
 On the Dashboard, users can analyze write a post and use the analyze button or search bar to choose a song to match your feelings on the song.<br><br>
 ![Vibee Dashboard](./client/public/assets/images/README/Vibee2.png)
@@ -48,26 +48,27 @@ Songs and posts are saved onto each user's individual profiles and "Collection" 
 
 Must download and install [Node](https://nodejs.org/en/download/)
 
-Must install the following NPM packages:
+Developers may install dependencies within the package.json file with the following command in your terminal:
 
-- to install [axios](https://www.npmjs.com/package/axios) run the following code in your terminal:
-  `npm i axios`
-- to install [react](https://www.npmjs.com/package/react) run the following code in your terminal:
-  `npm i react`
-- to install [react-dom](https://www.npmjs.com/package/react-dom) run the following code in your terminal:
-  `npm i react-dom`
-- to install [bootstrap](https://www.npmjs.com/package/bootstrap) run the following code in your terminal:
-  `npm i bootstrap`
-- to install [react-router-dom](https://www.npmjs.com/package/react-router-dom) run the following code in your terminal:
-  `npm i react-router-dom`
-- to install [react-scripts](https://www.npmjs.com/package/react-scripts) run the following code in your terminal:
-  `npm i react-scripts`
-- to install [web-vitals](https://www.npmjs.com/package/web-vitals) run the following code in your terminal:
-  `npm i web-vitals`
+```
+npm install
+```
+This command will automatically navigate into the client folder and install all additional dependencies.
+<br>
 
-User-Flow
 
-- The user can type in the name of the employee that they want to look up and as they type the selection will filter accordingly to the letters typed.
+Some of the packages used include:
+
+- [axios](https://www.npmjs.com/package/axios)
+- [react](https://www.npmjs.com/package/react) 
+- [react-dom](https://www.npmjs.com/package/react-dom) 
+- [bootstrap](https://www.npmjs.com/package/bootstrap) 
+- [react-router-dom](https://www.npmjs.com/package/react-router-dom) 
+- [react-scripts](https://www.npmjs.com/package/react-scripts) 
+- [web-vitals](https://www.npmjs.com/package/web-vitals) 
+- [genius-lyrics](https://www.npmjs.com/package/genius-lyrics)
+- [firebase](https://www.npmjs.com/package/firebase)
+- [socket.io](https://www.npmjs.com/package/socket.io)
 
 ## License
 
