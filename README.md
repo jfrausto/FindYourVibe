@@ -14,16 +14,12 @@
 
 ## Table Of Contents
 
-1. [User-Demo](#User-Demo)
 1. [Description](#Description)
 1. [User-Story](#User-Story)
+1. [User-Demo](#User-Demo)
 1. [Installation&Usage](#Installation&Usage)
 1. [License](#License)
 1. [Questions](#Questions)
-
-## User-Demo
-
-Screenshots:
 
 ## Description
 
@@ -32,9 +28,21 @@ In this application, the user can write a blurb in which they can analyze their 
 ## User-Story
 
 ```
- As a user, I want to be able to write how I feel and select a song that matches what I am feeling.
-
+ AS A USER, 
+ I want to be able to write how I feel and select a song that matches what I am feeling.
 ```
+
+## User-Demo
+
+From the home screen, users can use the Get Started Button to sign-up/log in or the Learn More button to learn more about Vibee.<br><br>
+![Vibee Homepage](./client/public/assets/images/README/Vibee1.png)
+<br><br>
+On the Dashboard, users can analyze write a post and use the analyze button or search bar to choose a song to match your feelings on the song.<br><br>
+![Vibee Dashboard](./client/public/assets/images/README/Vibee2.png)
+<br><br>
+Songs and posts are saved onto each user's individual profiles and "Collection" tabs to be viewed again later. <br><br>
+![Vibee Collections Page](./client/public/assets/images/README/Vibee3.png)
+
 
 ## Installation&Usage
 
@@ -95,7 +103,7 @@ _<strong style="font-size: 22px;">Michael Moreno</strong>_
 
 <strong style="color: palegoldenrod;">GitHub:</strong> https://github.com/mgmoreno22
 
-<strong style="color: palegoldenrod;">Email:</strong> mmoreno2222@gmail.com
+<strong style="color: palegoldenrod;">Email:</strong> michaelmoreno751@gmail.com
 
 _<strong style="font-size: 22px;">Jose Ulices Perez Jr.</strong>_
 
