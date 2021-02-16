@@ -20,7 +20,7 @@
 #jumboTronAbout {
   margin-top: 0px !important;
   border-radius: 0px !important;
-  background-image: url("../Images/Vibee_F.png");
+  background-image: url("../Images/HeroLogo.png");
   background-color: #fcc107 !important;
   height: 185px;
   width: auto;
@@ -29,7 +29,8 @@
   padding-bottom: -400px !important;
   background-repeat: no-repeat;
   background-position: center;
-  background-size: 240px;
+  background-size: 600px;
+  /* background-size: 240px; */
 }
 
 .fontTitle {
