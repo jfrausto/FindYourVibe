@@ -423,7 +423,7 @@ export default function BlurbInput() {
             </Row>
             <Row className="mt-1">
                     <Col xs={12} md={{span: 12, offset: 0}}>
-                        <TextareaCounter value={TextAreaVal} onChange={(e) => setTextAreaVal(e.target.value)} placeholder="What's on your mind? Vibe check?" countLimit={140} rows={3} />
+                        <TextareaCounter id="textAreaCounter" value={TextAreaVal} onChange={(e) => setTextAreaVal(e.target.value)} placeholder="What's on your mind? Vibe check?" countLimit={140} rows={3} />
                     </Col>
             </Row>
             <Row>

@@ -57,3 +57,6 @@ textarea + div {
   padding-left: 4rems !important;
   padding-right: 4rems !important;
 } */
+#textAreaCounter {
+  color: red;
+}
