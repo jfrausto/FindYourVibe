@@ -2,6 +2,31 @@
 textarea + div {
   color: aliceblue !important;
 }
+textarea {
+  outline: #ffc107;
+}
+
+#colorRed {
+  color: red;
+}
+
+#NewtextArea {
+  background-color: aliceblue;
+  resize: vertical;
+  overflow: auto;
+  text-align: left;
+  height: 100%;
+}
+
+div[data-placeholder]:not(:focus):not([data-div-placeholder-content]):before {
+  content: attr(data-placeholder);
+
+  float: left;
+
+  margin-left: 2px;
+
+  color: #b3b3b3;
+}
 
 .match {
   color: antiquewhite;

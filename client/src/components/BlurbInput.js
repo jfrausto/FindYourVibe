@@ -11,11 +11,12 @@ import API from '../utils/API';
 import SongCardContainer from "./SongCardContainer";
 import SongChoice from "./SongChoice";
 import PostToastError from "./PostToastError";
-
+import NewTextArea from "./NewTextArea";
 import { useAuth } from '../contexts/AuthContext';
 
 // socket
 import socket from "../utils/socketTest";
+import newTextArea from './NewTextArea';
 
 // input group component that allows user input
 export default function BlurbInput() {
@@ -32,6 +33,11 @@ export default function BlurbInput() {
         lyrics: "",
         albumThumbnail: ""
     });
+
+    //  MAKE TEXT AREA DIFFERENT COLOR
+    
+
+
     // button states
     const [isThinking, setIsThinking] = useState(false);
     const [isSearching, setIsSearching] = useState(false);
@@ -407,7 +413,31 @@ export default function BlurbInput() {
     const vibeCheck = (vibe) => {
         setCurrentVibe(vibe);
     }
-
+    //** Successfully tracking the counter to correspond to the amount  */
+    //** Next is to make a contenteditable div that does the same as our textareacounter */
+    //* Made a  new text area got to recreate the function like handleTextAreaChange */
+    const handleTextAreaChange = (e) => {
+        let currentText = e.target.value;
+        let char = [];
+        char += currentText;
+        if (char.length < 141) {
+            console.log("under");
+            setTextAreaVal(currentText);
+            const divCounter = document.querySelector('[data-testid="counter"]');
+            console.log(divCounter.innerHTML);
+            console.log(char.length);
+            
+        }
+        else {
+            console.log("over")
+            setTextAreaVal(currentText);
+            const divCounter = document.querySelector('[data-testid="counter"]');
+            console.log(divCounter.innerHTML);
+            console.log(char.length);
+        }
+    }
+    var myValue = <span id="colorRed" style={{color: "red"}}>A</span>;
+    console.log(myValue.props.children);
     return (
     <>
         <Container className="mt-3">
@@ -423,8 +453,11 @@ export default function BlurbInput() {
             </Row>
             <Row className="mt-1">
                     <Col xs={12} md={{span: 12, offset: 0}}>
-                        <TextareaCounter id="textAreaCounter" value={TextAreaVal} onChange={(e) => setTextAreaVal(e.target.value)} placeholder="What's on your mind? Vibe check?" countLimit={140} rows={3} />
-                    </Col>
+                        
+                            {/* <TextareaCounter  id="textArea" value={TextAreaVal} onChange={handleTextAreaChange} placeholder="What's on your mind? Vibe check?" countLimit={280} rows={3}></TextareaCounter> */}
+                            {/* <NewTextArea contentEditable="true" id="NewtextArea" className='editable' data-placeholder='Enter some text' value={TextAreaVal} onChange={newHandleTextAreaChange} placeholder="What's on your mind? Vibe check?"/> */}
+                            <div contentEditable="true" id="NewtextArea" className='editable' data-placeholder='Enter some text' onInput={e => console.log('Text inside div', e.currentTarget.textContent)} value={TextAreaVal} placeholder="What's on your mind? Vibe check?"/>
+                         </Col>
             </Row>
             <Row>
                 <PostToastError showToast={showToast} />
