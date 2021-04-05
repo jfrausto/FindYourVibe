@@ -25,6 +25,7 @@ export default function BlurbInput() {
     // current states of all user inputs
     const [currentVibe, setCurrentVibe] = useState("");
     const [TextAreaVal, setTextAreaVal] = useState("");
+    const [OverValue, setOverValue] = useState("");
     const [songAreaVal, setSongAreaVal] = useState("");
     const [SongPoolRes, setSongPoolRes] = useState([]);
     const [selectedSong, setSelectedSong] = useState({
@@ -35,7 +36,8 @@ export default function BlurbInput() {
     });
 
     //  MAKE TEXT AREA DIFFERENT COLOR
-    
+    let char = [];
+    let coloredLetters = [];
 
 
     // button states
@@ -416,6 +418,8 @@ export default function BlurbInput() {
     //** Successfully tracking the counter to correspond to the amount  */
     //** Next is to make a contenteditable div that does the same as our textareacounter */
     //* Made a  new text area got to recreate the function like handleTextAreaChange */
+    //* Next step should to look into replace. I thin that should work *//
+    // ! NEED HELP//
     const handleTextAreaChange = (e) => {
         let currentText = e.target.value;
         let char = [];
@@ -438,6 +442,27 @@ export default function BlurbInput() {
     }
     var myValue = <span id="colorRed" style={{color: "red"}}>A</span>;
     console.log(myValue.props.children);
+
+
+    let newInputMethod = e => {
+        let currentText = e.currentTarget.textContent;
+        char += currentText;
+        if (char.length < 10) {
+            console.log("under");
+            setTextAreaVal(currentText);
+            console.log(TextAreaVal);
+
+        }
+        else {
+            coloredLetters.push(currentText[currentText.length -1]);
+            setOverValue(coloredLetters);
+            console.log("COLOREDLETTERS ARRAY", coloredLetters);
+            setTextAreaVal(char += OverValue);
+        }
+        // setTextAreaVal(e.currentTarget.textContent);
+        // console.log('Text inside div', e.currentTarget.textContent);
+        // console.log(TextAreaVal.length);
+    } 
     return (
     <>
         <Container className="mt-3">
@@ -456,7 +481,7 @@ export default function BlurbInput() {
                         
                             {/* <TextareaCounter  id="textArea" value={TextAreaVal} onChange={handleTextAreaChange} placeholder="What's on your mind? Vibe check?" countLimit={280} rows={3}></TextareaCounter> */}
                             {/* <NewTextArea contentEditable="true" id="NewtextArea" className='editable' data-placeholder='Enter some text' value={TextAreaVal} onChange={newHandleTextAreaChange} placeholder="What's on your mind? Vibe check?"/> */}
-                            <div contentEditable="true" id="NewtextArea" className='editable' data-placeholder='Enter some text' onInput={e => console.log('Text inside div', e.currentTarget.textContent)} value={TextAreaVal} placeholder="What's on your mind? Vibe check?"/>
+                            <div contentEditable="true" id="NewtextArea" className='editable' data-placeholder='Enter some text' onInput={newInputMethod} value={TextAreaVal} placeholder="What's on your mind? Vibe check?"><span id="colorRed">{OverValue}</span></div>
                          </Col>
             </Row>
             <Row>
