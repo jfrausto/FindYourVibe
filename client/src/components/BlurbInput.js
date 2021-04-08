@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useRef} from 'react';
 import{ useHistory } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import TextareaCounter from 'react-textarea-counter';
@@ -11,6 +11,7 @@ import API from '../utils/API';
 import SongCardContainer from "./SongCardContainer";
 import SongChoice from "./SongChoice";
 import PostToastError from "./PostToastError";
+import ContentEditable from 'react-contenteditable';
 
 import { useAuth } from '../contexts/AuthContext';
 
@@ -70,7 +71,7 @@ export default function BlurbInput() {
         let matches = input.split(" ");
         // now apply the highlighting of the words
         let formattedWords = cleanedUpArray.map(word => {
-            if (matches.indexOf(word.toLowerCase()) !== -1) {
+            if (matches.indexOf(word.toLowerCase()) != -1) {
                 return `<span class="match">` + word +`</span>`
             } else {
                 return word;
@@ -408,6 +409,19 @@ export default function BlurbInput() {
         setCurrentVibe(vibe);
     }
 
+    //** Content Editiable */
+    
+    const text = useRef("");
+    
+    const handleChange = evt => {
+        text.current = evt.target.value;
+        console.log("changeHappened")
+    };
+     
+    const handleBlur = () => {
+        console.log("I clicked Off");
+    };
+
     return (
     <>
         <Container className="mt-3">
@@ -423,7 +437,10 @@ export default function BlurbInput() {
             </Row>
             <Row className="mt-1">
                     <Col xs={12} md={{span: 12, offset: 0}}>
-                        <TextareaCounter value={TextAreaVal} onChange={(e) => setTextAreaVal(e.target.value)} placeholder="What's on your mind? Vibe check?" countLimit={140} rows={3} />
+                        {/* <TextareaCounter value={TextAreaVal} onChange={(e) => setTextAreaVal(e.target.value)} placeholder="What's on your mind? Vibe check?" countLimit={140} rows={3} /> */}
+ 
+                 <ContentEditable className="contentEditable" html={text.current} onBlur={handleBlur} onChange={handleChange} />
+                    
                     </Col>
             </Row>
             <Row>

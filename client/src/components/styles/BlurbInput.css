@@ -3,6 +3,11 @@ textarea + div {
   color: aliceblue !important;
 }
 
+.contentEditable {
+  height: 100px;
+  background-color: aliceblue;
+}
+
 .match {
   color: antiquewhite;
   background-color: #262f33;
