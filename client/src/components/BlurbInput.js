@@ -419,7 +419,8 @@ export default function BlurbInput() {
     };
      
     const handleBlur = () => {
-        console.log("I clicked Off");
+        let selected = document.getElementsByClassName("contentEditable");
+        console.log(selected[0].innerHTML);
     };
 
     return (
